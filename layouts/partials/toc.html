@@ -1,4 +1,4 @@
-{{ <!-- partials/toc.html --> | safeHTML }}
+{{ `<!-- partials/toc.html -->` | safeHTML }}
 {{ if not .Params.notoc -}}
   {{ with .TableOfContents -}}
     {{ if ne . `<nav id="TableOfContents"></nav>` -}}

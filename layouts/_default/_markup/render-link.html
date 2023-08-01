@@ -1,4 +1,4 @@
-{{ <!-- _default/_markup/render-link.html --> | safeHTML }}
+{{ `<!-- _default/_markup/render-link.html -->` | safeHTML }}
 <a
 	{{ if or (strings.HasPrefix .Destination `http`) (strings.HasPrefix .Destination `#`) (strings.HasPrefix .Destination `/`) }}
 	

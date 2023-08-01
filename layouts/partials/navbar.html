@@ -1,4 +1,4 @@
-{{ <!-- partials/navbar.html --> | safeHTML }}
+{{ `<!-- partials/navbar.html -->` | safeHTML }}
 {{ $cover := and
     (.HasShortcode "blocks/cover")
     (not .Site.Params.ui.navbar_translucent_over_cover_disable)
