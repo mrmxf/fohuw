@@ -1,3 +1,4 @@
+{{ <!-- partials/page.html --> | safeHTML }}
 <ul class="list-unstyled d-flex justify-content-between align-items-center mb-0 pt-5">
   <li>
     <a {{if .PrevInSection}}href="{{.PrevInSection.RelPermalink}}" aria-label="{{ T "ui_pager_prev" }} - {{.PrevInSection.Title}}" {{end}}class="btn btn-primary{{if not .PrevInSection}} disabled{{end}}"><span class="mr-1">←</span>{{ T "ui_pager_prev" }}</a>

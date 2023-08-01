@@ -1,3 +1,4 @@
+{{ <!-- partials/section-index.html --> | safeHTML }}
 <div class="section-index">
     {{ $parent := .Page }}
     {{ $pages := (where .Site.Pages "Section" .Section).ByWeight }}
