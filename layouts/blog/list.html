@@ -1,5 +1,5 @@
-{{ `<!-- blog/list.html -->` | safeHTML }}
 {{ define "main" }}
+{{ `<!-- blog/list.html -->` | safeHTML }}
 {{ if (and .Parent .Parent.IsHome) }}
 {{ $.Scratch.Set "blog-pages" (where .Site.RegularPages "Section" .Section) }}
 {{ else }}

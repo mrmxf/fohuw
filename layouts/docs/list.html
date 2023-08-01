@@ -1,5 +1,5 @@
-{{ `<!-- docs/list.html -->` | safeHTML }}
 {{ define "main" }}
+{{ `<!-- docs/list.html -->` | safeHTML }}
 <div class="td-content">
 	<h1>{{ .Title }}</h1>
   {{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
