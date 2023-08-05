@@ -126,7 +126,7 @@ You can find a complete list of icons to use in the [FontAwesome documentation](
 
 ### Adding a version drop-down
 
-If you add some `[params.versions]` in `config.toml`, the Docsy theme adds a
+If you add some `[params.jumbo]` in `config.toml`, the Docsy theme adds a
 version selector drop down to the top-level menu.
 
 You can find out more in the guide to

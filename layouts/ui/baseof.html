@@ -1,5 +1,5 @@
 <!doctype html>
-{{ `<!-- docs/baseof.html -->` | safeHTML }}
+{{ `<!-- ui/baseof.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
@@ -16,9 +16,6 @@
   <div class="ui wide container">
     <div class="ui grid">
       <div class="row">
-        <div class="three wide column">
-          {{- partial "sidebar-tree.html" . -}}
-        </div>
         <div class="eleven wide column">
           <main role="main" class="ui main">
           {{ partial "version-banner.html" . }}
@@ -26,11 +23,9 @@
           {{ block "main" . }}{{ end }}
         </main>
         </div>
-        <div class="two wide column">
+        <div class="five wide column">
           <div class="ui segment">
-            {{ partial "page-meta-links.html" . }}
-            {{ partial "toc.html" . }}
-            {{ partial "taxonomy_terms_clouds.html" . }}
+            {{ partial "mrx-reg-response.html" . }}
           </div>
         </div>
       </div>

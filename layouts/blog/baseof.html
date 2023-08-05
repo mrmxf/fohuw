@@ -1,25 +1,26 @@
 <!doctype html>
-{{ `<!-- blog/baseof.html -->` | safeHTML }}
+{{ `<!-- fohuw blog/baseof.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
-  <head>
-    {{ partial "head.html" . }}
-  </head>
-  <body class="td-{{ .Kind }} td-blog {{- with .Page.Params.body_class }} {{ . }}{{ end }}">
+
+<head>
+  {{ partial "head.html" . }}
+</head>
+
+<body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+  <div class="ui wide container">
     <header>
       {{ partial "navbar.html" . }}
     </header>
-    <div class="container-fluid td-outer">
-      <div class="td-main">
-        <div class="row flex-xl-nowrap">
-          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
-            {{ partial "sidebar.html" . }}
-          </aside>
-          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-            {{ partial "page-meta-links.html" . }}
-            {{ partial "toc.html" . }}
-            {{ partial "taxonomy_terms_clouds.html" . }}
-          </aside>
-          <main class="col-12 col-md-9 col-xl-8 pl-md-5 pr-md-4" role="main">
+  </div>
+
+  <div class="ui wide container">
+    <div class="ui grid">
+      <div class="row">
+        <div class="four wide column">
+          {{- partial "sidebar-tree.html" . -}}
+        </div>
+        <div class="ten wide column">
+          <main role="main" class="ui main">
             {{ with .CurrentSection.OutputFormats.Get "rss" -}}
             <a class="td-rss-button" title="RSS" href="{{ .Permalink | safeURL }}" target="_blank" rel="noopener">
               <i class="fa-solid fa-rss" aria-hidden="true"></i>
@@ -28,9 +29,21 @@
             {{ block "main" . }}{{ end }}
           </main>
         </div>
+        <div class="two wide column">
+          <div class="ui segment">
+            {{ partial "page-meta-links.html" . }}
+            {{ partial "toc.html" . }}
+            {{ partial "taxonomy_terms_clouds.html" . }}
+          </div>
+        </div>
       </div>
+    </div>
+    <div class="row">
       {{ partial "footer.html" . }}
     </div>
-    {{ partial "scripts.html" . }}
-  </body>
+  </div>
+  </div>
+  {{ partial "body_scripts.html" . }}
+</body>
+
 </html>
