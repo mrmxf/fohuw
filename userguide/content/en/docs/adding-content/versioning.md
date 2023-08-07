@@ -14,7 +14,7 @@ to display an information banner on the archived sites.
 
 ## Adding a version drop-down menu
 
-If you add some `[params.versions]` in `config.toml`/`config.yaml`/`config.json`, the Docsy theme adds a
+If you add some `[params.jumbo]` in `config.toml`/`config.yaml`/`config.json`, the Docsy theme adds a
 version selector drop down to the top-level menu. You specify a URL and a name
 for each version you would like to add to the menu, as in the following example:
 
@@ -22,15 +22,15 @@ for each version you would like to add to the menu, as in the following example:
 {{< tab header="Configuration file:" disabled=true />}}
 {{< tab header="config.toml" lang="toml" >}}
 # Add your release versions here
-[[params.versions]]
+[[params.jumbo]]
   version = "master"
   url = "https://master.kubeflow.org"
 
-[[params.versions]]
+[[params.jumbo]]
   version = "v0.2"
   url = "https://v0-2.kubeflow.org"
 
-[[params.versions]]
+[[params.jumbo]]
   version = "v0.3"
   url = "https://v0-3.kubeflow.org"
 {{< /tab >}}
@@ -69,22 +69,22 @@ params:
 Remember to add your current version so that users can navigate back!
 
 The default title for the version drop-down menu is **Releases**. To change the
-title, change the `version_menu` parameter in `config.toml`/`config.yaml`/`config.json`:
+title, change the `jumbo_menu_text` parameter in `config.toml`/`config.yaml`/`config.json`:
 
 {{< tabpane persistLang=false >}}
 {{< tab header="Configuration file:" disabled=true />}}
 {{< tab header="config.toml" lang="toml" >}}
-version_menu = "Releases"
+jumbo_menu_text = "Releases"
 {{< /tab >}}
 {{< tab header="config.yaml" lang="yaml" >}}
-version_menu: 'Releases'
+jumbo_menu_text: 'Releases'
 {{< /tab >}}
 {{< tab header="config.json" lang="json" >}}
-"version_menu": "Releases"
+"jumbo_menu_text": "Releases"
 {{< /tab >}}
 {{< /tabpane >}}
 
-If you set the `version_menu_pagelinks` parameter to `true`, then links in the version drop-down menu
+If you set the `jumbo_menu_text_pagelinks` parameter to `true`, then links in the version drop-down menu
 point to the current page in the other version, instead of the main page.
 This can be useful if the document doesn't change much between the different versions.
 Note that if the current page doesn't exist in the other version, the link will be broken.
@@ -113,18 +113,18 @@ For example, see the archived docs for
 To add the banner to your doc site, make the following changes in your
 `config.toml`/`config.yaml`/`config.json` file:
 
-1. Set the `archived_version` parameter to `true`:
+1. Set the `site_is_archived` parameter to `true`:
 
     {{< tabpane persistLang=false >}}
 {{< tab header="Configuration file:" disabled=true />}}
 {{< tab header="config.toml" lang="toml" >}}
-archived_version = true
+site_is_archived = true
 {{< /tab >}}
 {{< tab header="config.yaml" lang="yaml" >}}
-archived_version: true
+site_is_archived: true
 {{< /tab >}}
 {{< tab header="config.json" lang="json" >}}
-"archived_version": true
+"site_is_archived": true
 {{< /tab >}}
     {{< /tabpane >}}
 

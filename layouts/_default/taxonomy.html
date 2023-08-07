@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{ `<!-- _default/taxonomy.html -->` | safeHTML }}
 <div class="td-content">
   <main class="taxonomy-taxonomy-page">
     <h1>{{ with .Data.Singular }}{{ . | humanize }}: {{ end }}<span>{{ .Title }}</span></h1>

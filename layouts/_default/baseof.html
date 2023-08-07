@@ -1,18 +1,44 @@
 <!doctype html>
+{{ `<!-- fohuw _default/baseof.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
-  <head>
-    {{ partial "head.html" . }}
-  </head>
-  <body class="td-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+
+<head>
+  {{ partial "head.html" . }}
+</head>
+
+<body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+  <div class="ui wide container">
     <header>
       {{ partial "navbar.html" . }}
     </header>
-    <div class="container-fluid td-default td-outer">
-      <main role="main" class="td-main">
-        {{ block "main" . }}{{ end }}
-      </main>
+  </div>
+  <div class="ui wide container">
+    <div class="ui sixteen wide euql width  grid">
+      <div class="row">
+        <div class="one wide column">
+          &nbsp;
+        </div>
+        <div class="fourteen wide fluid column">
+          <main role="main" class="ui main">
+            {{ with .CurrentSection.OutputFormats.Get "rss" -}}
+            <a class="td-rss-button" title="RSS" href="{{ .Permalink | safeURL }}" target="_blank" rel="noopener">
+              <i class="fa-solid fa-rss" aria-hidden="true"></i>
+            </a>
+            {{ end -}}
+            {{ block "main" . }}{{ end }}
+          </main>
+        </div>
+        <div class="one wide column">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+    <div class="row">
       {{ partial "footer.html" . }}
     </div>
-    {{ partialCached "scripts.html" . }}
-  </body>
+  </div>
+  </div>
+  {{ partial "body_scripts.html" . }}
+</body>
+
 </html>

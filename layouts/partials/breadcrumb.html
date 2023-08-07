@@ -1,12 +1,10 @@
+{{ `<!-- partials/breadcrumbs.html -->` | safeHTML }}
 {{ $isSingle := true -}}
 {{ with .Parent -}}
   {{ $isSingle = .IsHome -}}
 {{ end -}}
-<nav aria-label="breadcrumb" class="td-breadcrumbs
-    {{- if $isSingle }} td-breadcrumbs__single {{- end }}">
-  <ol class="breadcrumb">
+<nav aria-label="breadcrumb" class="ui breadcrumb">
     {{- template "breadcrumbnav" (dict "p1" . "p2" .) }}
-  </ol>
 </nav>
 
 {{- define "breadcrumbnav" -}}
@@ -18,12 +16,10 @@
     {{ template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 )  -}}
   {{ end -}}
   {{ $isActive :=  eq .p1 .p2 }}
-  <li class="breadcrumb-item{{ if $isActive }} active{{ end }}"
-      {{- if $isActive }} aria-current="page"{{ end }}>
-    <a href="{{ .p1.Permalink }}"
-      {{- if $isActive }} aria-disabled="true" class="btn-link disabled"{{ end -}}
-    >
+  <a class="{{ if $isActive }}active {{ end }}section"
+      {{- if $isActive }} aria-current="page"{{ end }}
+      href="{{ .p1.Permalink }}">
       {{- .p1.LinkTitle -}}
     </a>
-  </li>
+    {{- if not $isActive }}<i class="right arrow icon divider"></i>{{ end }}
 {{- end -}}

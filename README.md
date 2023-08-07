@@ -1,4 +1,4 @@
-# FoHuW
+# FoHuWn (dev branch)
 
 FoHuW is a [Hugo](https://gohugo.io) theme for technical documentation sets,
 sites requiring structured navigation, showcase features, embedded apps, and
@@ -7,14 +7,29 @@ more.
 This theme was started as a fork of [Docsy] and then changed to allow less
 technical, lazier writers to guess at syntax is actively being maintained.
 
-### Git submodule intstallation (dev)
+### Git submodule first installation (dev)
 
 If you're developing then fork fohuw and then use your fork in the example below
 
 ```bash
-# install fohuw for the first time
-git submodule add git@github.com:mrmxf/fohuw.git
+# install fohuw for the first time - use the dev branch for latest fixed !!!
+FOHUW_BRANCH=dev
+git submodule add git@github.com:mrmxf/fohuw.git themes/fohuw
+(cd themes/fohuw && git checkout $FOHUW_BRANCH)
+(cd themes/fohuw && yarn)
+git status
+```
+
+## Cloning a site with FoHuw
+
+If you're developing then fork fohuw and then use your fork in the example below
+
+```bash
+# install fohuw - git assumes submodules are always static
+FOHUW_BRANCH=main
 git submodule init
+git submodule update
+(cd themes/fohuw && git checkout $FOHUW_BRANCH && yarn)
 git status
 ```
 
