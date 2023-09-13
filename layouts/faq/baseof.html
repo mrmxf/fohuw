@@ -1,9 +1,10 @@
 <!doctype html>
-{{ `<!-- fohuw _default/baseof.html -->` | safeHTML }}
+{{ `<!-- mrx faq/baseof.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
   {{ partial "head.html" . }}
+  <script src="/js/jquery.responsive-iframe.js"></script>
 </head>
 
 <body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
@@ -12,16 +13,16 @@
       {{ partial "navbar.html" . }}
     </header>
   </div>
+
   <div class="ui wide container">
-    <div class="ui sixteen wide equal width  grid">
+    <div class="ui grid">
       <div class="row">
-        <div class="sixteen wide fluid column">
+        <div class="sixteen wide column">
           <main role="main" class="ui main">
-            {{ with .CurrentSection.OutputFormats.Get "rss" -}}
-            <a class="td-rss-button" title="RSS" href="{{ .Permalink | safeURL }}" target="_blank" rel="noopener">
-              <i class="fa-solid fa-rss" aria-hidden="true"></i>
-            </a>
-            {{ end -}}
+            <iframe style="width:100%;height:80vh;" id="thefaq"
+             class="ui fluid segment"
+             src="https://faq.metarex.media"
+              title="FAQ" frameborder="0"></iframe>
             {{ block "main" . }}{{ end }}
           </main>
         </div>

@@ -43,13 +43,16 @@ $shouldDelayActive) (eq $s.Parent $p)) (not $p.Site.Params.ui.sidebar_menu_compa
       {{ end }}
       id="{{ $mid }}">
       {{ with $s.Params.Icon}}<i class="{{ . }}"></i>{{ end }}
-        <div class="header">
-        {{- if $withChild }}<i class="blue folder icon"></i>{{- else -}}<i class="brown file icon"></i>{{ end -}}
+        {{- if $withChild -}}
+        <div class="header"><i class="blue folder icon"></i>
+          {{- else -}}
+          <div class="extra"><i class="brown file icon"></i>
+          {{ end -}}
         {{ $s.LinkTitle }}
       </div>
       {{ with $s.Params.Description }}
     </a>
-    <span class="ui small blue text">{{ . }}</span>
+    {{/*  <span class="ui small blue text">{{ . }}</span>  */}}
       {{ end }}
     </div>
 
