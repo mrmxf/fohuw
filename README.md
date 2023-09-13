@@ -1,4 +1,4 @@
-# FoHuWn (dev branch)
+# FoHuW
 
 FoHuW is a [Hugo](https://gohugo.io) theme for technical documentation sets,
 sites requiring structured navigation, showcase features, embedded apps, and

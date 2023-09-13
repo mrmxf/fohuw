@@ -1,5 +1,5 @@
 <!doctype html>
-{{ `<!-- ui/baseof.html -->` | safeHTML }}
+{{ `<!-- mrx ui/baseof.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
@@ -16,16 +16,20 @@
   <div class="ui wide container">
     <div class="ui grid">
       <div class="row">
-        <div class="eleven wide column">
+        <div class="eight wide column">
           <main role="main" class="ui main">
           {{ partial "version-banner.html" . }}
           {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
           {{ block "main" . }}{{ end }}
         </main>
         </div>
-        <div class="five wide column">
+        <div class="eight wide column">
           <div class="ui segment">
-            {{ partial "mrx-reg-response.html" . }}
+            <div class="ui message">
+              <div id="mrx-reg-header" class="header">reg query ...</div>
+            </div>
+            <div id="mrx-reg-response">Register query in progress</div>
+            <div id="mrx-reg-help"></div>
           </div>
         </div>
       </div>

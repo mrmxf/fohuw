@@ -43,12 +43,12 @@ window.markmap = {
     crossorigin="anonymous"></script>
 {{ end }}
 <!-- To automatically render math in text elements, include the auto-render extension: -->
-<script defer src='https://cdn.jsdelivr.net/npm/katex@0.15/dist/contrib/auto-render.min.js'crossorigin='anonymous' 
+<script defer src='https://cdn.jsdelivr.net/npm/katex@0.15/dist/contrib/auto-render.min.js'crossorigin='anonymous'
     {{ printf "onload='renderMathInElement(%s, %s);'" (( .Site.Params.katex.html_dom_element | default "document.body" ) | safeJS ) ( printf "%s" ( $.Site.Params.katex.options | jsonify )) | safeHTMLAttr }}></script>
 {{ end }}
 
 {{ $jsBase := resources.Get "js/base.js" }}
-{{ $jsAnchor := resources.Get "js/anchor.js" }}
+{{ $jsAnchor := resources.Get "js/anchor_add_to_main_headers.js" }}
 {{ $jsSearch := resources.Get "js/search.js" | resources.ExecuteAsTemplate "js/search.js" .Site.Home }}
 {{ $jsMermaid := resources.Get "js/mermaid.js" | resources.ExecuteAsTemplate "js/mermaid.js" . }}
 {{ $jsMarkmap := resources.Get "js/markmap.js" | resources.ExecuteAsTemplate "js/markmap.js" . }}
