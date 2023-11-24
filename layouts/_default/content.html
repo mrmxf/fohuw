@@ -15,12 +15,12 @@
 	{{ .Content }}
 	{{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
 		{{ partial "feedback.html" .Site.Params.ui.feedback }}
-		<br />
+		<br>
 	{{ end }}
 	{{ if (.Site.Params.DisqusShortname) }}
-		<br />
+		<br>
 		{{ partial "disqus-comment.html" . }}
-		<br />
+		<br>
 	{{ end }}
 	{{ partial "page-meta-lastmod.html" . }}
 </div>

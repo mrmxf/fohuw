@@ -30,7 +30,7 @@ Usage [optional-params]:
         <a class="header" href="{{ .src }}">{{ .title }}</a>
         <div class="description">
           {{ .params.description }}
-          {{ if and .src .params.description}}<br />{{ end }}
+          {{ if and .src .params.description}}<br>{{ end }}
           <a href="{{ .src }}">
             <i class="linkify middle aligned icon"></i>
             {{ .src }}

@@ -7,7 +7,7 @@
     <div class="{{$color}} row">
       <div class="column">
         {{ with .Site.Params.copyright }}<small>&copy;
-          {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small><br />
+          {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small><br>
         {{ end }}
         {{ with .Site.Params.privacy_policy }}<small> | <a href="{{ . }}">
             {{ T "footer_privacy_policy" }}</a></small>{{ end }}
