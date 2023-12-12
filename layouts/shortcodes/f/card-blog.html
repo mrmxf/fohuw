@@ -22,7 +22,7 @@
 {{ end                                                                        }}
 {{ $ext       := path.Ext $src                                              }}
 {{ $srcIs   := cond (eq $ext ".mp4") "video" "image"                        }}
-<div class="ui card">
+<div class="ui {{.Get "class"}} card">
 {{   with $src }}
 {{     if eq $srcIs "video"}}
     <video class="ui image" autoplay loop>
