@@ -1,0 +1,10 @@
+{{/* f/message -----------------------------------------------------------------
+
+Usage
+=====
+- {{% banner-doc "msg" %}}
+
+---------------------------------------------------------------------------- */}}
+{{- $description := .Get 0 -}}
+{{- $class := "ui center aligned olive message" -}}
+{{- partial "f/message" (dict "description" ($description  | safeHTML ) "class" $class ) -}}

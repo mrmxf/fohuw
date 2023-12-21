@@ -1,14 +1,14 @@
-version: "3.3"
+version: "0.1"
 
 services:
 
    site:
-      image: docsy/user-guide
+      image: mrmxf/fohuw
       build:
          context: .
-      ports: 
+      ports:
          - "1313:1313"
-      user: "${DOCSY_USER}"
+      user: "${USER}"
       volumes:
-         - /app/docsy/userguide/node_modules
-         - .:/app/docsy
+         - /app/fohuw/fohuwguide/node_modules
+         - .:/app/fohuw

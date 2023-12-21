@@ -1,0 +1,12 @@
+# fohuw theme
+# core configuration to build the fohuw documentation
+
+# cSpell:ignore docsy fortawesome fontawesome webfonts
+
+outputFormats:
+  PRINT:
+    baseName: index
+    isHTML: true
+    mediaType: text/html
+    path: _print
+    permalinkable: false

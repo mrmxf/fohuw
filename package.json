@@ -4,7 +4,7 @@
   "description": "THEME - A fomantic hugo wrapper - inspired by docsy.",
   "main": "none.js",
   "scripts": {
-    "_cd:docs": "cd userguide &&",
+    "_cd:docs": "cd fohuwguide &&",
     "build:preview": "npm run cd:docs build:preview",
     "build:production": "npm run cd:docs build:production",
     "build": "npm run cd:docs build",
@@ -17,7 +17,7 @@
     "update:pkg:hugo": "npm install --save-exact -D hugo-extended@latest",
     "update:pkg:dep": "npm install --save-exact @fortawesome/fontawesome-free@6 bootstrap@4"
   },
-  "cspell": "cSpell:ignore docsy userguide fortawesome fontawesome ",
+  "cspell": "cSpell:ignore docsy fohuwguide fortawesome fontawesome ",
   "prettier": {
     "proseWrap": "always"
   },

@@ -103,7 +103,7 @@ all the prerequisites listed above:
 
 ```console
 $ git clone --depth 1 https://github.com/google/docsy.git
-$ cd docsy/userguide/
+$ cd docsy/fohuwguide/
 $ npm install
 $ npm run serve
 ```

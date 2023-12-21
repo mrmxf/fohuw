@@ -1,0 +1,15 @@
+{{/*
+why >> include all the config.hugo.yaml params.common-markdown-links
+eg >>> {{partial common-markdown-links}}
+*/}}
+{{- $max := 0
+-}}
+{{- range $key, $val := .Site.Params.common_markdown_links -}}
+{{- $max = math.Max $max (len $key) -}}
+{{- end
+-}}
+{{- range $key, $val := .Site.Params.common_markdown_links -}}
+{{- $padlen := math.Sub $max (len $key) -}}
+{{- $pad := strings.Substr (strings.Repeat $max " ") 0 $padlen -}}
+{{- fmt.Printf "[%s]: %s %s\n" $key $pad $val -}}
+{{- end -}}

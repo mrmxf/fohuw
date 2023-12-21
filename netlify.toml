@@ -2,7 +2,7 @@
 # (https://gohugo.io/hosting-and-deployment/hosting-on-netlify/#configure-hugo-version-in-netlify)
 
 [build]
-publish = "userguide/public"
+publish = "fohuwguide/public"
 command = "npm run docs-install && npm run build:preview"
 
 [build.environment]
