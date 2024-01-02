@@ -11,11 +11,11 @@
         {{ end }}
         {{ with .Site.Params.privacy_policy }}<small> | <a href="{{ . }}">
             {{ T "footer_privacy_policy" }}</a></small>{{ end }}
-        {{ with .Site.Params.contact }}<small class="text-white ml-1"> |
+        {{ with .Site.Params.contact }}<small class="text-white "> |
           <a href="{{ . }}">Contact</a></small>
         {{ end }}
         {{ if not .Site.Params.ui.footer_about_disable }}
-        {{ with .Site.GetPage "about" }}<small class="text-white ml-1"> |
+        {{ with .Site.GetPage "about" }}<small class="text-white "> |
           <a href="{{ .RelPermalink }}">{{ .Title }}</a>
           |</small>
         {{ end }}

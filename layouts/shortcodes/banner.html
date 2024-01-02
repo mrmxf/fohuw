@@ -4,7 +4,19 @@ Usage
 =====
 - {{% banner-doc "msg" %}}
 
----------------------------------------------------------------------------- */}}
-{{- $description := .Get 0 -}}
-{{- $class := "ui center aligned olive message" -}}
-{{- partial "f/message" (dict "description" ($description  | safeHTML ) "class" $class ) -}}
+-------------------------------------------------------------------------- */}}
+{{- $msg := .Get 0
+-}}
+{{- $defaultColor := "olive" -}}
+{{- $color := .Get 1 | default $defaultColor
+-}}
+{{- if .IsNamedParams
+-}}
+{{- $msg = .Get "msg" -}}
+{{- $color = .Get "color" | default $defaultColor -}}
+{{- end
+-}}
+{{- $defaultClass := printf "ui center aligned %s message" $color -}}
+{{- $class := .Get "class" | default $defaultClass
+-}}
+{{- partial "f/message" (dict "description" ($msg | safeHTML ) "class" $class ) -}}

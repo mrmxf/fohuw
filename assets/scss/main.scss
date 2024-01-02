@@ -1,2 +1,17 @@
 @import "support/functions";
 // @import "styles_project";
+$mrxGreen: #4F702A;
+$mrxAmber: #c2a649;
+$mrxPurple: #9A3A72;
+$mrxGrey: #333333;
+
+$primary: $mrxAmber !default;
+$primary-light: lighten($primary, 75%) !default;
+$secondary: $mrxPurple !default;
+$success: #77B66B !default;
+$info: #9A3A72 !default;
+$warning: #ED6A5A !default;
+$danger: #ED6A5A !default;
+$white: #fff !default;
+$light: #eeeeee !default;
+$dark: $mrxGrey !default;

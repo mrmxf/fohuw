@@ -1,0 +1,4 @@
+{{/* Include markdown from assets/snippets */}}
+{{- $f := .Get 0 -}}
+{{- $assetPath := printf "snippet/%s" $f -}}
+{{- with resources.Get $assetPath }}{{.Content | markdownify }}{{end -}}
