@@ -1,18 +1,27 @@
-{{/* fomantic-ui card plain
+{{/* fomantic-ui card generic front end
 
 Usage:
 {{% card
-id="cardID anchors"
-description="Body Text or omitted"
-src="image/url/or/omitted"
-srcId="media-id"
-imgClass="mini | small | medium etc"
-header="Header in bold or ommitted"
-meta="Meta below heading or ommitted"
+-- param: id="cardID anchors"
+-- param: cardClass="ui card"
+-- param: cardType="horizontal" | some other card-Thing.html template
+-- param: description="Body Text" | none"
+-- param: src="image/video/"
+-- param: srcCredit=""
+-- param: srcId="media-id"
+-- param: srcOn="left" | "right"
+-- param: srcWRatio=0.1
+-- param: srcClickUrl="/some/page"
+-- param: srcClass="mini | small | medium etc"
+-- param: header="Header text
+-- param: meta="Meta below heading"
 %}}
+
+- don't use srcRatio & srcClass together - they sort of conflict
+
 */}}
 {{ $src := .Get "src" }}
-{{ $id := .Get "id" }}
+{{ $id := .Get "id" | default "card" }}
 {{ $ext := path.Ext $src }}
 {{ $srcIs := cond (eq $ext ".mp4") "video" "image" }}
 {{ $class := "ui card" }}
