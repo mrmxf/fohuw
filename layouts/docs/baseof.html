@@ -7,37 +7,42 @@
 </head>
 
 <body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
-  <div class="ui wide container">
-    <header>
-      {{ partial "navbar.html" . }}
-    </header>
-  </div>
-
-  <div class="ui wide container">
-    <div class="ui grid">
-      <div class="row">
-        <div class="three wide column">
-          {{- partial "sidebar-tree.html" . -}}
-        </div>
-        <div class="eleven wide column">
-          <main role="main" class="ui main">
-          {{ partial "version-banner.html" . }}
-          {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
-          {{ block "main" . }}{{ end }}
-        </main>
-        </div>
-        <div class="two wide column">
-          {{/*  <div class="ui segment">
-            {{ partial "page-meta-links.html" . }}
-            {{ partial "toc.html" . }}
-            {{ partial "taxonomy_terms_clouds.html" . }}
-          </div>  */}}
-        </div>
+  <!-- docs pages are set very wide as they often have big diagrams -->
+  <div class="ui grid">
+    <div class="row">
+      <div class="two wide column"></div>
+      <div class="twelve wide column">
+        <header>
+          {{ partial "navbar.html" . }}
+        </header>
       </div>
-      <div class="row">
-        {{ partial "footer.html" . }}
+      <div class="two wide column"></div>
+    </div>
+
+    <div class="row">
+      <div class="one wide column"></div>
+      <div class="fourteen wide column">
+        <div class="ui grid">
+          <div class="row">
+            <div class="three wide column">
+              {{- partial "sidebar-tree.html" . -}}
+            </div>
+            <div class="thirteen wide column">
+              <main role="main" class="ui main">
+                {{ partial "version-banner.html" . }}
+                {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
+                {{ block "main" . }}{{ end }}
+              </main>
+            </div>
+          </div>
+          <div class="row">
+            {{ partial "footer.html" . }}
+          </div>
+        </div>
+        <div class="one wide column"></div>
       </div>
     </div>
+  </div>
   </div>
   {{ partial "body_scripts.html" . }}
 </body>

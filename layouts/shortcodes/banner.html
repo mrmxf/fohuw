@@ -2,19 +2,19 @@
 
 Usage
 =====
-- {{% banner-doc "msg" %}}
+- {{% banner "msg" "colour" %}}
 
 -------------------------------------------------------------------------- */}}
-{{- $msg := .Get 0
--}}
+{{- $msg := .Get 0 -}}
 {{- $defaultColor := "olive" -}}
-{{- $color := .Get 1 | default $defaultColor
--}}
-{{- if .IsNamedParams
+{{- $color := .Get 1 | default $defaultColor -}}
+{{-
+if .IsNamedParams
 -}}
 {{- $msg = .Get "msg" -}}
 {{- $color = .Get "color" | default $defaultColor -}}
-{{- end
+{{-
+end
 -}}
 {{- $defaultClass := printf "ui center aligned %s message" $color -}}
 {{- $class := .Get "class" | default $defaultClass

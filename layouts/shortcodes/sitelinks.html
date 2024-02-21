@@ -1,2 +1,20 @@
-{{/* include the partial sitelinks for link consistency */}}
-{{ partial "sitelinks" }}
+{{/* fohuw-sitelinks
+    A dictionary of site links used in most partials that render Markdown
+     - Include this if you execute `mardownify` in a shortcode or partial
+     - Update this if you want consistency in your website
+*/}}
+
+{{/* --- Self references from keywords ----------------------------------- */}}
+[contact]:           /contact
+
+{{/* --- Mr MXF ----------------------------------------------------------- */}}
+[mrmxf]:         https://mrmxf.com
+[mxf]:           https://en.wikipedia.org/wiki/Material_Exchange_Format
+
+{{/* ---External web sites that are referenced in many places-------------- */}}
+[docsy]:              https://www.docsy.dev/
+[gitpod]:             https://gitpod.io
+[golang]:             https://go.dev
+[VS Code]:            https://code.visualstudio.com/
+[Hugo Plugin]:        https://marketplace.visualstudio.com/items?itemName=rusnasonov.vscode-hugo
+[FrontMatter plugin]: https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-front-matter

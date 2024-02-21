@@ -1,4 +1,4 @@
-{{- "<!-- partials/sidebar-tree.html -->" | safeHTML -}}
+{{ `<!-- partials/sidebar-tree.html -->` | safeHTML }}
 {{/* The cache for bigger sites has not yet been migrated fromm Docsy . */}}
 {{ $sidebarCacheLimit := cond (isset .Site.Params.ui "sidebar_cache_limit") .Site.Params.ui.sidebar_cache_limit 2000 -}}
 {{ $shouldDelayActive := ge (len .Site.Pages) $sidebarCacheLimit -}}
