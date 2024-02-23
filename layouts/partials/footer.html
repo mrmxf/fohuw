@@ -2,24 +2,36 @@
 {{/* The footer is already a row in the overall page grid ----------------- */}}
 {{ $links := .Site.Params.links }}
 {{ $color := "black" }}
+{{ $textClass := "text-white" }}
 <div class="fluid column">
   <footer class="ui fluid equal width center aligned padded grid">
     <div class="{{$color}} row">
       <div class="column">
-        {{ with .Site.Params.copyright }}<small>&copy;
-          {{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</small><br>
-        {{ end }}
-        {{ with .Site.Params.privacy_policy }}<small> | <a href="{{ . }}">
-            {{ T "footer_privacy_policy" }}</a></small>{{ end }}
-        {{ with .Site.Params.contact }}<small class="text-white "> |
-          <a href="{{ . }}">Contact</a></small>
-        {{ end }}
-        {{ if not .Site.Params.ui.footer_about_disable }}
-        {{ with .Site.GetPage "about" }}<small class="text-white "> |
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          |</small>
-        {{ end }}
-        {{ end }}
+        <div class="ui inverted small gray basic labels" style="display:inline;">
+          {{ with .Site.Params.copyright -}}
+          <div class="ui label">
+            <span class="ui info text">&copy;{{ now.Year}} {{ .}} {{ T "footer_all_rights_reserved" }}</span>
+          </div>
+          {{ end }}
+          {{ with .Site.Params.privacy_policy }}
+          <div class="ui label">
+            <span class="ui info text"><a href="{{ . }}">{{ T "footer_privacy_policy" }}</a></span>
+          </div>
+          {{ end }}
+          {{ with .Site.Params.contact }}
+          <div class="ui label">
+            <span class="ui info text"><a href="{{ . }}">Contact</a></span>
+          </div>
+          {{ end }}
+          {{ if not .Site.Params.ui.footer_about_disable }}
+          {{ with .Site.GetPage "about" }}
+          <div class="ui label">
+            <span class="ui info text"><a href="{{ .RelPermalink }}">{{.Title}}</a></span>
+          </div>
+          {{ end }}
+          {{ end }}
+        </div>
+        {{ partial "page-meta-links-footer" . }}
       </div>
     </div>
     <div class="row">
