@@ -1,0 +1,44 @@
+{{/* --- src parameters --------------------------------------------------*/}}
+{{- $id := .Get "id" | default "block" -}}
+{{- $blockType := .Get "blockType" -}}
+{{- $blockClass := .Get "blockClass" | default "container" -}}
+{{- $description := .Get "description" -}}
+{{- $inner := .Inner -}}
+{{- $header := .Get "header" -}}
+{{- $meta := .Get "meta" -}}
+{{/* --- src parameters --------------------------------------------------*/}}
+{{- $src := .Get "src" -}}
+{{- $srcId := .Get "srcId" -}}
+{{- $srcOn := .Get "srcOn" | default "left" -}}
+{{- $srcWidth := .Get "srcWidth" | default 0.3 -}}
+{{- $srcLink := .Get "srcLink" -}}
+{{- $srcClass := .Get "srcClass" | default "ui image" -}}
+{{- $srcPoster := .Get "srcPoster" -}}
+{{- $srcIsVideo := false -}}
+{{- $srcIsImage := false -}}
+{{- with $src -}}
+{{ $ext := strings.ToLower (path.Ext $src) }}
+{{ $imgExt := slice ".jpg" ".jpeg" ".png" ".webp" ".gif" }}
+{{ $vidExt := slice ".mp4" ".mkv" }}
+{{ $srcIsVideo = in $vidExt $ext }}
+{{ $srcIsImage = in $imgExt $ext }}
+{{- end -}}
+{{/* --- src width for grid ----------------------------------------------*/}}
+{{- $slice := slice "zero wide" "one wide" "two wide" "three wide" "four wide" "five wide" -}}
+{{- $slice = $slice | append "six wide" "seven wide" "eight wide" "nine wide" "ten wide" "eleven wide" }}
+{{- $slice = $slice | append "twelve wide" "thirteen wide" "fourteen wide" "fifteen wide" "sixteen wide" }}
+{{- $type := printf "%T" $srcWidth }}
+{{- if ne $type "float64" }}{{ $srcWidth = 0.3}}{{ end -}}
+{{- $r := math.Round ( mul 16.0 $srcWidth ) -}}
+{{- $r = math.Min 15 ( math.Max 1 $r ) | int -}}
+{{- $srcGrid := index $slice $r }}
+{{- $txtGrid := index $slice ( sub 16 $r ) }}
+{{/* --- select the correct partial --------------------------------------*/}}
+{{- $d := dict "id" $id "blockType" $blockType "blockClass" $blockClass "description" $description -}}
+{{- $d = merge $d (dict "inner" $inner "header" $header "meta" $meta) -}}
+{{- $d = merge $d (dict "src" $src "srcId" $srcId "srcOn" $srcOn "srcGrid" $srcGrid "txtGrid" $txtGrid) -}}
+{{- $d = merge $d (dict "srcLink" $srcLink "srcClass" $srcClass "srcPoster" $srcPoster) -}}
+{{- $d = merge $d (dict "srcIsVideo" $srcIsVideo "srcIsImage" $srcIsImage) -}}
+{{- $partialName := "f/block" -}}
+{{- if $blockType }}{{ $partialName = printf "%s-%s" $partialName . }}{{ end -}}
+{{- partial $partialName $d -}}

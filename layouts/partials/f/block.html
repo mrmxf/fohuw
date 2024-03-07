@@ -1,0 +1,37 @@
+<!-- fohuw/f/block partial -->
+<section class="container">
+  <div class="ui stackable two column middle aligned grid">
+    <div class="row">
+      {{- if eq .srcOn "left" -}}
+      <div class="{{.srcGrid}} column">
+        {{- if .srcIsVideo }}{{ partial "f/block-video" . }}{{ end -}}
+        {{- if .srcIsImage }}{{ partial "f/block-image" . }}{{ end -}}
+      </div>
+      {{- end -}}
+      <div class="{{.txtGrid}} column">
+        <div class="ui fluid card">
+          <div class="content">
+            <div class="header">{{ .header }}</div>
+            {{- with .meta -}}
+            <div class="meta">
+              <span class="category">{{ . }}</span>
+            </div>
+            {{- end -}}
+            <div class="description">
+              {{- .description | markdownify -}}
+              {{- .inner | markdownify -}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{ if eq .srcOn "right"}}
+      <div class="{{.srcGrid}} column">
+        {{- if .srcIsVideo }}{{ partial "f/block-video" . }}{{ end -}}
+        {{- if .srcIsImage }}{{ partial "f/block-image" . }}{{ end -}}
+      </div>
+      {{end}}
+    </div>
+  </div>
+</section>
+</div>
