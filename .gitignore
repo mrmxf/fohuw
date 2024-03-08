@@ -3,6 +3,7 @@
 # ignore synthesised outputs
 public/
 resources/
+clogrc/core
 # ignore npm or yarn generated postcss source files
 node_modules/
 package-lock.json

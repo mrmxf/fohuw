@@ -1,0 +1,13 @@
+history:
+  -
+    version:  v0.1.4
+    codename: NAB2024a
+    note:     pre-release for NAB 2024
+  -
+    version:  v0.1.3
+    codename: IBC2023
+    note:     clunky release for metarex IBC
+  -
+    version:  v0.0.1
+    codename: docsy
+    note:     First fork

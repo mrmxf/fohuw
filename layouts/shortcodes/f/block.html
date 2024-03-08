@@ -11,6 +11,7 @@
 {{- $srcId := .Get "srcId" -}}
 {{- $srcOn := .Get "srcOn" | default "left" -}}
 {{- $srcWidth := .Get "srcWidth" | default 0.3 -}}
+{{- if not $src -}}{{ $srcWidth = 0.0 }}{{- end -}}
 {{- $srcLink := .Get "srcLink" -}}
 {{- $srcClass := .Get "srcClass" | default "ui image" -}}
 {{- $srcPoster := .Get "srcPoster" -}}
@@ -18,7 +19,7 @@
 {{- $srcIsImage := false -}}
 {{- with $src -}}
 {{ $ext := strings.ToLower (path.Ext $src) }}
-{{ $imgExt := slice ".jpg" ".jpeg" ".png" ".webp" ".gif" }}
+{{ $imgExt := slice ".jpg" ".jpeg" ".png" ".webp" ".gif" ".svg"}}
 {{ $vidExt := slice ".mp4" ".mkv" }}
 {{ $srcIsVideo = in $vidExt $ext }}
 {{ $srcIsImage = in $imgExt $ext }}
@@ -30,7 +31,7 @@
 {{- $type := printf "%T" $srcWidth }}
 {{- if ne $type "float64" }}{{ $srcWidth = 0.3}}{{ end -}}
 {{- $r := math.Round ( mul 16.0 $srcWidth ) -}}
-{{- $r = math.Min 15 ( math.Max 1 $r ) | int -}}
+{{- $r = math.Min 16 ( math.Max 0 $r ) | int -}}
 {{- $srcGrid := index $slice $r }}
 {{- $txtGrid := index $slice ( sub 16 $r ) }}
 {{/* --- select the correct partial --------------------------------------*/}}

@@ -11,7 +11,7 @@
       <div class="{{.txtGrid}} column">
         <div class="ui fluid card">
           <div class="content">
-            <div class="header">{{ .header }}</div>
+            {{- with .header -}}<div class="header">{{ .header }}</div>{{- end -}}
             {{- with .meta -}}
             <div class="meta">
               <span class="category">{{ . }}</span>
@@ -34,4 +34,3 @@
     </div>
   </div>
 </section>
-</div>

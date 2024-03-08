@@ -1,22 +1,16 @@
-{{/* f/image
-
-Usage:
-{{% f/image "vid.mp4" "Rexy" "#top" "ui image" 0 %}}
-
-{{% f/image - see exampleSite/docs/f-image.md
-src = "vid.mp4"
-alt = "Some alt text"
-url = "/click/image/url"
-class = "ui fluid image"
-cap = "showCaption"
-%}}
-
-examples
-{{% f/image myImage.png %}}
-*/}}
-{{ $src := .Get 0 }}
-{{ $alt := .Get 1 }}
-{{ $url := .Get 2 }}
-{{ $class := .Get 3 | default "ui image" }}
-{{ $cap := .Get 4 }}
-{{ partial "f/image" (dict "src" $src "alt" $alt "url" $url "class" $class "cap" $cap)}}
+{{- $src := .Get 0 -}}
+{{- $alt := .Get 1 -}}
+{{- $class := .Get 2 | default "ui image" -}}
+{{- $link := .Get 3 -}}
+{{- $caption := .Get 4 -}}
+{{- $anchor := .Get 5 -}}
+{{- if .IsNamedParams -}}
+{{- $src   = .Get "src" -}}
+{{- $alt   = .Get "alt" -}}
+{{- $class = .Get "class" | default "ui image" -}}
+{{- $link = .Get "link" -}}
+{{- $caption = .Get "caption" -}}
+{{- $anchor = .Get "anchor" -}}
+{{- end -}}
+{{- if not $alt -}}{{- $alt = $caption -}}{{- end -}}
+{{- partial "f/image" (dict "src" $src "alt" $alt "link" $link "class" $class "caption" $caption "anchor" $anchor) -}}
