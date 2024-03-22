@@ -8,6 +8,6 @@
     {{< include file = "content/docs/backers.md" >}}
 
 */}}
-{{ $f := .Get 0 }}
-{{ if not $f }}{{ $f := .Get "file" }}{{ end }}
-{{ with .Site.GetPage $f }}{{.Content}}{{end}}
+{{- $f := .Get 0 -}}
+{{- if not $f }}{{ $f := .Get "file" }}{{ end -}}
+{{- with .Site.GetPage $f }}{{.Content}}{{end -}}
