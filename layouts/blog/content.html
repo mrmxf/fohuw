@@ -1,27 +1,47 @@
-{{ `<!-- fohuw blog/content.html -->` | safeHTML }}
-<div class="td-content">
-	<h1>{{ .Title }}</h1>
-	{{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
-	<div class="td-byline mb-4">
-		{{ with .Params.author }}{{ T "post_byline_by" }} <b>{{ . | markdownify }}</b> |{{ end}}
-		<time datetime="{{  $.Date.Format "2006-01-02" }}" class="text-muted">{{ $.Date.Format $.Site.Params.time_format_blog  }}</time>
+{{ `<!-- fohuw blog/content2.html -->` | safeHTML }}
+<div>
+	<h1 class="header">{{ .Title }}</h1>
+	<div class="ui small steps">
+		<div class="medium step">
+			<div class="content">
+				<div class="title">
+					{{ with .Params.description }}{{ . | markdownify }}{{ end }}
+				</div>
+			</div>
+		</div>
+		<div class="step">
+			<div class="content">
+				<span class="ui grey text">
+					<time datetime="{{  $.Date.Format " 2006-01-02" }}" class="text-muted">{{ $.Date.Format
+						$.Site.Params.time_format_blog }}</time>
+					</span>
+					<br>
+					{{ with .Params.author }} {{ . | markdownify }}{{ end}}
+
+			</div>
+		</div>
+		<div class="step">
+			<div class="content">
+				<div class="description">
+					{{ partial "taxonomy_terms_article_wrapper.html" . }}
+					{{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
+					{{ partial "reading-time.html" . }}
+					{{ end }}
+				</div>
+			</div>
+		</div>
 	</div>
-	<header class="article-meta">
-		{{ partial "taxonomy_terms_article_wrapper.html" . }}
-		{{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
-			{{ partial "reading-time.html" . }}
-		{{ end }}
-	</header>
 	{{ .Content }}
 	{{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
-		{{ partial "feedback.html" .Site.Params.ui.feedback }}
-		<br>
+	{{ partial "feedback.html" .Site.Params.ui.feedback }}
+	<br>
 	{{ end }}
 	{{ if (.Site.Params.DisqusShortname) }}
-		<br>
-		{{ partial "disqus-comment.html" . }}
-		<br>
+	<br>
+	{{ partial "disqus-comment.html" . }}
+	<br>
 	{{ end }}
 
 	{{ partial "pager.html" . }}
+
 </div>

@@ -17,7 +17,7 @@ req >> class defaults to "ui message"
       <div class="fifteen wide column">
         {{- with .header }}<div class="header">{{.}}</div>{{- end -}}
         <div class="content">
-          {{- with .description }}<p>{{.}}</p>{{- end -}}
+          {{- with .description }}{{. | markdownify}}{{- end -}}
         </div>
       </div>
     </div>

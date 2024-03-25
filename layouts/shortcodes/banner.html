@@ -1,10 +1,4 @@
-{{/* f/message -----------------------------------------------------------------
-
-Usage
-=====
-- {{% banner "msg" "colour" %}}
-
--------------------------------------------------------------------------- */}}
+<!-- fohuw/banner ------------------------------------------------------------>
 {{- $msg := .Get 0 -}}
 {{- $defaultColor := "olive" -}}
 {{- $color := .Get 1 | default $defaultColor -}}
@@ -19,4 +13,4 @@ end
 {{- $defaultClass := printf "ui center aligned %s message" $color -}}
 {{- $class := .Get "class" | default $defaultClass
 -}}
-{{- partial "f/message" (dict "description" ($msg | safeHTML ) "class" $class ) -}}
+{{- partial "f/message" (dict "description" ($msg) "class" $class ) -}}
