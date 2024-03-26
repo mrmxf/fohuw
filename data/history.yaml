@@ -1,5 +1,9 @@
 history:
   -
+    version:  v0.1.5
+    codename: NAB2024b
+    note:     fixed f/message markdown
+  -
     version:  v0.1.4
     codename: NAB2024a
     note:     pre-release for NAB 2024
