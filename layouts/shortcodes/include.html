@@ -7,7 +7,11 @@
     {{< include        "content/docs/backers.md" >}}
     {{< include file = "content/docs/backers.md" >}}
 
+    Note that one of these will be empty
+    .Page.GetPage
+    .Site.GetPage
 */}}
 {{- $f := .Get 0 -}}
 {{- if not $f }}{{ $f := .Get "file" }}{{ end -}}
+{{- with .Page.GetPage $f }}{{.Content}}{{end -}}
 {{- with .Site.GetPage $f }}{{.Content}}{{end -}}

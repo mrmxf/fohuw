@@ -1,0 +1,12 @@
+{{/* isodate  "value"
+     isodate  "param" param-name */}}
+{{- $timeStr := .Get 0 -}}
+{{- $timeValue := time.Now -}}
+{{- if and (.Get 1) (eq (.Get 0) "param") -}}
+{{- $paramName := .Get 1 -}}
+{{- $timeStr = .Page.Param $paramName -}}
+{{- $timeValue = .Page.Param $paramName -}}
+{{- else if (.Get 0) -}}
+{{- $timeValue := .Get 0 | time.AsTime -}}
+{{- end -}}
+{{- time.Format "2006-01-02" $timeValue -}}
