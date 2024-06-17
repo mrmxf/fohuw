@@ -3,10 +3,12 @@
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
+  {{ partial "my/site-head-begin.html" . }}
   {{ partial "head.html" . }}
+  {{ partial "my/site-head-end.html" . }}
 </head>
 
-<body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+<body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
   <!-- docs pages are set very wide as they often have big diagrams -->
   <div class="ui grid">
     <div class="row">

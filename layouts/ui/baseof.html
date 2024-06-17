@@ -6,7 +6,7 @@
   {{ partial "head.html" . }}
 </head>
 
-<body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+<body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
   <div class="ui wide container">
     <header>
       {{ partial "navbar.html" . }}

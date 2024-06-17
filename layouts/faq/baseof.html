@@ -3,11 +3,13 @@
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
+  {{ partial "my/site-head-begin.html" . }}
   {{ partial "head.html" . }}
+  {{ partial "my/site-head-end.html" . }}
   <script src="/js/jquery.responsive-iframe.js"></script>
 </head>
 
-<body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+<body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
   <div class="ui wide container">
     <header>
       {{ partial "navbar.html" . }}
