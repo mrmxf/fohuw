@@ -2,7 +2,7 @@
 {{ `<!-- docs/baseof.print.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
-    {{ partial "head.html" . }}
+    {{ partial "docsy/head.html" . }}
   </head>
   <body class="td-{{ .Kind }}{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
     <header>
@@ -18,6 +18,6 @@
       </div>
       {{ partial "footer.html" . }}
     </div>
-    {{ partial "body_scripts.html" . }}
+    {{ partial "body-scripts.html" . }}
   </body>
 </html>
