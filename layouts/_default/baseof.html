@@ -3,7 +3,7 @@
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
-  {{ partial "head.html" . }}
+  {{ partial "docsy/head.html" . }}
 </head>
 
 <body class="{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
@@ -32,7 +32,7 @@
     </div>
   </div>
   </div>
-  {{ partial "body_scripts.html" . }}
+  {{ partial "body-scripts.html" . }}
 </body>
 
 </html>

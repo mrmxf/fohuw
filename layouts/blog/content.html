@@ -33,12 +33,12 @@
 	</div>
 	{{ .Content }}
 	{{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
-	{{ partial "feedback.html" .Site.Params.ui.feedback }}
+	{{ partial "docsy/feedback.html" .Site.Params.ui.feedback }}
 	<br>
 	{{ end }}
 	{{ if (.Site.Params.DisqusShortname) }}
 	<br>
-	{{ partial "disqus-comment.html" . }}
+	{{ partial "docsy/disqus-comment.html" . }}
 	<br>
 	{{ end }}
 
