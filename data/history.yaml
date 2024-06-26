@@ -1,17 +1,13 @@
-history:
-  -
-    version:  v0.1.5
-    codename: NAB2024b
-    note:     fixed f/message markdown
-  -
-    version:  v0.1.4
-    codename: NAB2024a
-    note:     pre-release for NAB 2024
-  -
-    version:  v0.1.3
-    codename: IBC2023
-    note:     clunky release for metarex IBC
-  -
-    version:  v0.0.1
-    codename: docsy
-    note:     First fork
+# code names here: https://en.wikipedia.org/wiki/Lists_of_colors
+- version:	   0.1.6
+  date:        2024-06-26
+  codename:    fohuw-amethyst
+  note:        "fohuw metarex release"
+- version:	   0.1.5
+  date:        2024-03-26
+  codename:    fohuw-almond
+  note:        "fixed f/message markdown"
+- version:	   0.1.4
+  date:        2024-03-08
+  codename:    fohuw-aero
+  note:        "NAB 2024a pre-release"
