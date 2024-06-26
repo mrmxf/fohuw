@@ -1,0 +1,12 @@
+{{ `<!-- partials/navbar-brand.html -->` | safeHTML }}
+<div class="ui labelled borderless icon menu" style="flex-wrap:nowrap;">
+  <a class="item" href="{{ .Site.Home.RelPermalink }}" style="height:100%">
+
+    {{- if .Site.Params.ui.navbar_logo -}}
+    <img class="ui avatar image" src="/brand/logo.svg">
+    {{ end -}}
+
+    {{- .Site.Title -}}
+
+  </a>
+</div>
