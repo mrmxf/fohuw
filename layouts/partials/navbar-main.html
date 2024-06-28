@@ -11,15 +11,20 @@
   {{ $p := . -}}
   {{/* ---- iterative over menu items --------------------------------- */}}
   {{ range .Site.Menus.main -}}
-  {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
-  {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
+  {{ $isActive := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
+  {{ with .Page }}{{ $isActive = or $isActive ( $.IsDescendant .) }}{{ end -}}
+  {{ $active := cond ($isActive) "active" "" -}}
+  {{ $href := "" }}
+  {{ with .Page }}
+  {{ $href = .RelPermalink }}{{else}} {{ $href = .URL | relLangURL }}
+  {{ end }}
   {{ $pre := .Pre -}}
   {{ $post := .Post -}}
   {{ $url := urls.Parse .URL -}}
   {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}
-  <a class="{{- if $active }} active {{- end }} item"
-    href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{- if ne $url.Host
-    $baseurl.Host }} target="_blank" {{- end -}}>
+  {{ $target :=""}}
+  {{- if ne $url.Host $baseurl.Host }}{{ $target = "target=\"_blank\"" }}{{- end -}}
+  <a class="{{ $active }} item" href="{{ $href }}" {{ $target }}>
     {{- with .Pre }}{{ $pre }}{{ end -}}
     {{- .Name -}}
     {{- with .Post }}{{ $post }}{{ end -}}
@@ -36,5 +41,5 @@
   {{ if (gt (len .Site.Home.Translations) 0) -}}
   <a class="item">{{ partial "navbar-lang-selector.html" . -}}</a>
   {{ end -}}
-  {{/*  <a class="item">{{ partial "search-input.html" . }}</a>  */}}
+  {{/* <a class="item">{{ partial "search-input.html" . }}</a> */}}
 </nav>
