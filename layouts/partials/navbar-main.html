@@ -10,13 +10,13 @@
 <nav class="ui {{$mclassTop}} centered fluid wrapping menu">
   {{ $p := . -}}
   {{/* ---- iterative over menu items --------------------------------- */}}
-  {{ range .Site.Menus.main -}}
+  {{ range .Site.Menus.main.ByWeight -}}
   {{ $isActive := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
   {{ with .Page }}{{ $isActive = or $isActive ( $.IsDescendant .) }}{{ end -}}
   {{ $active := cond ($isActive) "active" "" -}}
   {{ $href := "" }}
-  {{ with .Page }}
-  {{ $href = .RelPermalink }}{{else}} {{ $href = .URL | relLangURL }}
+  {{ with .Page }}{{ $href = .RelPermalink }}
+  {{else}}{{ $href = .URL | relLangURL }}
   {{ end }}
   {{ $pre := .Pre -}}
   {{ $post := .Post -}}
@@ -24,11 +24,11 @@
   {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}
   {{ $target :=""}}
   {{- if ne $url.Host $baseurl.Host }}{{ $target = "target=\"_blank\"" }}{{- end -}}
-  <a class="{{ $active }} item" href="{{ $href }}" {{ $target }}>
-    {{- with .Pre }}{{ $pre }}{{ end -}}
-    {{- .Name -}}
-    {{- with .Post }}{{ $post }}{{ end -}}
-  </a>
+  {{- $mnu := dict "active" $active "href" $href "target" $target "pre" $pre "post" $post "name" .Name -}}
+
+  {{- if .HasChildren -}}{{ template "navChild" . }}
+  {{else}}{{ template "navBasic" $mnu }}{{ end -}}
+
   {{ end -}}
   {{/* ---- end of menu loop ---------------------------------------- */}}
   {{/* -------------------------------------------------------------- */}}
@@ -43,3 +43,30 @@
   {{ end -}}
   {{/* <a class="item">{{ partial "search-input.html" . }}</a> */}}
 </nav>
+
+{{- define "navChild" -}}
+<div class="ui dropdown item">
+  {{$pre := cond (isset . "pre") .Pre ""}}
+  {{$post := cond (isset . "post") .Post ""}}
+  {{$title := printf "%s%s%s" $pre .Name $post}}
+  {{$root :=""}}
+  {{if .URL}}{{ $root = printf "<a class=\"item\" href=\"%s\">%s</a>" .URL $title}}{{end}}
+  <div class="text">{{$title}}</div>
+  {{with .URL}}</a>{{end}}
+  <i class="dropdown icon"></i>
+  <div class="ui menu">
+    {{$root | safeHTML}}
+    {{range .Children}}
+    <a class="item" href="{{.URL}}">{{.Name}}</a>
+    {{end}}
+  </div>
+</div>
+
+{{- end -}}
+
+
+{{- define "navBasic" -}}
+<a class="{{ .active }} item" href="{{ .href }}" {{ .target }}>
+  {{ .pre }}{{- .name -}}{{ .post }}
+</a>
+{{- end -}}
