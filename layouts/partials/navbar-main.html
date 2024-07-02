@@ -48,7 +48,7 @@
 <div class="ui dropdown item">
   {{$pre := cond (isset . "pre") .Pre ""}}
   {{$post := cond (isset . "post") .Post ""}}
-  {{$title := printf "%s%s%s" $pre .Name $post}}
+  {{$title := printf "%s%s%s" $pre (.Name | markdownify) $post}}
   {{$root :=""}}
   {{if .URL}}{{ $root = printf "<a class=\"item\" href=\"%s\">%s</a>" .URL $title}}{{end}}
   <div class="text">{{$title}}</div>
