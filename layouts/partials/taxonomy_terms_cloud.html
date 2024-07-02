@@ -2,6 +2,7 @@
 {{ $context := .context }}
 {{ $taxo := .taxo }}
 {{ $title := .title }}
+{{ if $context.Site.Taxonomies }}
 {{ if isset $context.Site.Taxonomies (lower $taxo) }}
 {{ $taxonomy := index $context.Site.Taxonomies (lower $taxo) }}
 {{ if (gt (len $taxonomy) 0)}}
@@ -19,5 +20,6 @@
   </a>
   {{ end }}
 </div>
+{{ end }}
 {{ end }}
 {{ end }}

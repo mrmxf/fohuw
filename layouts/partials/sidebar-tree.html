@@ -1,7 +1,8 @@
 {{ `<!-- partials/sidebar-tree.html -->` | safeHTML }}
 {{/* The cache for bigger sites has not yet been migrated fromm Docsy . */}}
 
-{{ $sidebarCacheLimit := cond (isset .Site.Params.ui "sidebar_cache_limit") .Site.Params.ui.sidebar_cache_limit 2000 -}}
+{{ $sidebarCacheLimit := 2000 }}
+{{if .Site.Params.ui.sidebar_cache_limit}}{{ $sidebarCacheLimit = .Site.Params.ui.sidebar_cache_limit}}{{- end -}}
 {{ $shouldDelayActive := ge (len .Site.Pages) $sidebarCacheLimit -}}
 <div class="ui segment">
   <nav class="ui list" id="section-nav">
@@ -9,8 +10,8 @@
     {{ $navRoot := cond (and (ne .Params.toc_root true) (eq .Site.Home.Type "docs")) .Site.Home .FirstSection -}}
     {{ $depth := 0 -}}
     {{/* --- max depth=50 -------------------------------------------------------- */}}
-    {{ $sidebarMenuTruncate := cond (isset .Site.Params.ui "sidebar_menu_truncate")
-    .Site.Params.ui.sidebar_menu_truncate 50 -}}
+    {{ $sidebarMenuTruncate := 50}}
+    {{if .Site.Params.ui.sidebar_menu_truncate}}{{ $sidebarMenuTruncate = .Site.Params.ui.sidebar_menu_truncate}}{{- end -}}
     {{ template "section-tree-nav-section"
     (dict "page" .
     "section" $navRoot

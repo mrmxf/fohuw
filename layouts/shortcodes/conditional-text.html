@@ -2,7 +2,7 @@
 {{- $condition := lower $.Site.Params.buildCondition -}}
 
 {{- if ne $condition "" -}}
-    
+
     <!-- Get the parameters from the shortcode invocation and lowercase them.
     TODO: to enable multiple conditions, we could accept comma-separated lists and split them -->
     {{- $include_if := lower (.Get "include-if") -}}

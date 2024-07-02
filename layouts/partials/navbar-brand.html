@@ -3,10 +3,11 @@
   <a class="item" href="{{ .Site.Home.RelPermalink }}" style="height:100%">
 
     {{- if .Site.Params.ui.navbar_logo -}}
-    <img class="ui avatar image" src="/brand/logo.svg">
+    <img class="ui tiny image" src="/brand/logo.svg">
     {{ end -}}
-
+    {{- if .Site.Params.ui.navbar_title -}}
     {{- .Site.Title -}}
+    {{end -}}
 
   </a>
 </div>
