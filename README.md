@@ -2,7 +2,7 @@
 
 FoHuW is a [Hugo](https://gohugo.io) theme for technical documentation sets,
 sites requiring structured navigation, showcase features, embedded apps, and
-more.
+more. The current version is set in [data/history.yaml][1]
 
 This theme was started as a fork of [Docsy] and then changed to allow less
 technical, lazier writers to guess at syntax is actively being maintained.
@@ -126,3 +126,4 @@ details
 [Docsy]:   https://docsy.dev
 [Deploys]: https://app.netlify.com/sites/docsydocs/deploys
 [Netlify]: https://netlify.com
+[1]:       data/history.yaml
