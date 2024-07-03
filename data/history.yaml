@@ -1,16 +1,16 @@
 # code names here: https://en.wikipedia.org/wiki/Lists_of_colors
 -
-  version:	   0.1.6
+  version:	   v0.1.6
   date:        2024-07-03
   codename:    fohuw-amethyst
   note:        "fohuw metarex release"
 -
-  version:	   0.1.5
+  version:	   v0.1.5
   date:        2024-03-26
   codename:    fohuw-almond
   note:        "fixed f/message markdown"
 -
-  version:	   0.1.4
+  version:	   v0.1.4
   date:        2024-03-08
   codename:    fohuw-aero
   note:        "NAB 2024a pre-release"
