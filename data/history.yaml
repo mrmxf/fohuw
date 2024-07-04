@@ -1,5 +1,10 @@
 # code names here: https://en.wikipedia.org/wiki/Lists_of_colors
 -
+  version:	   v0.1.8
+  date:        2024-07-04
+  codename:    fohuw-amethyst
+  note:        "hugo v0.128.1 tweaks"
+-
   version:	   v0.1.7
   date:        2024-07-04
   codename:    fohuw-amethyst
