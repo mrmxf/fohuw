@@ -1,0 +1,46 @@
+---
+# yamllint disable rule:colons
+# clog Jumbo "clog.core.config"  --font straight
+#   _____           _   _          __        __
+#  |  ___|   ___   | | | |  _   _  \ \      / /
+#  | |_     / _ \  | |_| | | | | |  \ \ /\ / /
+#  |  _|   | (_) | |  _  | | |_| |   \ V  V /
+#  |_|      \___/  |_| |_|  \__,_|    \_/\_/
+### when clog starts it uses these config values. clog then looks for a file
+###    called `clog.config.yaml` in each of the folders specified in the
+###    `clog.clogrc.searchOrder` property in the embeded config. Every time a
+###    match is found it starts the loop again because you might have changed
+###    the search order. Don't make loops - that's dumb.
+###    The last config files loaded have the values used.
+
+###    Finally - an external configSource can be specified for each of the root
+###    keys - this is because those config are probably project specific and
+###    change at a different rate to the main config. They are loaded last.
+
+# #############################################################################
+#        _                 _
+#   __  | |_    ___   __  | |__
+#  / _| | ' \  / -_) / _| | / /
+#  \__| |_||_| \___| \__| |_\_\
+# #############################################################################
+check:
+  # --- clog Check fohuw specifics --------------------------------------------
+  fohuw:
+    # report on the gitlab environment (empty snippet results in an echo)
+    report:
+      - fomantic-latest: curl -s "https://api.github.com/repos/fomantic/Fomantic-UI/tags" | jq -r '.[0].name'
+      - fomantic-used:   cat layouts/partials/head-fohuw.html|grep 'ver :='|grep -oE '[0-9]+\.[0-9]+\.[0-9]+'
+      - warn-group-fui:
+          - fomantic-latest != fomantic-used
+# #############################################################################
+#               _                       _
+#   ___  _ _   (_)  _ __   _ __   ___  | |_   ___
+#  (_-< | ' \  | | | '_ \ | '_ \ / -_) |  _| (_-<
+#  /__/ |_||_| |_| | .__/ | .__/ \___|  \__| /__/
+#                  |_|    |_|
+# #############################################################################
+
+# --- Shell snippets clog Sh <snippet> ----------------------------------------
+shellsnippets:
+  vCODE: cat data/history.yaml |grep version|head -1|grep -oE '[0-9]+\.[0-9]+\.[0-9]+'
+  bMSG: 'cat data/history.yaml |grep note   |head -1|sed -nr "s/note: (.*)/\1/p"|xargs'
