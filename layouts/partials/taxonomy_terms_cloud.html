@@ -2,7 +2,7 @@
 {{ $context := .context }}
 {{ $taxo := .taxo }}
 {{ $title := .title }}
-{{ if $context.Site.Taxonomies }}
+{{ if and $context.Site.Taxonomies $taxo }}
 {{ if isset $context.Site.Taxonomies (lower $taxo) }}
 {{ $taxonomy := index $context.Site.Taxonomies (lower $taxo) }}
 {{ if (gt (len $taxonomy) 0)}}
