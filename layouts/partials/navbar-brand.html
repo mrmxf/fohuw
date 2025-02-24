@@ -2,12 +2,8 @@
 <div class="ui labelled borderless icon menu" style="flex-wrap:nowrap;">
   <a class="item" href="{{ .Site.Home.RelPermalink }}" style="height:100%">
 
-    {{- if .Site.Params.ui.navbar_logo -}}
-    <img class="ui tiny image" src="/brand/logo.svg">
-    {{ end -}}
-    {{- if .Site.Params.ui.navbar_title -}}
-    {{- .Site.Title -}}
-    {{end -}}
+    {{- if .Site.Params.ui.navbar_logo -}}<img class="ui mini image" src="/brand/logo.svg">{{ end -}}
+    {{- if .Site.Params.ui.navbar_title -}}{{- .Site.Title -}}{{end -}}
 
   </a>
 </div>

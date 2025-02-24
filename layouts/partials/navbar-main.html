@@ -1,4 +1,4 @@
-{{ `<!-- partials/navbar-main.html -->` | safeHTML }}
+{{ `<!-- fohuw/partials/navbar-main.html -->` | safeHTML }}
 {{- $menu2 := .Site.Params.ui.navbar2 -}}
 {{ $mclassTop := "" }}
 {{ $mclassBot := "" }}
@@ -57,6 +57,7 @@ and outputs a dropdown with children
 page: .Page
 menu: .Site.Menus.main.ByWeight
 and outputs a top level menu - no children
+needs URL and make it a relref for re-prefix inside docker
 */}}
 {{- define "navBasic" -}}
 {{$pre := ""}}{{ if .menu.Pre}}{{$pre = .menu.Pre}}{{end}}

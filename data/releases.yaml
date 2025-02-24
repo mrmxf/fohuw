@@ -1,0 +1,10 @@
+# code names here: https://en.wikipedia.org/wiki/Lists_of_colors
+releases: 
+  - { version: 0.3.0, date: 2025-02-24, codename: canary,   note: fo partials }
+  - { version: 0.2.0, date: 2024-09-23, codename: bisque,   note: fomantic v2.9.3 }
+  - { version: 0.1.9, date: 2024-07-16, codename: amethyst, note: stable navigation }
+  - { version: 0.1.8, date: 2024-07-04, codename: amethyst, note: hugo v0.128.1 tweaks }
+  - { version: 0.1.7, date: 2024-07-04, codename: amethyst, note: hugo v0.128.1 golang v1.22.5 }
+  - { version: 0.1.6, date: 2024-07-03, codename: amethyst, note: fohuw metarex release }
+  - { version: 0.1.5, date: 2024-03-26, codename: almond,   note: fixed f/message markdown }
+  - { version: 0.1.4, date: 2024-03-08, codename: aero,     note: NAB 2024a pre-release }
