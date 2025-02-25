@@ -4,6 +4,10 @@ The main dispatcher for the fo blocks.
 
 Set .t="help" for dictionary definitions
 */}}
+{{if false}}{{partial "dbg/dump-dot" .}}{{end}}
 {{- $block := "my-help" -}}
 {{- with .t }}{{ $block = printf "fohuw-%s" . }}{{ end -}}
-<div class="{{.blockClass}}">{{ partial $block . }}</div>
+{{- with .blockClass }}<div class="{{.}}">{{end -}}
+{{partial $block .}}
+{{- with .blockClass }}</div>{{end -}}
+

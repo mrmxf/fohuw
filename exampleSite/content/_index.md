@@ -4,10 +4,12 @@ linkTitle: FoHuW
 weight:    1
 ---
 
-{{<fohuw>}} theme is inspired by [Docsy][1] and uses [Fomantic-ui][3] for look
+{{< fo t = "banner" header = "Demo Header" text = "Demo banner" class = "ui fluid pink message" blockClass = "ui green message"/>}}
+
+{{<fohuw "-v">}} theme is inspired by [Docsy][1] and uses [Fomantic-ui][3] for look
 and feel without too much re-engineering.
 
-Various wrapped versions of the fomantic components have been created and,
+In {{<fo t = "fohuw" />}} Various wrapped versions of the fomantic components have been created and,
 in general, they are implemented as `partials` with corresponding `shortcodes`
 that can be directly used in body text.
 

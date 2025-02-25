@@ -19,13 +19,12 @@ Display stylized FoHuW text:
   {{$data := dict}}
   {{with resources.Get "data/releases.yaml"}}
   {{with . | transform.Unmarshal}}{{$data = .}}{{end}}
-  {{$v := (index $data 0).version}}
+  {{$v := (index $data.releases 0).version}}
   {{$bits := split $v "."}}
   {{$maj := index $bits 0 | default ""}}
   {{$min := index $bits 1 | default ""}}
   {{$pat := index $bits 2 | default ""}}
-  <span class="ui red text">{{$maj}}</span>.<span class="ui orange text">{{$min}}</span><span class="ui blue
-  text">{{$pat}}</span>
+  v<span class="ui green text">{{$maj}}</span>.<span class="ui orange text">{{$min}}</span>.{{$pat}}
   {{end}}
   {{end -}}
 </a>

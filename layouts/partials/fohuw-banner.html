@@ -4,15 +4,16 @@ text = the caption content
 */}}
 {{if .text}}
 {{$imgClass := .srcClass | default "ui mini image"}}
+{{$class := .class | default "ui message"}}
 <div style="text-align:center;">
-  <div class="ui message" style="width:60%;display:inline-block;">
+  <div class={{$class}} style="width:60%;display:inline-block;">
     {{if .src}}
     {{with .srcLink}}<a href="{{.}}">{{end}}
     <div class="{{$imgClass}}"><img src="{{.src}}" {{with .alt }}alt="{{.}}"{{end}} /></div>
     {{with .srcLink}}</a>{{end}}
     {{end}}
-    <div class="content"
-    {{with .header}}<span class="ui blue text"><strong><em>{{.}} - </em></strong></span>{{end}}
+    <div class="content">
+    {{with .header}}<span class="ui blue text"><strong><em>{{printf "%s" . | safeHTML}} - </em></strong></span>{{end}}
     {{.text}}
     </div>
   </div>

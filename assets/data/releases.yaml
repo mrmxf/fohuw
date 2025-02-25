@@ -1,5 +1,6 @@
 # code names here: https://en.wikipedia.org/wiki/Lists_of_colors
 releases: 
+  - { version: 0.3.1, date: 2025-02-25, codename: canary,   note: blockClass/class/srcClass }
   - { version: 0.3.0, date: 2025-02-24, codename: canary,   note: fo partials }
   - { version: 0.2.0, date: 2024-09-23, codename: bisque,   note: fomantic v2.9.3 }
   - { version: 0.1.9, date: 2024-07-16, codename: amethyst, note: stable navigation }
