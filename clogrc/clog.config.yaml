@@ -15,6 +15,7 @@
 # -----------------------------------------------------------------------------
 snippets:
   build: |
+    [ -d content ] && rm content
     clog Check pre-build
     clog Check build
   is-prod-release: |
