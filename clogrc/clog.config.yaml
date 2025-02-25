@@ -22,7 +22,8 @@ snippets:
     [ "prod" == "$(yq -r '.releases[0].build'  data/releases.yaml)" ]
   git:
     tag:
-      ref: yq -r '.releases[0].version'  data/releases.yaml
+      # fohuw, like Hugo & golang requires a "v"
+      ref: echo "v$(yq -r '.releases[0].version'  data/releases.yaml)"
     message:
       ref:  yq -r '.releases[0].note'  data/releases.yaml
   project:
