@@ -1,0 +1,31 @@
+{{/*
+Display stylized FoHuW text:
+- {{%fohuw%}} ------------------------------- FoHuW
+- {{% fo t = "fohuw" %}} -------------------- FoHuW
+- {{% fo t = "fohuw" args = "-v" %}} -------- FoHuW v1.x.y
+- {{% fo t = "fohuw" "-qv" %}} ----------- v1.x.y
+- {{% fohuw "-qv" %}} -------------------------- v1.x.y
+*/}}
+{{$showText := true}}
+{{$showVersion := false}}
+{{- with .args}}
+{{if strings.Contains . "q"}}{{$showText = false}}{{end}}
+{{if strings.Contains . "v"}}{{$showVersion = true}}{{end}}
+{{ end -}}
+<a href="https://github.com/mrmxf/fohuw" target="_blank">
+  {{- if $showText}}<span class="ui green text">F</span><span class="ui grey text">o</span><span class="ui pink
+  text">H</span><span class="ui grey text">u</span><span class="ui orange text">W</span>{{end}}
+  {{if $showVersion}}
+  {{$data := dict}}
+  {{with resources.Get "data/releases.yaml"}}
+  {{with . | transform.Unmarshal}}{{$data = .}}{{end}}
+  {{$v := (index $data 0).version}}
+  {{$bits := split $v "."}}
+  {{$maj := index $bits 0 | default ""}}
+  {{$min := index $bits 1 | default ""}}
+  {{$pat := index $bits 2 | default ""}}
+  <span class="ui red text">{{$maj}}</span>.<span class="ui orange text">{{$min}}</span><span class="ui blue
+  text">{{$pat}}</span>
+  {{end}}
+  {{end -}}
+</a>

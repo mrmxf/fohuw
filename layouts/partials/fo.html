@@ -1,0 +1,9 @@
+{{/* ## fohuw/partials/fo
+
+The main dispatcher for the fo blocks.
+
+Set .t="help" for dictionary definitions
+*/}}
+{{- $block := "my-help" -}}
+{{- with .t }}{{ $block = printf "fohuw-%s" . }}{{ end -}}
+<div class="{{.blockClass}}">{{ partial $block . }}</div>

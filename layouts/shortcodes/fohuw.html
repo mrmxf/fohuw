@@ -1,32 +1,13 @@
 {{/*
 Display stylized FoHuW text:
 - {{% fohuw %}} -------------------- FoHuW
-- {{% fohuw "with version" %}} ----- FoHuW v1.3.5
-- {{% fohuw "just version" %}} ---- v1.3.5
-*/}}{{$opt := .Get 0}}
-{{$lF := printf "<span class=\"ui purple text\">F</span>"}}
-{{$lo := printf "<span class=\"ui grey text\">o</span>"}}
-{{$lH := printf "<span class=\"ui purple text\">H</span>"}}
-{{$lu := printf "<span class=\"ui grey text\">u</span>"}}
-{{$lW := printf "<span class=\"ui purple text\">W</span>"}}
-{{$fohuw := printf "%s%s%s%s%s" $lF $lo $lH $lu $lW}}
-{{$v := ""}}
-{{$prettyV := ""}}
-{{$data := dict}}
-{{with resources.Get "data/history.yaml"}}{{with . | transform.Unmarshal}}{{$data = .}}{{end}}
-{{$v := (index $data 0).version}}
-{{$bits := split $v "."}}
-{{$maj := index $bits 0 | default ""}}
-{{$min := index $bits 1 | default ""}}
-{{$pat := index $bits 2 | default ""}}
-{{$maj := printf "<span class=\"ui red text\">%v</span>" $maj}}
-{{$min := printf "<span class=\"ui orange text\">%v</span>" $min}}
-{{$pat := printf "<span class=\"ui blue text\">%v</span>" $pat}}
-{{$prettyV = printf "%s.%s.%s" $maj $min $pat}}
-{{else}}{{$data = false}}
-{{end}}
-{{if $opt}}
-{{if eq $opt "with version"}}{{$fohuw}} {{$prettyV}}{{end}}
-{{if eq $opt "just version"}}{{$v}}{{end}}
-{{else}}{{$fohuw}}{{/* no option specified*/}}
-{{end}}
+- {{% fohuw "-v" %}} ----- FoHuW v1.3.5
+- {{% fohuw "--version" %}} ---- v1.3.5
+*/}}
+{{$arg := ""}}
+{{ if .IsNamedParams }}
+  {{ $args = .Get "args"}}
+{{ else }}
+{{ $arg = .Get 0}}
+{{ end }}
+{{partial "fohuw-fohuw" (dict "args" $arg )}}

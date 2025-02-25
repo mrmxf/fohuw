@@ -1,16 +1,24 @@
-{{/* f/image
+---
+title: fo t="image"
+date:  2025-02-25
+
+usage: |
+  left hand folding sidebar for navigation
+
+examples: |
+  Some examples
+---
+Deprecated
 
 Usage:
-{{% f/image "src" "Some alt text" "ui image" 0 "#top" %}}
+```hugo
+{{&#x25; fo t = "image" src = "path/to/img" alt = "demo image" text = "optional caption" /%}}
+```
 
-{{% f/image - see exampleSite/docs/f-image.md
-src = "vid.mp4"
-alt = "Some alt text"
-url = "/click/image/url"
-class = "ui fluid image"
-cap = "showCaption"
-%}}
-
-examples
-{{% f/image myImage.png %}}
-*/}}
+{{% fo
+  t = "image"
+  src = "rexy.svg"
+  alt = "metarex logo"
+  url = "https://metarex.media"
+  cap = "The clickable metarex media logo"
+/%}}

@@ -1,7 +1,9 @@
 ---
-title: "{{% banner %}}"
-date: 2023-12-22
+title: fo t="image"
+date:  2025-02-25
+
 ---
+Deprecated
 
 ## Arguments
 
@@ -15,6 +17,6 @@ name
 
 ## Examples
 
-    {{% "This is a default banner" %}}
-
-{{% "This is a default banner" %}}
+```hugo
+{{ % fo t = "banner" header = "header" text = "This is a default banner" /%}}
+```

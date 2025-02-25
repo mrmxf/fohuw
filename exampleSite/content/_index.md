@@ -4,20 +4,25 @@ linkTitle: FoHuW
 weight:    1
 ---
 
-The {{%fohuw%}} theme is based on [Docsy][1] and loosely tracks
-it. The theme was designed so that [sveltekit apps][2] and other components could
-simply use the [Fomantic-ui][3] look and feel without too much re-engineering.
+{{<fohuw>}} theme is inspired by [Docsy][1] and uses [Fomantic-ui][3] for look
+and feel without too much re-engineering.
 
 Various wrapped versions of the fomantic components have been created and,
 in general, they are implemented as `partials` with corresponding `shortcodes`
 that can be directly used in body text.
 
-The rough directory structure (using an edited `bash tree` command) is:
+## Project README
+
+{{< fo  t = "fetch" from = "https://raw.githubusercontent.com/mrmxf/fohuw/refs/heads/main/README.md"  />}}
+
+## Folder Organisation
+
+The rough directory structure (try `bash tree` from a terminal) is:
 
 ```sh
 ├── assets
 │   ├── icons
-│   │   └──      #various icons for fohuw and other sites
+│   │   └──      #various icons and assets rendered by fohuw
 │   ├── js
 │   │   └──      # bundled JS - some is used by Docsy components
 │   ├── json
@@ -33,9 +38,9 @@ The rough directory structure (using an edited `bash tree` command) is:
 │       ├── module.yaml # module control
 │       └── params.yaml # .Site.Params
 ├── data
-│   └── history.yaml    # release history for your site
+│   └── releases.yaml   # release history for your site
 ├── i18n
-│   └──                 # @TODO internationalization (Docy originated)
+│   └──                 # @TODO internationalization (Docsy originated)
 ├── layouts
 │   ├── 404.html        # error page
 │   ├── blog
@@ -52,29 +57,22 @@ The rough directory structure (using an edited `bash tree` command) is:
 │   ├── partials
 │   │   ├── dbg
 │   │   │   └──         # some debug partials for when your brain hurts
-│   │   ├── docsy
-│   │   │   └──         # unaltered docsy partials used in templates
-│   │   ├── f
+│   │   ├── fo
 │   │   │   └──         # fomantic wrappers
 │   │   ├── hooks
 │   │   │   └──         # hooks for site specific overrides
 │   │   ├── my
-│   │   │   └──         # hooks for site specific overrides
-│   │   ├── o
-│   │   │   └──         # objects made from multiple fomantic elements
-│   │   └──             # Docsy type partials updated to use fomantic
+│   │   │   └──         # partialsthat are site specific
+│   │   └──             # Docsy partials updated to use fomantic
 │   ├── shortcodes
-│   │   ├── f
-│   │   │   └──          # shortcode fomantic wrappers
+│   │   ├── fo.html      # all the fomantic shortcode of different types
 │   │   ├── fohuw.html   # style FoHuW text
-│   │   ├── o
-│   │   │   └──          # shortcode objects made from multiple fomantic elements
 │   │   └──              # Docsy shortcodes updated to use fomantic
 │   ├── swagger
 │   │   └──              # swagger partials from Docsy
 ├── LICENSE
-├── package.json         # @TODO - update for fomantic build
-├── postcss.config.js    # @TODO - update for fomantic build
+├── package.json         # @TODO - update for fomantic sass build
+├── postcss.config.js    # @TODO - update for fomantic sass build
 ├── README.md
 ├── static
 │       └──              # @TODO - update & remove legacy cruft

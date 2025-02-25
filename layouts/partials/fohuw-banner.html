@@ -1,0 +1,20 @@
+{{/* fohuw-banner - print a full width banner
+header = "Figure 1" etc
+text = the caption content
+*/}}
+{{if .text}}
+{{$imgClass := .srcClass | default "ui mini image"}}
+<div style="text-align:center;">
+  <div class="ui message" style="width:60%;display:inline-block;">
+    {{if .src}}
+    {{with .srcLink}}<a href="{{.}}">{{end}}
+    <div class="{{$imgClass}}"><img src="{{.src}}" {{with .alt }}alt="{{.}}"{{end}} /></div>
+    {{with .srcLink}}</a>{{end}}
+    {{end}}
+    <div class="content"
+    {{with .header}}<span class="ui blue text"><strong><em>{{.}} - </em></strong></span>{{end}}
+    {{.text}}
+    </div>
+  </div>
+</div>
+{{end}}

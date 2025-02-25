@@ -21,10 +21,6 @@ tmp/*
 # IDE files
 .idea
 
-# VS Code
-/.vscode/**
-!/.vscode/settings.json
-!/.vscode/cspell.json
 # vim temporary files
 *~
 *.sw?

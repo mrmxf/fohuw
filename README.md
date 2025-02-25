@@ -1,15 +1,29 @@
 # FoHuW Fomantic-ui Hugo Wrapper
 
-FoHuW is a [Hugo](https://gohugo.io) theme for technical documentation sets,
-sites requiring structured navigation, showcase features, embedded apps, and
-more. The current version is set in [data/history.yaml][1]
+FoHuW is a [Hugo][01] theme inspired by [Docsy][02] using [Fomantic-UI][03]. It
+is for technical documentation sets, sites requiring structured navigation,
+showcase features, embedded apps, and more. Release information is in
+[data/releases.yaml][04]
 
-This theme was started as a fork of [Docsy] and then changed to allow less
+This theme was started as a fork of [Docsy][02] and then changed to allow less
 technical, lazier writers to guess at syntax is actively being maintained.
 
 The goal is to have a self documenting set of shortcodes that can be guessed.
 
-## Documentation below here is the original Docsy documentation
+## Documentation & sample site
+
+Fork the repo. Either install [clog][05] or use the bash snippets in
+`clogrc/clog.config.yaml`. The following manual command should also work in
+a linux shell (bash, zsh, sh on linux mac or windows WSL)
+
+```sh
+    # make a symbolic link to the example site
+    ln -s exampleSite/content content
+    # run the hugo server
+    hugo server --port=1313 --buildDrafts --buildFuture --buildExpired --cleanDestinationDir
+    # delete the symbolic link
+    rm content
+```
 
 _ _ _
 
@@ -26,8 +40,8 @@ The following are basic prerequisites for using Docsy in your site:
   directory of your project:
 
   ```console
-  $ npm install --save-dev autoprefixer
-  $ npm install --save-dev postcss-cli
+  npm install --save-dev autoprefixer
+  npm install --save-dev postcss-cli
   ```
 
   Starting in [version 8 of `postcss-cli`](https://github.com/postcss/postcss-cli/blob/master/CHANGELOG.md),
@@ -66,24 +80,6 @@ To use the Docsy theme for your own site:
 See the [Get started guides](https://www.docsy.dev/docs/get-started/)
 for details about the various usage options.
 
-## Documentation
-
-FoHuW has its own user guide (using FoHuW & Docsy, of course!) with lots more
-information about using the theme. It is hosted by [Netlify][] at
-[docsy.dev](https://docsy.dev). For deploy logs and more, see [Deploys][] from
-the site's Netlify dashboard.
-
-Alternatively you can use Hugo to generate and serve a local copy of the guide
-(also useful for testing local theme changes), making sure you have installed
-all the prerequisites listed above:
-
-```console
-$ git clone --depth 1 https://github.com/google/docsy.git
-$ cd docsy/fohuwguide/
-$ npm install
-$ npm run serve
-```
-
 ## Contributing ![GitHub](https://img.shields.io/github/contributors/google/docsy)
 
 Please read
@@ -99,7 +95,11 @@ This project is licensed under the Apache License 2.0 - see the
 [LICENSE.md](https://github.com/google/docsy/blob/main/LICENSE) file for
 details
 
-[Docsy]:   https://docsy.dev
+[01]:  https://gohugo.io             "Hugo"
+[02]:  https://docsy.dev             "Docsy"
+[03]:  https://fomantic-ui.com       "Fomantic-Ui"
+[04]:  data/history.yaml             "Releases"
+[05]:  https://github.com/mrmxf/clog "https://github.com/mrmxf/clog/releases"
+
 [Deploys]: https://app.netlify.com/sites/docsydocs/deploys
 [Netlify]: https://netlify.com
-[1]:       data/history.yaml
