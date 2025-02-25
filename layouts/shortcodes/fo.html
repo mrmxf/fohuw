@@ -1,4 +1,4 @@
-{{/* fohuw shortcode
+{{ `<!-- fohuw/shortcodes/fo.html -->` | safeHTML }}{{/* fohuw shortcode
 
 I was struggling to explain & remember all the shortcodes & partials in the fohuw theme.
 I was also having name clashes with other themes, so I had a simple idea to crete a consistent
@@ -52,7 +52,7 @@ Props(see fohuw-help partial or insert `fo t="help"` in your code):
 {{- $meta := .Get "meta" -}}
 {{- $skip := .Get "skip" | default 0 -}}
 {{- $src := .Get "src" -}}
-{{- $srcClass := .Get "srcClass" | default "ui image" -}}
+{{- $srcClass := .Get "srcClass" -}}
 {{- $srcId := .Get "srcId" -}}
 {{- $srcLink := .Get "srcLink" | default $headerLink -}}
 {{- $srcOn := .Get "srcOn" | default "left" -}}

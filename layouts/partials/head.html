@@ -1,4 +1,7 @@
-{{ `<!-- fohuw/partials/docsy/docsy/head.html -->` | safeHTML }}
+{{ `<!-- fohuw/partials/head.html -->` | safeHTML }}
+{{- if templates.Exists "partials/my-head-begin.html"}}
+{{ partial "my-head-begin.html" }}
+{{end -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{ hugo.Generator }}
@@ -34,7 +37,7 @@
 
 {{ partial "hooks/head-end.html" . -}}
 
-{{/* To comply with GDPR, cookie consent scripts places in head-end must execute before Google Analytics is enabled */ -}}
+{{/* To comply with GDPR, cookie consent scripts placed in head-end must execute before Google Analytics is enabled */ -}}
 {{ if hugo.IsProduction -}}
   {{ $enableGtagForUniversalAnalytics := not .Site.Params.disableGtagForUniversalAnalytics -}}
   {{ if (or $enableGtagForUniversalAnalytics (hasPrefix .Site.GoogleAnalytics "G-")) -}}
@@ -43,3 +46,13 @@
     {{ template "_internal/google_analytics.html" . -}}
   {{ end -}}
 {{ end -}}
+
+{{/* After GDPR do some local stuff */ -}}
+{{/*
+  
+  Add     partials/my-head-css.html    to your site ==> last head entry
+  
+  */}}
+{{- if templates.Exists "partials/my-head-end.html"}}
+{{ partial "my-head-end.html" }}
+{{end -}}

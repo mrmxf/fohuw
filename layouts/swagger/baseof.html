@@ -1,7 +1,7 @@
 <!doctype html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
-    {{ partial "docsy/head.html" . }}
+    {{ partial "head.html" . }}
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <link rel="stylesheet" type="text/css" href="{{ "css/swagger-ui.css" | relURL }}">
   </head>

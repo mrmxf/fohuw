@@ -1,4 +1,5 @@
-{{/* Include another page as a block File path is relative to content/ */}}
+{{ `<!-- fohuw/partials/fohuw-include.html -->` | safeHTML }}{{/*
+   Include another page as a block File path is relative to content/ */}}
 {{- $f := .from -}}
 {{- if fileExists $f -}}
 {{/* --- trim front matter and spew out the rest of the included file --- */}}

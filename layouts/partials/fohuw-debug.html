@@ -1,6 +1,6 @@
-{{/* fohuw debug partial
-
-*/}}
+{{ `<!-- fohuw/partials/fohuw-debug.html -->` | safeHTML }}{{/*
+   fohuw debug partial 
+   */}}
 {{/* ------- mode dump --------------------------------------------- -*/}}
 {{- if eq .mode "dump" }}
 {{ $type := (printf "%T" .) }}

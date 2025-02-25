@@ -3,9 +3,7 @@
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
-  {{ partial "my/site-head-begin.html" . }}
-  {{ partial "my/site-head-end.html" . }}
-  {{ partial "docsy/head.html" . }}
+  {{ partial "head.html" . }}
 </head>
 
 <body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">

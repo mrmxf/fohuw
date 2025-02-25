@@ -1,4 +1,5 @@
-{{/* fetch a URL and include it */}}
+{{ `<!-- fohuw/partials/fohuw-fetch.html -->` | safeHTML }}{{/*
+   fetch a URL and include it */}}
 {{ $url := .from }}
 {{ $DBG := false}}
 {{ $opts := dict  "responseHeaders" (slice "content-length" "content-type" "x-github-request-id") "key" "dkoo"}}

@@ -1,4 +1,4 @@
-{{- if .srcLink -}}<a href="{{ .srcLink }}">{{- end -}}
+{{ `<!-- fohuw/partials/fohuw-fblock-video.html -->` | safeHTML }}{{- if .srcLink -}}<a href="{{ .srcLink }}">{{- end -}}
 <video class="{{ .srcClass }}" autoplay loop>
   <source src="{{ .src }}" type="video/mp4" />
   Your browser does not support the video tag.

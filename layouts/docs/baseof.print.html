@@ -2,7 +2,7 @@
 {{ `<!-- docs/baseof.print.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
-    {{ partial "docsy/head.html" . }}
+    {{ partial "head.html" . }}
   </head>
   <body class="td-{{ .Kind }}{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
     <header>
