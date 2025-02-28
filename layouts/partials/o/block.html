@@ -1,20 +1,17 @@
-{{ `<!-- fohuw/partials/fohuw-block.html -->` | safeHTML }}
+<!-- fohuw/o/block partial -->
 {{/*
-.srcWidth is ignored
-.src
 .srcOn "left"
-+--srcGrid-+----txtGrid------------------------------------------+
++----src---+----txt----------------------------------------------+
 | -------- | -----.header--------------------------------------- |
 | -------- | -----.meta----------------------------------------- |
 | -------- | -----.description----.inner------------------------ |
 +----------+-----------------------------------------------------+
 .srcOn "right"
-+-----------------------------------------txtGrid-----+-srcGrid--+
++---------------------------------------------txt-----+---src----+
 | -----.header--------------------------------------- | -------- |
 | -----.meta----------------------------------------- | -------- |
 | -----.description----.inner------------------------ | -------- |
 +-----------------------------------------------------+----------+
-
 */}}
 {{- $DBG := false -}}
 {{with $DBG}}<p><hr style="height:3px; border:none; color:rgb(60,90,180); background-color:rgb(60,255,180);">start o/block</p>{{end}}
@@ -24,8 +21,16 @@
 {{- $vidExt := slice ".mp4" ".mkv" -}}
 {{- $srcIsVideo := in $vidExt $ext -}}
 {{- $srcIsImage := in $imgExt $ext -}}
-{{- $srcGrid := .srcGrid | default "zero wide" }}
-{{- $txtGrid := .txtGrid | default "sixteen wide" }}
+{{/* ---handle src width-------------------------------------------------- */}}
+{{- $srcWidth := .srcWidth | default 0.25 -}}
+{{- $type := printf "%T" $srcWidth }}
+{{- if ne $type "float64" }}{{ $srcWidth = 0.25}}{{ end -}}
+{{- $r := math.Round ( mul 16.0 $srcWidth ) -}}
+{{- $slice := slice "zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" "eleven" "twelve"
+"thirteen" "fourteen" "fifteen" "sixteen" -}}
+{{- $r = (math.Min 16 ( math.Max 0 $r )) | math.Floor | int -}}
+{{- $srcGrid := printf "%s wide" (index $slice $r) }}
+{{- $txtGrid := printf "%s wide" (index $slice ( sub 16 $r )) }}
 {{/* ---make src dict----------------------------------------------------- */}}
 {{ $srcDict := dict "src" .src "srcLink" .srcLink "srcClass" .srcClass}}
 {{/* --------------------------------------------------------------------- */}}

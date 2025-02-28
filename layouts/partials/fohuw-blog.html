@@ -35,6 +35,7 @@
 {{- $d := merge $dot (dict "src" "") -}}
 {{if $featured}}
 {{- $d = merge $d (dict "src" $featured.RelPermalink) -}}
+{{- $d = merge $d (dict "srcClass" "ui fluid image") -}}
 {{- $d = merge $d (dict "srcLink" $srcLink) -}}
 {{- $d = merge $d (dict "headerLink" $srcLink) -}}
 {{- $d = merge $d (dict "srcWidth" 0.25) -}}
@@ -44,5 +45,5 @@
 {{- $min := add ( div ( countwords $description ) 220 ) 1 -}}
 {{- $d = merge $d (dict "meta" (printf "~%v min read" $min)) -}}
 
-{{ partial "o/block" $d }}
+{{ partial "fohuw-block" $d }}
 {{ end }}{{/* end of range*/}}
