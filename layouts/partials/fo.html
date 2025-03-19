@@ -3,7 +3,7 @@ The main dispatcher for the fo blocks.
 
 Set .t="help" for dictionary definitions
 */}}
-{{if false}}{{partial "dbg/dump-dot" .}}{{end}}
+{{if false}}{{partial "fohuw-dbg-dump-dot" .}}{{end}}
 {{- $block := "my-help" -}}
 {{- with .t }}{{ $block = printf "fohuw-%s" . }}{{ end -}}
 {{- with .blockClass }}<div class="{{.}}">{{end -}}

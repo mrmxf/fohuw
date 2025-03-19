@@ -19,7 +19,7 @@
 {{- $d = merge $d (dict "description" ($p.Plain | safeHTML | truncate 300)) -}}
 {{- $min := add ( div ( countwords $p.Plain ) 220 ) 1 -}}
 {{- $d = merge $d (dict "meta" (printf "~%v min read" $min)) -}}
-{{- partial "o/block" $d -}}
+{{- partial "fohuw-block" $d -}}
 {{- else -}}
 <p>partial <code style="color:blue;">o/include</code> needs parameter <code style="color:red;">from</code> as a path in {{.page.Path}}{{.page.File}}</p>
 {{- end -}}

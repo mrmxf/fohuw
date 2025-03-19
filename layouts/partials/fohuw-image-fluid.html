@@ -1,17 +1,5 @@
 {{ `<!-- fohuw/partials/fohuw-image-fluid.html -->` | safeHTML }}{{/*
-     fohuw fluid image partial
-    .src = image source
-    .alt = alt text
-    .text = caption text
+     simple override of .srcClass
 */}}
-{{- $from := "fohuw-image-fluid" -}}
-{{- if not .src -}}
-{{ $msg := "fohuw-image-fluid missing .src param" }}
-{{- partial "fohuw-debug" (dict "mode" "log" "text" $msg ) -}}
-{{- end -}}
-{{- if not .alt -}}
-{{ $msg := "fohuw-image-fluid missing .alt param" }}
-{{- partial "fohuw-debug" (dict "mode" "log" "text" $msg ) -}}
-{{- end -}}
-<img class="ui fluid image" src="{{.src}}" alt="{{.alt}}" />
-{{- if .text -}}{{partial "fohuw-caption" .}}{{- end -}}
+{{- .srcClass = "ui fluid image" -}}
+{{- partial "fohuw-image" . -}}

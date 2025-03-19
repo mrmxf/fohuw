@@ -3,10 +3,10 @@ eg>> partial 'f/image-fluid' (dict "src" $sourceUrl "alt" $caption "cap" $nonZer
 */}}
 {{- $p := "f/image-fluid" -}}
 {{- if not .src -}}
-{{- partial "dbg/errArg" (dict "p" $p "a" ".url" "m" "missing" ) -}}
+{{- partial "fohuw-dbg-err" (dict "p" $p "a" ".url" "m" "missing" ) -}}
 {{- end -}}
 {{- if not .alt -}}
-{{- partial "dbg/errArg" (dict "p" $p "a" ".url" "m" "missing" ) -}}
+{{- partial "fohuw-dbg-err" (dict "p" $p "a" ".url" "m" "missing" ) -}}
 {{- end -}}
 <img class="ui fluid image" src="{{.src}}" alt="{{.alt}}" />
 {{- if .cap -}}<div class="ui  center aligned small bottom attached message">

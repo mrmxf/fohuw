@@ -12,5 +12,5 @@ Deprecated
 mples
 
 Here's the content{{/*
-eg>> partial 'dbg/errArg' (dict "p" $partial-name "a" $arg "m" $message)
+eg>> partial 'fohuw-dbg-err' (dict "p" $partial-name "a" $arg "m" $message)
 */}}
