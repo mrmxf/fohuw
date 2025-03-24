@@ -35,6 +35,8 @@ Props(see fohuw-help partial or insert `fo t="help"` in your code):
 */}}
 {{- $workerPartial := "fo" -}}
 
+Length is {{ .Inner | len}}
+
 {{- $args:=""}}{{if .IsNamedParams}}{{$args =.Get "args"}}{{else}}{{$args =.Get 0}}{{end -}}
 {{- $id := .Get "id" | default (printf "block-%d" .Ordinal) -}}
 {{- $t := .Get "t" -}}
