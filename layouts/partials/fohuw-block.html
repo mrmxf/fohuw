@@ -17,7 +17,9 @@
 
 */}}
 {{- $DBG := false -}}
-{{with $DBG}}<p><hr style="height:3px; border:none; color:rgb(60,90,180); background-color:rgb(60,255,180);">start fohuw-block</p>{{end}}
+{{with $DBG}}<p>
+  <hr style="height:3px; border:none; color:rgb(60,90,180); background-color:rgb(60,255,180);">start fohuw-block
+</p>{{end}}
 {{/* ---handle src type--------------------------------------------------- */}}
 {{- $ext := strings.ToLower (path.Ext .src) -}}
 {{- $imgExt := slice ".jpg" ".jpeg" ".png" ".webp" ".gif" ".svg" -}}
@@ -34,10 +36,7 @@
   <div class="ui stackable two column middle aligned grid">
     <div class="row">
       {{- if and .src (eq .srcOn "left") -}}
-      <div class="{{$srcGrid}} column">
-        {{- if $srcIsVideo }}{{ partial "f/block-video" $srcDict }}{{ end -}}
-        {{- if $srcIsImage }}{{ partial "f/block-image" $srcDict }}{{ end -}}
-      </div>
+      <div class="{{$srcGrid}} column">{{ partial "fohuw-media" $srcDict }}</div>
       {{- end -}}
       <div class="ui {{$txtGrid}} column">
         <div class="ui horizontal fluid card">
@@ -58,13 +57,12 @@
         </div>
       </div>
       {{ if and .src (eq .srcOn "right") }}
-      <div class="{{.srcGrid}} column">
-        {{- if .srcIsVideo }}{{ partial "f/block-video" $srcDict }}{{ end -}}
-        {{- if .srcIsImage }}{{ partial "f/block-image" $srcDict }}{{ end -}}
-      </div>
+      <div class="{{$srcGrid}} column">{{ partial "fohuw-media" $srcDict }}</div>
       {{end}}
     </div>
   </div>
   {{- if .id -}}
 </section>{{- end -}}
-{{with $DBG}}<p>END fohuw-block<hr style="height:3px; border:none; color:rgb(60,90,180); background-color:rgb(255,90,180);"></p>{{end}}
+{{with $DBG}}<p>END fohuw-block
+  <hr style="height:3px; border:none; color:rgb(60,90,180); background-color:rgb(255,90,180);">
+</p>{{end}}

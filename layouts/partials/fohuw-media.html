@@ -1,0 +1,5 @@
+{{ `<!-- fohuw/partials/fohuw-media.html -->` | safeHTML -}}
+{{/* insert a media element fohuw-image or fohuw-video */}}
+{{- if .srcIsVideo -}}{{- partial "fohuw-video" . -}}
+{{- else -}}{{- partial "fohuw-image" . -}}
+{{- end -}}

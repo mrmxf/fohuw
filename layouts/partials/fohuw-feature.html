@@ -1,0 +1,26 @@
+{{ `<!-- fohuw/partials/fohuw-feature.html -->` | safeHTML -}}
+{{/*
+---* A feature is a block in a features group. R= required
+---* .blockClass Outer container = default "",        e.g. "ui green segment"
+---* .class      container       = default "message"  e.g. "green message"
+---* .header     header text     = default nil        e.g " spring sale"
+---* .text       paragraph text  = default nil        e.g. missing
+-R-* .src        media           = default rendered with fohuw-media
+---* .link       click href      = default nil        e.g. "/"
+*/}}
+{{/* --- create a page object for the included page ---------------------- */}}
+{{- $headerClass := .headerClass | default "header" -}}
+{{- $featureClass := .class | default "message" -}}
+<div class="{{.blockClass}}">
+  <div class="{{.class}}">
+    {{- with .link -}}
+    <a href="{{ relref . }}">
+      {{ end }}
+      {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
+      {{- with .text}}<p>{{.}}</p>{{- end -}}
+      {{ partial "fohuw-media" . }}
+      {{- with .link -}}
+    </a>
+    {{- end -}}
+  </div>
+</div>
