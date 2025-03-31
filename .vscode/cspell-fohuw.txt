@@ -12,6 +12,7 @@ fohuw
 fomantic
 formatic
 isset
+kodata
 licenselink
 ltrimstr
 manuallink

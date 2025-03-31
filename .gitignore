@@ -1,7 +1,8 @@
 # hugo gitignore
 
 # ignore synthesised outputs
-public/
+public
+kodata
 resources/
 clogrc/core
 # ignore npm or yarn generated postcss source files
@@ -15,6 +16,9 @@ yarn.lock
 # ignore the tmp folder but not the readme inside it
 tmp/*
 !tmp/readme.md
+tmp-
+tmp_
+
 #ignore mac artifacts
 .DS_Store
 
