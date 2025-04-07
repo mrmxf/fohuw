@@ -41,7 +41,7 @@ snippets:
         echo "$(   echo $j | jq -r '.name   | ltrimstr("v")')"
       git-lfs: echo "3.6.0"
   watch: |
-    ln -s exampleSite/content content
+    [ ! -d content ] && ln -s exampleSite/content content
     hugo server --port=1313 --buildDrafts --buildFuture --buildExpired --cleanDestinationDir
     rm content
 # =============================================================================

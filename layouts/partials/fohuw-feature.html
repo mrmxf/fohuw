@@ -1,26 +1,23 @@
 {{ `<!-- fohuw/partials/fohuw-feature.html -->` | safeHTML -}}
+{{$h := slice "A feature is a block in a feature-group" }}
+{{$h = $h | append (dict "a" "class " "h" "inner class of the block" "d" "message" "eg" "green messsage")}}
+{{$h = $h | append (dict "a" "header" "h" "bold heading above media" "d" "nil" "eg" "Spring Sale")}}
+{{$h = $h | append (dict "a" "text" "h" "body text above media" "d" "nil" "eg" "green messsage")}}
+{{$h = $h | append (dict "a" "link" "h" "link when feature is clicked" "d" "nil" "eg" "green messsage")}}
 {{/*
----* A feature is a block in a feature-group. R= required
----* .blockClass Outer container = default "",        e.g. "ui green segment"
----* .class      container       = default "message"  e.g. "green message"
----* .header     header text     = default nil        e.g " spring sale"
----* .text       paragraph text  = default nil        e.g. missing
--R-* .src        media           = default rendered with fohuw-media
----* .link       click href      = default nil        e.g. "/"
+------------------------------------------------------------------------------------------------------------------------
 */}}
 {{/* --- create a page object for the included page ---------------------- */}}
 {{- $headerClass := .headerClass | default "header" -}}
 {{- $featureClass := .class | default "message" -}}
-<div class="{{.blockClass}}">
-  <div class="{{.class}}">
+<div class="{{.class}}">
+  {{- with .link -}}
+  <a href="{{ relref . }}">
+    {{ end }}
+    {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
+    {{- with .text}}<p>{{.}}</p>{{- end -}}
+    {{ partial "fohuw-media" . }}
     {{- with .link -}}
-    <a href="{{ relref . }}">
-      {{ end }}
-      {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
-      {{- with .text}}<p>{{.}}</p>{{- end -}}
-      {{ partial "fohuw-media" . }}
-      {{- with .link -}}
-    </a>
-    {{- end -}}
-  </div>
+  </a>
+  {{- end -}}
 </div>

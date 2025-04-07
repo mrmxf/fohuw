@@ -6,7 +6,18 @@ Set .t="help" for dictionary definitions
 {{if false}}{{partial "fohuw-dbg-dump-dot" .}}{{end}}
 {{- $block := "my-help" -}}
 {{- with .t }}{{ $block = printf "fohuw-%s" . }}{{ end -}}
+{{- $blockPath := printf "partials/%s.html" $block -}}
+{{ if templates.Exists $blockPath }}
+
 {{- with .blockClass }}<div class="{{.}}">{{end -}}
 {{partial $block .}}
 {{- with .blockClass }}</div>{{end -}}
+  
+{{ else }}
 
+{{$em := printf "style=\"%s\"" "color:blue;"}}
+{{$msg := printf "not found - check spelling of<code %s> t = \"%s\"</code>" $em .t}}
+{{ partial "fohuw-dbg-err.html" (dict "p" $block "a" $blockPath "m" $msg) }}
+{{ partial "fohuw-help.html" . }}
+
+{{ end }}
