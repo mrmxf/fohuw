@@ -1,4 +1,5 @@
 # hugo gitignore
+/content/
 
 # ignore synthesised outputs
 public

@@ -32,6 +32,7 @@ shellsnippets
 shortcode
 shortcodes
 subdir
+synthesised
 taxo
 taxonomycloud
 taxonomypageheade
