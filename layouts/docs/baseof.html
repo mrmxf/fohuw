@@ -5,7 +5,7 @@
 <head>
   {{ partial "my/site-head-begin.html" . }}
   {{ partial "my/site-head-end.html" . }}
-  {{ partial "head.html" . }}
+  {{ partial "fotpl/head.html" . }}
 </head>
 
 <body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
@@ -15,7 +15,7 @@
       <div class="two wide column"></div>
       <div class="twelve wide column">
         <header>
-          {{ partial "navbar.html" . }}
+          {{ partial "fotpl/navbar" . }}
         </header>
       </div>
       <div class="two wide column"></div>
@@ -27,7 +27,7 @@
         <div class="ui grid">
           <div class="row">
             <div class="three wide column">
-              {{- partial "sidebar-tree.html" . -}}
+              {{- partial "fotpl/sidebar-tree.html" . -}}
             </div>
             <div class="thirteen wide column">
               <main role="main" class="ui main">
@@ -38,7 +38,7 @@
             </div>
           </div>
           <div class="row">
-            {{ partial "footer.html" . }}
+            {{ partial "fotpl/footer" . }}
           </div>
         </div>
         <div class="one wide column"></div>
@@ -46,7 +46,7 @@
     </div>
   </div>
   </div>
-  {{ partial "body-scripts.html" . }}
+  {{ partial "fotpl/body-scripts" . }}
 </body>
 
 </html>

@@ -1,23 +1,51 @@
 {{ `<!-- fohuw/partials/fo.html -->` | safeHTML }}{{/*
 The main dispatcher for the fo blocks.
 
-Set .t="help" for dictionary definitions
+Set .t="help" for dict definitions
+Set .help="anything" to render help for the partial instead of the partial
 */}}
 {{if false}}{{partial "fohuw-dbg-dump-dot" .}}{{end}}
-{{- $block := "my-help" -}}
-{{- with .t }}{{ $block = printf "fohuw-%s" . }}{{ end -}}
-{{- $blockPath := printf "partials/%s.html" $block -}}
+{{- $blockTemplate := "my-help" -}}
+{{- with .t }}{{ $blockTemplate = printf "fohuw-%s" . }}{{ end -}}
+{{- $blockPath := printf "partials/%s.html" $blockTemplate -}}
 {{ if templates.Exists $blockPath }}
+{{ if .help }}
 
+{{/* --------user requested help for a partial---------- */}}
+{{ $helpTemplate := printf "fohlp/help-%s" .t }}
+{{ $helpPath := printf "partials/%s.html" $helpTemplate }}
+{{ if templates.Exists $helpPath }}
+{{ partial "fohlp/styles.html" . }}
+<div class="fohuw-help">
+{{ partial $helpTemplate . }}
+</div>
+{{else}}
+<div class="ui red message">
+  <div class="header"><h2>No help available for <code>t = "{{.t}}"</code></h2></div>
+  <div class="content">
+    <p>Default help location is <code>layouts/{{$helpPath}}</code> </p>
+  </div>
+</div>
+{{end}}
+
+{{/* --------------------------------------------------- */}}
+
+{{else}}
+
+{{/* --------------render a partial -------------------- */}}
 {{- with .blockClass }}<div class="{{.}}">{{end -}}
-{{partial $block .}}
-{{- with .blockClass }}</div>{{end -}}
-  
+  {{partial $blockTemplate .}}
+  {{- with .blockClass }}</div>{{end -}}
+{{/* --------------------------------------------------- */}}
+
+{{end}}
 {{ else }}
 
+{{/* --------------error partial does not exist-------------------- */}}
 {{$em := printf "style=\"%s\"" "color:blue;"}}
 {{$msg := printf "not found - check spelling of<code %s> t = \"%s\"</code>" $em .t}}
-{{ partial "fohuw-dbg-err.html" (dict "p" $block "a" $blockPath "m" $msg) }}
+{{ partial "fohuw-dbg-err.html" (dict "p" $blockTemplate "a" $blockPath "m" $msg) }}
 {{ partial "fohuw-help.html" . }}
+{{/* --------------------------------------------------- */}}
 
 {{ end }}

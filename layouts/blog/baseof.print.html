@@ -2,11 +2,11 @@
 {{ `<!-- blog/baseof.print.html -->` | safeHTML }}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
-    {{ partial "head.html" . }}
+    {{ partial "fotpl/head.html" . }}
   </head>
   <body class="td-{{ .Kind }} td-blog">
     <header>
-      {{ partial "navbar.html" . }}
+      {{ partial "fotpl/navbar" . }}
     </header>
     <div class="container-fluid td-outer">
       <div class="td-main">
@@ -20,8 +20,8 @@
           </main>
         </div>
       </div>
-      {{ partial "footer.html" . }}
+      {{ partial "fotpl/footer" . }}
     </div>
-    {{ partial "body-scripts.html" . }}
+    {{ partial "fotpl/body-scripts" . }}
   </body>
 </html>

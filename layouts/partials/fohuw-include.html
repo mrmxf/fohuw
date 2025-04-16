@@ -2,11 +2,26 @@
    Include another page as a block File path is relative to content/ */}}
 {{- $f := .from -}}
 {{- if fileExists $f -}}
+
 {{/* --- trim front matter and spew out the rest of the included file --- */}}
-{{- $file := $f -}}
-THis is file {{$f}}
-{{ $t := printf "%s" .t}}
-{{ (printf "%s" $file) | readFile | replaceRE "^---[\\s\\S]+?---" "" | safeHTML }}
+{{ $content := "" }}
+{{/* check the page for a Params.IncludeSummary substitution */}}
+{{ $p := site.GetPage $f }}
+{{ if $p.Page.Params.IncludeSummary }}
+{{ $content = $p.Page.Params.IncludeSummary | markdownify }}
+{{end -}}{{/* end of GetPage */}}
+
+{{ if not $content }}
+{{ if eq ".md" (path.Ext $f) }}
+{{ $content = (printf "%s" $f) | readFile | replaceRE "^---[\\s\\S]+?---" "" | markdownify }}
 {{else}}
-{{errorf "cannot include unknown file content/%s" $f}}
-{{- end -}}
+{{ $content = (printf "%s" $f) | readFile | replaceRE "^---[\\s\\S]+?---" "" | safeHTML }}
+{{end}}{{/* end of md / html switch */}}
+{{end -}}{{/* end of content unset */}}
+{{$content}}
+{{- else -}}
+
+{{ $err := dict "p" "fohuw-include" "a" "from" "m" (printf "cannot include unknown file content%s" $f) }}
+{{ partial "fohuw-dbg-err.html" $err }}
+
+{{- end -}}{{/* end of if file exists */}}

@@ -9,9 +9,18 @@ weight:    1
 {{<fohuw "-v">}} theme is inspired by [Docsy][1] and uses [Fomantic-ui][3] for look
 and feel without too much re-engineering.
 
-In {{<fo t = "fohuw" />}} Various wrapped versions of the fomantic components have been created and,
-in general, they are implemented as `partials` with corresponding `shortcodes`
-that can be directly used in body text.
+In {{<fo t = "pretty-fohuw" />}} various wrapped versions of the fomantic components have been created and, in general,
+they are implemented as `partials` with a corresponding shortcode `fo t = "thing"` that can be directly used in body text.
+
+```mermaid
+flowchart TD
+    A[Need Website] -->|Research| B(Discover Hugo)
+    B --> C{Need a Theme}
+    C -->|Pretty & Simple is a priority| D[Use FoHuW]
+    C -->|Small & Simple is a priority| E[Use PiHuW]
+    C -->|Naah| F[Search Google again]
+  
+```
 
 ## Project README
 

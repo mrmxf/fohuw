@@ -1,7 +1,65 @@
 # fohuw theme
 # core configuration to build the fohuw documentation
+# change this to values you like for your site.
 
 # cSpell:ignore docsy fortawesome fontawesome webfonts
+title: FoHuW Documentation
+
+# ----------------------------------------------------------------------------------------------------------------------
+#   __  __          _
+#  |  \/  |  __ _  (_)  _ _      _ __    ___   _ _    _  _
+#  | |\/| | / _` | | | | ' \    | '  \  / -_) | ' \  | || |
+#  |_|  |_| \__,_| |_| |_||_|   |_|_|_| \___| |_||_|  \_,_|
+#
+# Most menus are in the frontmatter of the relevant pages
+# Render the example site to see how menus work
+
+menus:
+  main:
+    - name: Home
+      identifier: home
+      URL: /
+
+  menu2:
+    - name: Features
+      URL: 
+      identifier: features
+      pre: '<i class="linkedin icon"></i>'
+      post: " 🦖"
+      weight: 100
+
+  footer:
+    - name: Copyright
+      URL: https://mrmxf.com
+
+#   _ __    __ _   _ _  | |__  _  _   _ __
+#  | '  \  / _` | | '_| | / / | || | | '_ \
+#  |_|_|_| \__,_| |_|   |_\_\  \_,_| | .__/
+#                                    |_|
+markup:
+  goldmark:
+    renderer:
+      # unsafe needed for mermaid
+      unsafe: true
+
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    # Uncomment if you want your chosen highlight style used for code blocks without a specified language
+    # THIS MUST BE FALSE for mermaid to work!!!
+    guessSyntax: false
+    # hl_Lines: 
+    # See a complete list of available styles at https://gohugo.io/quick-reference/syntax-highlighting-styles/
+    # I like light: pastie   dark: monokailight     neutral: hrdark
+    style: monokailight
+    lineAnchors: ""
+    # hl_Lines:     # To emphasize lines 2, 3, 4, and 7, set this value to 2-4 7
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: true
+    noClasses: true
+    tabWidth: 2
+    #wrapperClass: ""   #The class or classes to use for the outermost element of the highlighted code. Default is highlight
 
 outputFormats:
   PRINT:

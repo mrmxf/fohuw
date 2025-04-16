@@ -1,0 +1,93 @@
+/* fohuw variables */
+:root {
+  --fo-wide-max: 900px;
+  /* mrmxf pallette */
+  --mm-yellow: hsl(46, 50%, 52%);
+  --mm-green: hsl(80, 45%, 49%);
+  --mm-purple: hsl(324, 45%, 42%);
+  --mm-blue: hsl(243, 36%, 39%);
+  --mm-black: hsl(0, 0%, 0%);
+  --mm-dark: hsl(0, 0%, 20%);
+  --mm-light: hsl(0, 0%, 93%);
+  --mm-white: hsl(0, 0%, 100%);
+  /* metarex.media pallette */
+  --mrx-amber: var(--mm-yellow);
+  --mrx-purple: var(--mm-purple);
+  --mrx-green: hsl(88, 45%, 30%);
+  --mrx-grey: var(--mm-dark);
+  /* named elements - visual objects */
+  --mrx-skin: hsl(88, 45%, 60%);
+  --mrx-eye: hsl(354, 45%, 42%);
+  --mrx-trainFill: lighten(var(--mrx-grey), 25%);
+  --mrx-sky: lighten(var(--mrx-amber), 40%);
+  --mrx-ground: lighten(var(--mrx-purple), 25%);
+  /* named elements - fohuw controls */
+  --fohuw-dark-bg: var(--mm-purple);
+  --fohuw-blue: var(--mm-blue);
+  /* colors of the logo */
+  --fo-logo-fo: #35BDB2;
+  --fo-logo-hu: #FF4088;
+  --fo-logo-w: #D8B588;
+}
+/* different text styles */
+code {
+  color: var(--fohuw-blue);
+}
+.logo-fo {
+  color: var(--fo-logo-fo);
+}
+.logo-hu {
+  color: var(--fo-logo-hu);
+}
+.logo-w {
+  color: var(--fo-logo-w);
+}
+
+/* fohuw footer row*/
+footer .row {
+  background-color: var(--mrx-green);
+}
+
+/* all labels in the row */
+footer .row .labels .label {
+  color: var(--mrx-green);
+  background-color: var(--mrx-skin);
+}
+/* all text in the row with a link*/
+footer .row .labels .label > a {
+  color: var(--mrx-eye);
+  opacity: 1;
+}
+/* all text in the row with a link*/
+footer .row .labels .label > a:hover {
+  color: var(--mrx-green);
+}
+
+.fo-footer-label {
+  color: lighten(var(--mm-purple), 40%);
+}
+
+.fo-footer-title {
+  color: lighten(var(--mrx-green), 40%);
+  font-size: 1.2em;
+}
+
+/* On wide screens display full menu, hide narrow menu */
+.fo-menu-w {
+  display: flex;
+}
+
+.fo-menu-n {
+  display: none;
+}
+
+/*  On narrow screens - opposite */
+@media screen and (max-width: var(--fo-wide-max)) {
+  .fo-menu-w {
+    display: none;
+  }
+
+  .fo-menu-n {
+    display: flex;
+  }
+}
