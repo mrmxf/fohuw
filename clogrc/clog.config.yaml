@@ -23,7 +23,7 @@ snippets:
   git:
     tag:
       # fohuw, like Hugo & golang requires a "v"
-      ref: echo "v$(yq -r '.releases[0].version'  assets/data/releases.yaml)"
+      ref: echo "v$(yq -r '.[0].version'  assets/data/releases.yaml)"
     message:
       ref:  yq -r '.releases[0].note'  assets/data/releases.yaml
   project:
