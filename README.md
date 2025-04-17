@@ -18,7 +18,7 @@ a linux shell (bash, zsh, sh on linux mac or windows WSL)
 
 ```sh
     # make a symbolic link to the example site
-    ln -s exampleSite/content content
+    ln -s documentation/content content
     # run the hugo server
     hugo server --port=1313 --buildDrafts --buildFuture --buildExpired --cleanDestinationDir
     # delete the symbolic link

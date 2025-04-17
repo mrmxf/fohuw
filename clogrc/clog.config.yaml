@@ -19,13 +19,13 @@ snippets:
     clog Check pre-build
     clog Check build
   is-prod-release: |
-    [ "prod" == "$(yq -r '.releases[0].build'  assets/data/releases.yaml)" ]
+    [ "prod" == "$(yq -r '.[0].build'  assets/data/releases.yaml)" ]
   git:
     tag:
       # fohuw, like Hugo & golang requires a "v"
       ref: echo "v$(yq -r '.[0].version'  assets/data/releases.yaml)"
     message:
-      ref:  yq -r '.releases[0].note'  assets/data/releases.yaml
+      ref:  yq -r '.[0].note'  assets/data/releases.yaml
   project:
     config: |
       PROJECT=fohuw
@@ -41,7 +41,7 @@ snippets:
         echo "$(   echo $j | jq -r '.name   | ltrimstr("v")')"
       git-lfs: echo "3.6.0"
   watch: |
-    [ ! -d content ] && ln -s exampleSite/content content
+    [ ! -d content ] && ln -s documentation/content content
     hugo server --port=1313 --buildDrafts --buildFuture --buildExpired --cleanDestinationDir
     rm content
 # =============================================================================

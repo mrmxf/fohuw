@@ -24,17 +24,21 @@ heading:
 #  / _` | | | |  _| | ' \  | || | | '_ \
 #  \__, | |_|  \__| |_||_|  \_,_| |_.__/
 #  |___/
-#github information for providing "edit page functions"
-
-# Repository URL for in-page links to opening issues and suggesting changes
-github_repo: https://github.com/mrmxf/fohuw
-github_branch: main
-
-# An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo: https://github.com/orgs/metarex-media/repositories
+# github information for providing "edit page" or "issues"
+github:
+  # Account URL for in-page links to opening issues and suggesting changes
+  url: https://github.com/mrmxf
+  # Repository name for in-page links to opening issues and suggesting changes
+  repo: fohuw
+  # what branch should the generated site point to e.g. main
+  branch: main
+  # path to the content folder relative to project root e.g. sample/fohuw-docs/
+  contentParent: documentation
+  # If one of your languages is in "/content" (not /content/de) mark it here
+  # this is a workaround because a partial cannot read site.DefaultContentLanguageinSubdir
+  languageInContentFolder: en
 
 # Specify a value here if your content directory is not in your repo's root directory
-github_subdir: "exampleSite"
 
 #          _
 #   _  _  (_)

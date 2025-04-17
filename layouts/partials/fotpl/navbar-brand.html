@@ -14,8 +14,9 @@
   <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
     {{- if not site.Params.ui.hide.navbar.logo }}
     {{ printf "<img src=\"%s\" class=\"ui mini image\" alt=\"logo\">" (relURL (printf "/brand/logo%s" $v)) | safeHTML}}
+    &nbsp;
     {{end}}
-    {{- if not site.Params.ui.hide.navbar.title}}{{site.Title}}{{end}}
+    {{- if not site.Params.ui.hide.navbar.title}}<span id="siteTitleMenu">{{site.Title}}</span>{{end}}
   </a>
 </div>
 {{$searchingForLogo := false}}

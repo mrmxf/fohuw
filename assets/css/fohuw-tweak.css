@@ -21,30 +21,49 @@
   --mrx-trainFill: lighten(var(--mrx-grey), 25%);
   --mrx-sky: lighten(var(--mrx-amber), 40%);
   --mrx-ground: lighten(var(--mrx-purple), 25%);
+
   /* named elements - fohuw controls */
   --fohuw-dark-bg: var(--mm-purple);
   --fohuw-blue: var(--mm-blue);
+
   /* colors of the logo */
   --fo-logo-fo: #35BDB2;
   --fo-logo-hu: #FF4088;
   --fo-logo-w: #D8B588;
+
+  /* fohuw named colors & highlights */
+  --fo-text: var(--mm-dark);
+  --fo-hi-1: var(--mrx-green);
+  --fo-hi-2: var(--mrx-purple);
+  --fo-hi-3: var(--mrx-amber);
 }
-/* different text styles */
+
+/* specialty text styles & colors */
 code {
   color: var(--fohuw-blue);
 }
+
 .logo-fo {
   color: var(--fo-logo-fo);
 }
+
 .logo-hu {
   color: var(--fo-logo-hu);
 }
+
 .logo-w {
   color: var(--fo-logo-w);
 }
 
+/* custom styling for the site title text in the menu*/
+#siteTitleMenu {
+  font-weight: bold;
+  color: var(--fo-hi-1)
+}
+
 /* fohuw footer row*/
 footer .row {
+  color: var(--mrx-skin);
   background-color: var(--mrx-green);
 }
 
@@ -53,13 +72,15 @@ footer .row .labels .label {
   color: var(--mrx-green);
   background-color: var(--mrx-skin);
 }
+
 /* all text in the row with a link*/
-footer .row .labels .label > a {
+footer .row .labels .label>a {
   color: var(--mrx-eye);
   opacity: 1;
 }
+
 /* all text in the row with a link*/
-footer .row .labels .label > a:hover {
+footer .row .labels .label>a:hover {
   color: var(--mrx-green);
 }
 

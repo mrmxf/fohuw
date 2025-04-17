@@ -22,7 +22,7 @@ This is some markdown with an image below.
 {{</* fo t = "image" text = "Caption text" /*/>}}
 ```
 
-the `fo` shortcode handler will [parse the params]( {{% relref "/fo-shortcodes" %}} ) into a standard set of keys and values before
+the `fo` shortcode handler will [parse the params]( {{% relref "/doc-shortcodes" %}} ) into a standard set of keys and values before
 running `layouts/partials/fo.html`.
 
 Finally the dispatcher partial uses shortcode's `t = "thingy"` param to run a partial called `fohuw-thingy.html`. If you

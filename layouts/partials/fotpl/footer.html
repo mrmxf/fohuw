@@ -9,12 +9,14 @@
     <div class="row fo-footer">
       {{template "footer-fohuw-title-column" .}}
       <div class="column">
-        {{range site.Params.ui.footer.links}}
-        {{template "footer-fohuw-label" .}}
-        {{end}}
+        <div class="ui small labels">
+          {{range site.Params.ui.footer.links}}
+          {{template "footer-fohuw-label" .}}
+          {{end}}
+        </div>
       </div>
       <div class="column">
-        {{ partial "fotpl/page-meta-links-footer" . }}
+        {{ partial "fotpl/footer-github-links" . }}
       </div>
     </div>
   </footer>
@@ -29,7 +31,7 @@
   {{$v := (partial "fotpl/get-version-data" .)}}
   {{ $title = printf "%s v%s" $title $v.version}}
   {{end}}
-  {{if $title}}{{template "footer-fohuw-label" (dict "title" $title )}}{{end}}
+  {{$title}}
 </div>
 {{end}}
 {{end}}
@@ -37,14 +39,12 @@
 {{ define "footer-fohuw-label" -}}
 {{$target := ""}}
 {{if hasPrefix .link "http"}}{{$target = " target=\"_blank\""}}{{end}}
-<div class="ui small labels" style="display:inline;">
-  <div class="ui label">
-    {{ with .label -}}{{.}}{{end}}
-    {{ if .title -}}
-    {{with .link}}<a href="{{relURL .}}" {{$target|safeHTMLAttr}}>{{end}}
-      {{.title}}
-      {{with .link}}</a>{{end}}
-    {{end}}
-  </div>
+<div class="ui label">
+  {{ with .label -}}{{.}}{{end}}
+  {{ if .title -}}
+  {{with .link}}<a href="{{relURL .}}" {{$target|safeHTMLAttr}}>{{end}}
+    {{.title}}
+    {{with .link}}</a>{{end}}
+  {{end}}
 </div>
 {{end}}

@@ -13,6 +13,7 @@ fohuw
 fomantic
 formatic
 fotpl
+Français
 frontmatter
 goldmark
 hrdark

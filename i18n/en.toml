@@ -27,6 +27,12 @@ other = "All Rights Reserved"
 [footer_privacy_policy]
 other = "Privacy Policy"
 
+[view]
+other = "view"
+[edit]
+other = "edit"
+[issue]
+other = "new issue"
 
 # Post (blog, articles etc.)
 [post_byline_by]
