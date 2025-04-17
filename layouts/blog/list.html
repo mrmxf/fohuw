@@ -14,32 +14,38 @@
 			{{ range $pag.PageGroups }}
 			<h2>{{ T "post_posts_in" }} {{ .Key }}</h2>
 			{{ range .Pages }}
-			<div class="ui raised segment">
-				<p><span class="large header"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
-					<span class="ui small brown text">
-						published on {{ .Date.Format ($.Param "time_format_blog") }}
-						{{ T "ui_in"}} {{ .CurrentSection.LinkTitle }}
-					</span>
-				</p>
+			<div>
+
 				<div class="ui horizontal fluid card">
 					<a href="{{ .RelPermalink }}">
 						{{ partial "featured-image.html" (dict "p" . "w" 250 "h" 125 "class" "tiny image") }}
 					</a>
 					<div class="content">
+						<div class="header">
+							<p><span class="large header"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
+								<span class="ui small brown text">
+									published on {{ .Date.Format ($.Param "time_format_blog") }}
+									{{ T "ui_in"}} {{ .CurrentSection.LinkTitle }}
+								</span>
+							</p>
+						</div>
 						<div class="description">
-							{{ .Plain | safeHTML | truncate 250 }}
 							<p>
-
-								</a></p>
+								{{ .Plain | safeHTML | truncate 250 }}
+							</p>
 						</div>
-						<a href="{{ .RelPermalink }}" aria-label='{{ T " ui_read_more"}} - {{ .LinkTitle }}'>
-						<div class="ui primary animated compact tiny fluid button" tabindex="0">
-							<div class="visible content">{{ T "ui_read_more"}}</div>
-							<div class="hidden content">{{ .Title }}</div>
-						</div>
-						</a>
-						<div class="extra">
-							{{ partial "tmpl/taxonomy_terms_article_wrapper.html" . }}
+						<div class="fo-flex-with-tags">
+							<div style="flex-grow:4;">
+								<a href="{{ .RelPermalink }}" aria-label='{{ T " ui_read_more"}} - {{ .LinkTitle }}'>
+									<div class="ui primary animated compact tiny fluid button" tabindex="0">
+										<div class="visible content">{{ T "ui_read_more"}}</div>
+										<div class="hidden content">{{ .Title }}</div>
+									</div>
+								</a>
+							</div>
+								<div class="extra" style="flex-grow:1;">
+									{{ partial "tmpl/taxonomy_tags_logic.html" . }}
+							</div>
 						</div>
 					</div>
 				</div>

@@ -71,7 +71,8 @@ ui:
         link: /contact
       - title: About
         link: /about
-
+  readingTime:
+    enable: true
 #           _                         _
 #   __   __| |  _ _      _  _   _ _  | |  ___
 #  / _| / _` | | ' \    | || | | '_| | | (_-<
@@ -101,3 +102,36 @@ cdn:
     suffix: /dist/mermaid.min.js
     integrity: sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=
 
+#   _
+#  | |_   __ _  __ __  ___   _ _    ___   _ __    _  _
+#  |  _| / _` | \ \ / / _ \ | ' \  / _ \ | '  \  | || |
+#   \__| \__,_| /_\_\ \___/ |_||_| \___/ |_|_|_|  \_, |
+#                                                 |__/
+# all taxonomies are defined in hugo.yaml Their display control happens here.
+# https://gohugo.io/content-management/taxonomies/#what-is-a-taxonomy
+# A taxonomy allows you to create labels that you can stick on pages. Typically
+# this will comprise categories and tags. You might also have genres and authors
+# if you're writing a blog about books.
+#
+# You can call the taxonomies anything you like, but it's up to you to manage
+# the, Hugo doesn't add the labels automatically - that's your job!
+#
+# comment out this section to turn taxonomies off
+taxonomy:
+  # which taxonomies get shown in the tag-cloud?
+  taxonomyCloud:
+    - tags
+    - categories
+  # these are the titles displayed on the pages then you list taxonomies
+  titles:
+    - Tags
+    - Categories
+  # if a label matches one of the categories then the label will be added to
+  # any tag displayed on a page
+  label:
+    tags: tag
+    categories: cat
+  # these are the taxonomies that will appear at the top of pages
+  showOnPage:
+    - tags
+    - categories

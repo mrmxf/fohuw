@@ -97,3 +97,13 @@ defaultContentLanguageInSubdir: false
 #     languageName: Français
 #     title: FoHuW Documentation
 #     weight: 2
+
+#   _                                             _
+#  | |_   __ _  __ __  ___   _ _    ___   _ __   (_)  ___   ___
+#  |  _| / _` | \ \ / / _ \ | ' \  / _ \ | '  \  | | / -_) (_-<
+#   \__| \__,_| /_\_\ \___/ |_||_| \___/ |_|_|_| |_| \___| /__/
+# all taxonomies are defined in here. Their display control happens in params.yaml.
+# https://gohugo.io/content-management/taxonomies/#what-is-a-taxonomy
+taxonomies:
+  category: categories
+  tag: tags

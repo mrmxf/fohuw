@@ -27,9 +27,9 @@
   --fohuw-blue: var(--mm-blue);
 
   /* colors of the logo */
-  --fo-logo-fo: #35BDB2;
-  --fo-logo-hu: #FF4088;
-  --fo-logo-w: #D8B588;
+  --fomantic-theme-color: #35BDB2;
+  --hugo-theme-color: #FF4088;
+  --cardboard-wrapper: #D8B588;
 
   /* fohuw named colors & highlights */
   --fo-text: var(--mm-dark);
@@ -43,14 +43,16 @@ code {
   color: var(--fohuw-blue);
 }
 
+.fo-reading-time {
+  size: 80%;
+  color: var(--fo-hi-1)
+}
 .logo-fo {
-  color: var(--fo-logo-fo);
+  color: var(--fomantic-theme-color);
 }
-
 .logo-hu {
-  color: var(--fo-logo-hu);
+  color: var(--hugo-theme-color);
 }
-
 .logo-w {
   color: var(--fo-logo-w);
 }
@@ -61,6 +63,45 @@ code {
   color: var(--fo-hi-1)
 }
 
+/* a flexbox for aligning centered things with tags like buttons and tags */
+.fo-flex-with-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* a flexbox  for aligning titles and tags */
+.fo-flex-title-tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* fohuw taxonomy label classes */
+.ui.fo-tax-1.label {
+  background: hsl(from var(--fo-hi-1) h s 95%);
+  backdrop-filter: 200%;
+  border-color: var(--fo-hi-1);
+  color: var(--fo-hi-1);
+}
+.ui.fo-tax-2.label {
+  background: hsl(from var(--fo-hi-2) h s 95%);
+  border-color: var(--fo-hi-2);
+  color: var(--fo-hi-2);
+}
+.ui.fo-tax-3.label {
+  background: hsl(from var(--fo-hi-3) h s 95%);
+  border-color: var(--fo-hi-3);
+  color: var(--fo-hi-3);
+}
+.ui.fo-tax-4.label {
+  background: hsl(from var(--fo-hi-4) h s 95%);
+  border-color: var(--fo-hi-4);
+  color: var(--fo-hi-4);
+}
 /* fohuw footer row*/
 footer .row {
   color: var(--mrx-skin);

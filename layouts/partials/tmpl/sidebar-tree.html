@@ -1,4 +1,4 @@
-{{ `<!-- fohuw/partials/sidebar-tree.html -->` | safeHTML }}
+{{ `<!-- fohuw/partials/tmpl/sidebar-tree.html -->` | safeHTML }}
 {{/* The cache for bigger sites has not yet been migrated fromm Docsy . */}}
 
 {{ $sidebarCacheLimit := 2000 }}
@@ -11,7 +11,8 @@
     {{ $depth := 0 -}}
     {{/* --- max depth=50 -------------------------------------------------------- */}}
     {{ $sidebarMenuTruncate := 50}}
-    {{if .Site.Params.ui.sidebar_menu_truncate}}{{ $sidebarMenuTruncate = .Site.Params.ui.sidebar_menu_truncate}}{{- end -}}
+    {{if .Site.Params.ui.sidebar_menu_truncate}}{{ $sidebarMenuTruncate = .Site.Params.ui.sidebar_menu_truncate}}{{- end
+    -}}
     {{ template "section-tree-nav-section"
     (dict "page" .
     "section" $navRoot
@@ -25,7 +26,7 @@
 {{ define "section-tree-nav-section" -}}
 {{- $leafIcon := "grey file icon" -}}
 {{- $nodeIcon := "blue folder icon" -}}
-{{- $accordionStarOuter := "ui compact styled accordion" -}}
+{{- $accordionStarOuter := "ui compact accordion" -}}
 {{- $accordionStartInner := "accordion" -}}
 {{- $initialOpenLevel := 0 -}}{{/* zero based index of accordion level to be active */}}
 {{/* --------------------------------------------------------------------- */}}
@@ -59,36 +60,37 @@
 {{- $title := $s.Title -}}
 {{- if $s.Param "manuallinktitle" -}}{{- $title = $s.Params.manuallinktitle -}}{{- end -}}
 {{/* --------------------------------------------------------------------- */}}
-{{- $isActive := "active"  -}}
-{{- if gt $depth $initialOpenLevel -}}{{-  $isActive = "" -}}{{- end -}}
+{{- $isActive := "active" -}}
+{{- if gt $depth $initialOpenLevel -}}{{- $isActive = "" -}}{{- end -}}
 {{/* --------------------------------------------------------------------- */}}
 {{- $target := "" -}}
 {{- if $s.Param "manualLinkTarget" -}}{{- $target = fmt.Print "target=\"%s\"" $s.Params.manuallinktitle -}}{{- end -}}
 
-  <div id="{{$mid}}-choice" class="{{$accordionStart}}">
-    <div class="{{$isActive}} title">
-      {{ $iconHtml | safeHTML}}
-      <a href="{{ $link }}" title="{{ $title }}" {{$target}}="{{ . }}" id="{{ $mid }}">
-        {{ $s.LinkTitle }}
-      </a>
+<div id="{{$mid}}-choice" class="{{$accordionStart}}">
+  <div class="{{$isActive}} title">
+    {{ $iconHtml | safeHTML}}
+    <a href="{{ $link }}" title="{{ $title }}" {{$target}}="{{ . }}" id="{{ $mid }}">
+      {{ $s.LinkTitle }}
+    </a>
+  </div>
+  <div class="{{$isActive}} content">
+    {{- if $withChild }}
+    {{- $depth := add $depth 1 }}
+    <div class="list" style="padding: 0;">
+      {{ range $pages -}}
+      {{ if (not (and (eq $s $p.Site.Home) (eq .Params.toc_root true))) -}}
+      {{ template "section-tree-nav-section"
+      (dict "page" $p
+      "section" .
+      "shouldDelayActive" $shouldDelayActive
+      "sidebarMenuTruncate" $sidebarMenuTruncate
+      "depthNum" $depth) }}
+      {{- end }}{{/* if */}}
+      {{- end }}{{/* end range $pages */}}
     </div>
-    <div class="{{$isActive}} content">
-      {{- if $withChild }}
-      {{- $depth := add $depth 1 }}
-      <div class="list" style="padding: 0;">
-        {{ range $pages -}}
-        {{ if (not (and (eq $s $p.Site.Home) (eq .Params.toc_root true))) -}}
-        {{ template "section-tree-nav-section" (dict "page" $p
-        "section" .
-        "shouldDelayActive" $shouldDelayActive
-        "sidebarMenuTruncate" $sidebarMenuTruncate
-        "depthNum" $depth) }}
-        {{- end }}{{/* if */}}
-        {{- end }}{{/* end range $pages */}}
-      </div>
-      {{- end -}}{{/* end $withChild */}}
-    </div>
-  </div>{{/* accordionEnd */}}
+    {{- end -}}{{/* end $withChild */}}
+  </div>
+</div>{{/* accordionEnd */}}
 
 
 {{- end -}}{{/* end with linktitle */}}

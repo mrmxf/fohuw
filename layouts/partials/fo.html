@@ -12,10 +12,10 @@ Set .help="anything" to render help for the partial instead of the partial
 {{ if .help }}
 
 {{/* --------user requested help for a partial---------- */}}
-{{ $helpTemplate := printf "fohlp/help-%s" .t }}
+{{ $helpTemplate := printf "tool/%s.help" .t }}
 {{ $helpPath := printf "partials/%s.html" $helpTemplate }}
 {{ if templates.Exists $helpPath }}
-{{ partial "fohlp/styles.html" . }}
+{{ partial "tool/_help_common" . }}
 <div class="fohuw-help">
 {{ partial $helpTemplate . }}
 </div>
