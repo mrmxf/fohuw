@@ -31,7 +31,6 @@
             </div>
             <div class="thirteen wide column">
               <main role="main" class="ui main">
-                {{ partial "version-banner.html" . }}
                 {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "docsy/breadcrumb.html" . }}{{ end }}
                 {{ block "main" . }}{{ end }}
               </main>
