@@ -9,10 +9,13 @@ Create the github url of the source page:
 <div class="ui small labels">
   {{- $gBranch := (site.Params.github.branch) | default "main" -}}
   {{- $gParent := (site.Params.github.contentParent) -}}
-  {{- $uri := printf "%s/content/" $gBranch -}}
-
+  {{- $uri := $gBranch -}}
   {{/* append a parent folder if it exists */}}
-  {{- if $gParent}}{{- $uri = printf "%s/content" $gParent -}}{{end}}
+  {{- if $gParent}}
+    {{- $uri = printf "%s/%s/content" $uri $gParent -}}
+  {{else}}
+    {{- $uri = printf "%s/content" $uri -}}
+  {{end}}
 
   {{/* append a language folder if file is in a language sub folder */}}
   {{- if and site.Language.Lang (ne site.Language.Lang site.Params.github.languageInContentFolder) -}}
