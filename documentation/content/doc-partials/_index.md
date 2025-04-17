@@ -25,6 +25,6 @@ This is some markdown with an image below.
 the `fo` shortcode handler will [parse the params]( {{% relref "/doc-shortcodes" %}} ) into a standard set of keys and values before
 running `layouts/partials/fo.html`.
 
-Finally the dispatcher partial uses shortcode's `t = "thingy"` param to run a partial called `fohuw-thingy.html`. If you
+Finally the dispatcher partial uses shortcode's `t = "thingy"` param to run a partial called `tool/thingy.html`. If you
 want to extend the fohuw ecosystem, simply put a partial with the right name in your `layouts/partials` folder. All the
 parsing, error checking, help and other functions will be done for you.

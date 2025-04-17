@@ -1,24 +1,24 @@
 <!doctype html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
-    {{ partial "fotpl/head.html" . }}
+    {{ partial "tmpl/head.html" . }}
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}</title>
     <link rel="stylesheet" type="text/css" href="{{ "css/swagger-ui.css" | relURL }}">
   </head>
   <body class="td-{{ .Kind }}">
     <header>
-      {{ partial "fotpl/navbar" . }}
+      {{ partial "tmpl/navbar" . }}
     </header>
     <div class="container-fluid td-outer">
       <div class="td-main">
         <div class="row flex-xl-nowrap">
           <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
-            {{ partial "fotpl/sidebar.html" . }}
+            {{ partial "tmpl/sidebar.html" . }}
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-            {{ partial "fotpl/page-meta-links.html" . }}
-            {{ partial "fotpl/toc.html" . }}
-            {{ partial "fotpl/taxonomy_terms_clouds.html" . }}
+            {{ partial "tmpl/page-meta-links.html" . }}
+            {{ partial "tmpl/toc.html" . }}
+            {{ partial "tmpl/taxonomy_terms_clouds.html" . }}
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "docsy/breadcrumb.html" . }}{{ end }}
@@ -28,8 +28,8 @@
           </main>
         </div>
       </div>
-      {{ partial "fotpl/footer" . }}
+      {{ partial "tmpl/footer" . }}
     </div>
-    {{ partial "fotpl/body-scripts" . }}
+    {{ partial "tmpl/body-scripts" . }}
   </body>
 </html>

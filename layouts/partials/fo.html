@@ -4,9 +4,9 @@ The main dispatcher for the fo blocks.
 Set .t="help" for dict definitions
 Set .help="anything" to render help for the partial instead of the partial
 */}}
-{{if false}}{{partial "fohuw-dbg-dump-dot" .}}{{end}}
+{{if false}}{{partial "tool/dbg-dump-dot" .}}{{end}}
 {{- $blockTemplate := "my-help" -}}
-{{- with .t }}{{ $blockTemplate = printf "fohuw-%s" . }}{{ end -}}
+{{- with .t }}{{ $blockTemplate = printf "tool/%s" . }}{{ end -}}
 {{- $blockPath := printf "partials/%s.html" $blockTemplate -}}
 {{ if templates.Exists $blockPath }}
 {{ if .help }}
@@ -44,8 +44,8 @@ Set .help="anything" to render help for the partial instead of the partial
 {{/* --------------error partial does not exist-------------------- */}}
 {{$em := printf "style=\"%s\"" "color:blue;"}}
 {{$msg := printf "not found - check spelling of<code %s> t = \"%s\"</code>" $em .t}}
-{{ partial "fohuw-dbg-err.html" (dict "p" $blockTemplate "a" $blockPath "m" $msg) }}
-{{ partial "fohuw-help.html" . }}
+{{ partial "tool/dbg-err.html" (dict "p" $blockTemplate "a" $blockPath "m" $msg) }}
+{{ partial "tool/help.html" . }}
 {{/* --------------------------------------------------- */}}
 
 {{ end }}

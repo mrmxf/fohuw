@@ -3,13 +3,13 @@
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
-  {{ partial "fotpl/head.html" . }}
+  {{ partial "tmpl/head.html" . }}
 </head>
 
 <body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
   <div class="ui wide container">
     <header>
-      {{ partial "fotpl/navbar" . }}
+      {{ partial "tmpl/navbar" . }}
     </header>
   </div>
 
@@ -33,11 +33,11 @@
         </div>
       </div>
       <div class="row">
-        {{ partial "fotpl/footer" . }}
+        {{ partial "tmpl/footer" . }}
       </div>
     </div>
   </div>
-  {{ partial "fotpl/body-scripts" . }}
+  {{ partial "tmpl/body-scripts" . }}
 </body>
 
 </html>

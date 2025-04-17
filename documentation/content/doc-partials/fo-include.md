@@ -3,7 +3,7 @@ title: fo t = "include"
 date:  2025-02-25
 
 summary: |
-  fohuw-include will insert the includeSummary of a page or the markdownified page.
+  tool/include will insert the includeSummary of a page or the markdownified page.
 ---
 
 ## t = "include"

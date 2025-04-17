@@ -5,13 +5,13 @@
 <head>
   {{ partial "my/site-head-begin.html" . }}
   {{ partial "my/site-head-end.html" . }}
-  {{ partial "fotpl/head.html" . }}
+  {{ partial "tmpl/head.html" . }}
 </head>
 
 <body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
   <div class="ui wide container">
     <header>
-      {{ partial "fotpl/navbar" . }}
+      {{ partial "tmpl/navbar" . }}
     </header>
   </div>
 
@@ -19,7 +19,7 @@
     <div class="ui grid">
       <div class="row">
         <div class="four wide column">
-          {{- partial "fotpl/sidebar-tree.html" . -}}
+          {{- partial "tmpl/sidebar-tree.html" . -}}
         </div>
         <div class="ten wide column">
           <main role="main" class="ui main">
@@ -33,19 +33,19 @@
         </div>
         <div class="two wide column">
           <div class="ui segment">
-            {{ partial "fotpl/page-meta-links.html" . }}
-            {{ partial "fotpl/toc.html" . }}
-            {{ partial "fotpl/taxonomy_terms_clouds.html" . }}
+            {{ partial "tmpl/page-meta-links.html" . }}
+            {{ partial "tmpl/toc.html" . }}
+            {{ partial "tmpl/taxonomy_terms_clouds.html" . }}
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      {{ partial "fotpl/footer" . }}
+      {{ partial "tmpl/footer" . }}
     </div>
   </div>
   </div>
-  {{ partial "fotpl/body-scripts" . }}
+  {{ partial "tmpl/body-scripts" . }}
 </body>
 
 </html>

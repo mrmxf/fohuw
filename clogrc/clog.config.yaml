@@ -31,7 +31,7 @@ snippets:
       PROJECT=fohuw
       DOCKER_NS=mrmxf
     has:
-      fomantic: cat layouts/partials/fotpl/head-cdn|grep -oE '[0-9]+\.[0-9]+\.[0-9]+'|tail -1
+      fomantic: cat layouts/partials/tmpl/head-cdn|grep -oE '[0-9]+\.[0-9]+\.[0-9]+'|tail -1
       hugo: hugo version|grep -oE '[0-9]\.[0-9]+\.[0-9]+'
       git-lfs: git-lfs version|grep -oE '[0-9]\.[0-9]+\.[0-9]+'|head -1
     needs:

@@ -5,14 +5,14 @@
 <head>
   {{ partial "my/site-head-begin.html" . }}
   {{ partial "my/site-head-end.html" . }}
-  {{ partial "fotpl/head.html" . }}
+  {{ partial "tmpl/head.html" . }}
   <script src="/js/jquery.responsive-iframe.js"></script>
 </head>
 
 <body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
   <div class="ui wide container">
     <header>
-      {{ partial "fotpl/navbar" . }}
+      {{ partial "tmpl/navbar" . }}
     </header>
   </div>
 
@@ -31,11 +31,11 @@
       </div>
     </div>
     <div class="row">
-      {{ partial "fotpl/footer" . }}
+      {{ partial "tmpl/footer" . }}
     </div>
   </div>
   </div>
-  {{ partial "fotpl/body-scripts" . }}
+  {{ partial "tmpl/body-scripts" . }}
 </body>
 
 </html>
