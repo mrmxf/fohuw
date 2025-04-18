@@ -21,29 +21,22 @@
       <div class="two wide column"></div>
     </div>
 
-    <div class="row">
+    <div class="row container">
       <div class="one wide column"></div>
-      <div class="fourteen wide column">
-        <div class="ui grid">
-          <div class="row">
-            <div class="three wide column">
-              {{- partial "tmpl/sidebar-tree.html" . -}}
-            </div>
-            <div class="thirteen wide column">
-              <main role="main" class="ui main">
-                {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "tmpl/breadcrumb.html" . }}{{ end }}
-                {{ block "main" . }}{{ end }}
-              </main>
-            </div>
-          </div>
-          <div class="row">
-            {{ partial "tmpl/footer" . }}
-          </div>
-        </div>
-        <div class="one wide column"></div>
+      <div class="three wide column">
+        {{- partial "tmpl/sidebar-tree.html" . -}}
       </div>
+      <div class="eleven wide column">
+        <main role="main" class="ui main">
+          {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "tmpl/breadcrumb.html" . }}{{ end }}
+          {{ block "main" . }}{{ end }}
+        </main>
+        <!-- something weird on the docs/list page needs an extra div-->
+      </div></div>
     </div>
-  </div>
+    <div class="row">
+      {{ partial "tmpl/footer" . }}
+    </div>
   </div>
   {{ partial "tmpl/body-scripts" . }}
 </body>

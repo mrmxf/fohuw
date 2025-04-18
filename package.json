@@ -1,6 +1,6 @@
 {
   "name": "fohuw",
-  "version": "0.0.1",
+  "version": "0.4.2",
   "description": "THEME - A fomantic hugo wrapper - inspired by docsy.",
   "main": "none.js",
   "scripts": {
@@ -14,15 +14,11 @@
     "docs-install": "npm run _cd:docs -- npm install",
     "get:submodule": "set -x && git submodule update --init ${DEPTH:- --depth 1}",
     "serve": "npm run cd:docs serve",
-    "update:pkg:hugo": "npm install --save-exact -D hugo-extended@latest",
-    "update:pkg:dep": "npm install --save-exact @fortawesome/fontawesome-free@6 bootstrap@4"
+    "update:pkg:hugo": "npm install --save-exact -D hugo-extended@latest"
   },
-  "cspell": "cSpell:ignore docsy fohuwguide fortawesome fontawesome ",
+  "cspell": "cSpell:ignore docsy fohuwguide  fontawesome ",
   "prettier": {
     "proseWrap": "always"
-  },
-  "dependencies": {
-    "bootstrap": "4.6.2"
   },
   "repository": {
     "type": "git",
@@ -33,9 +29,8 @@
   "bugs": {
     "url": "https://github.com/mrmxf/fohuw/issues"
   },
-  "homepage": "https://metarex.media",
+  "homepage": "https://mrmxf.com",
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "6.2.0",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.3.7",
     "postcss-cli": "^10.1.0"
