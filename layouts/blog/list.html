@@ -9,7 +9,7 @@
 <div class="ui grid">
 	{{- if .Pages -}}
 	<div class="row">
-		<div class="col-12">
+		<div class="column">
 			{{ $pag := .Paginate (( $.Scratch.Get "blog-pages").GroupByDate "2006" )}}
 			{{ range $pag.PageGroups }}
 			<h2>{{ T "post_posts_in" }} {{ .Key }}</h2>
@@ -17,12 +17,12 @@
 			<div>
 
 				<div class="ui horizontal fluid card">
-					<a href="{{ .RelPermalink }}">
+					<a href="{{ .RelPermalink | safeHTMLAttr}}">
 						{{ partial "featured-image.html" (dict "p" . "w" 250 "h" 125 "class" "tiny image") }}
 					</a>
 					<div class="content">
 						<div class="header">
-							<p><span class="large header"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
+							<p><span class="large header"><a href="{{ .RelPermalink  | safeHTMLAttr}}">{{ .Title }}</a></span>
 								<span class="ui small brown text">
 									published on {{ .Date.Format ($.Param "time_format_blog") }}
 									{{ T "ui_in"}} {{ .CurrentSection.LinkTitle }}
@@ -36,7 +36,7 @@
 						</div>
 						<div class="fo-flex-with-tags">
 							<div style="flex-grow:4;">
-								<a href="{{ .RelPermalink }}" aria-label='{{ T " ui_read_more"}} - {{ .LinkTitle }}'>
+								<a href="{{ .RelPermalink  | safeHTMLAttr}}" aria-label='{{ T " ui_read_more" | safeHTMLAttr}} - {{ .LinkTitle  | safeHTMLAttr}}'>
 									<div class="ui primary animated compact tiny fluid button" tabindex="0">
 										<div class="visible content">{{ T "ui_read_more"}}</div>
 										<div class="hidden content">{{ .Title }}</div>

@@ -5,7 +5,7 @@
 	{{ with .Site.Params.gcs_engine_id }}
 	<script>
 		(function () {
-			var cx = '{{ . }}';
+			var cx = '{{ .  | safeJSStr}}';
 			var gcse = document.createElement('script');
 			gcse.type = 'text/javascript';
 			gcse.async = true;

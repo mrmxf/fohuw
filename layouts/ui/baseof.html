@@ -6,7 +6,7 @@
   {{ partial "tmpl/head.html" . }}
 </head>
 
-<body class="{{ with .Page.Params.bodyClass }} {{ . }}{{ end }}">
+<body class="{{with .Page.Params.bodyClass}}{{ . | safeHTMLAttr}}{{end}}">
   <div class="ui wide container">
     <header>
       {{ partial "tmpl/navbar" . }}

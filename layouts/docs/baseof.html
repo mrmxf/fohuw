@@ -9,7 +9,7 @@
 </head>
 {{- $bodyClass := ""}}
 {{- if isset .Page.Params.ui "bodyClass" }}{{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}{{ end }}
-<body {{$bodyClass}}>
+<body {{$bodyClass | safeHTMLAttr}}>
   <!-- docs pages are set very wide as they often have big diagrams -->
   <div class="ui grid">
     <div class="row">
