@@ -1,31 +1,44 @@
-# hugo gitignore
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# any soft link to the content/ folder
 /content/
 
-# ignore synthesised outputs
+#tmp files and folders
 public
 kodata
 resources/
-clogrc/core
+
 # ignore npm or yarn generated postcss source files
 node_modules/
-package-lock.json
-yarn.lock
-
-# ignore the hugo & mrmxf build artifacts
-.hugo_build.lock
-
 # ignore the tmp folder but not the readme inside it
+megalinter-reports
+tmp-*
 tmp/*
-!tmp/readme.md
-tmp-
-tmp_
+!*/readme.md
+libxml*
+__debug_*
 
-#ignore mac artifacts
+# Mac cruft
 .DS_Store
 
-# IDE files
-.idea
+# Dependency directories (remove the comment below to include it)
+# vendor/
 
+# Go workspace file
+go.work
+go.work.sum
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+# env file
+.env
 # vim temporary files
 *~
 *.sw?

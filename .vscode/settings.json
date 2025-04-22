@@ -34,12 +34,6 @@
         120
       ]
     },
-    "[md]": {
-      "editor.tabSize": 2,
-      "editor.rulers": [
-        120
-      ]
-    },
     "[javascript]": {
       "editor.rulers": [
         120
@@ -51,5 +45,17 @@
         120
       ],
       "editor.tabSize": 2
+    },
+  "[markdown]": {
+    "editor.tabSize": 3,
+    "editor.rulers": [
+      120
+    ]
+  },
+    "[md]": {
+      "editor.tabSize": 3,
+      "editor.rulers": [
+        120
+      ]
     },
   }
