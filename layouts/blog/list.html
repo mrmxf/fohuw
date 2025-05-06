@@ -14,11 +14,17 @@
 			{{ range $pag.PageGroups }}
 			<h2>{{ T "post_posts_in" }} {{ .Key }}</h2>
 			{{ range .Pages }}
+			{{$dot := .}}
 			<div>
 
 				<div class="ui horizontal fluid card">
 					<a href="{{ .RelPermalink | safeHTMLAttr}}">
-						{{ partial "featured-image.html" (dict "p" . "w" 250 "h" 125 "class" "tiny image") }}
+						{{ $image := (partial "tmpl/get-feature-resource.html" .)}}
+						{{with $image}}
+						<div class=" ui medium image">
+							<img src="{{ $image.RelPermalink }}" alt="Featured Image for {{ $dot.Title }}">
+						</div>
+						{{end}}
 					</a>
 					<div class="content">
 						<div class="header">
@@ -36,15 +42,16 @@
 						</div>
 						<div class="fo-flex-with-tags">
 							<div style="flex-grow:4;">
-								<a href="{{ .RelPermalink  | safeHTMLAttr}}" aria-label='{{ T " ui_read_more" | safeHTMLAttr}} - {{ .LinkTitle  | safeHTMLAttr}}'>
+								<a href="{{ .RelPermalink  | safeHTMLAttr}}"
+									aria-label='{{ T " ui_read_more" | safeHTMLAttr}} - {{ .LinkTitle  | safeHTMLAttr}}'>
 									<div class="ui primary animated compact tiny fluid button" tabindex="0">
 										<div class="visible content">{{ T "ui_read_more"}}</div>
 										<div class="hidden content">{{ .Title }}</div>
 									</div>
 								</a>
 							</div>
-								<div class="extra" style="flex-grow:1;">
-									{{ partial "tmpl/taxonomy_tags_logic.html" . }}
+							<div class="extra" style="flex-grow:1;">
+								{{ partial "tmpl/taxonomy_tags_logic.html" . }}
 							</div>
 						</div>
 					</div>

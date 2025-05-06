@@ -8,7 +8,7 @@
 {{/* --- update the dict for the block -----------------------------------*/}}
 {{- $d := merge . (dict "from" $f) -}}
 
-{{ $featured := ($p.Resources.ByType "image").GetMatch "*featured*" }}
+{{ $featured := ($p.Resources.ByType "image").GetMatch "*feature*" }}
 {{if $featured}}
 {{- $d = merge $d (dict "src" $featured.RelPermalink) -}}
 {{end}}

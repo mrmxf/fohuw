@@ -10,13 +10,15 @@
 {{/* --- create a page object for the included page ---------------------- */}}
 {{- $headerClass := .headerClass | default "header" -}}
 {{- $featureClass := .class | default "message" -}}
+{{- $srcClass :=  .srcClass | default "ui fluid image" -}}
+{{- $mediaDot := merge . (dict "srcClass" $srcClass) }}
 <div class="{{.class}}">
   {{- with .link -}}
   <a href="{{ relref . }}">
     {{ end }}
     {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
     {{- with .text}}<p>{{.}}</p>{{- end -}}
-    {{ partial "tool/media" . }}
+    {{ partial "tool/media" $mediaDot }}
     {{- with .link -}}
   </a>
   {{- end -}}

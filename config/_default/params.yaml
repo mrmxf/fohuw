@@ -45,7 +45,9 @@ github:
 #  | || | | |
 #   \_,_| |_|
 ui:
-  # look for logo.svg or logo.png or logo.jpg, set baseURL for this to work right
+  # look for logo.svg for use in pages or logo.png or logo.jpg elsewhere
+  # this URL is for a resource in the assets folder
+  # favicons are loaded in partials/tmpl/favicons.html
   logo: /brand/logo
   # some elements of the ui can be hidden
   hide:

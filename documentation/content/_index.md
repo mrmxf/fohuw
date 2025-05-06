@@ -22,7 +22,34 @@ flowchart TD
   
 ```
 
-## Project README
+## Why {{<fohuw>}}?
+
+Fomantic gives a nice consistent style where the classes are easy to guess. Hugo is fast and generates good, virtually
+unhackable static sites. {{<fohuw>}} tries to bring these together.
+
+### Key concepts
+
+1. There is a single shortcode called `fo` for the builtin tools. This makes tools easier to guess.
+2. The shortcode uses a consistent set of names for its parameters - this makes them easier to guess.
+3. The shortcode does error checking that prints to the preview page AND the log - making errors faster to find
+4. A bonus shortcode called `my` allows to you create near-clones of the fohuw tools that you can customize
+5. **Resources**
+    * {{<fohuw>}} expects images & videos to be Page resources in a page subfolder OR a global resource in the `/assets`
+      folder. This allows {{<fohuw>}} to make thumbnails and proxies to improve the responsiveness of the target site.
+    * Hugo doesn't know that `.svg` files are images. {{<fohuw>}} has some custom functions to allow you to use
+      `image`, `video` and `.svg` resources as  {{<fohuw>}} `media`. If something's not working then make sure you're
+      using the `media` version of a function.
+    * {{<fohuw>}} expects javascript and css to be global resources in the `/assets` folder so that they can be minified
+    * {{<fohuw>}} expects data to be a global resource in the `/assets` folder so that pages can be rendered from data
+    * {{<fohuw>}} expects blogs and other pages with a feature-image to have a page resource with a name like
+      `feature-banana.png`. If that image is in the Page folder, then that's all you need to do for the feature image
+      to behave properly.
+    * {{<fohuw>}} expects can have other assets that act as a feature image, but also have other actions. This is done
+      by having frontmatter `params.src: source-vieo.mp4` to override the feature image.
+6. **Customization**
+  * `/assets/my/site.css` will automatically be included - put your custom css overrides there
+
+## Project README 
 
 {{< fo  t = "fetch" from = "https://raw.githubusercontent.com/mrmxf/fohuw/refs/heads/main/README.md"  />}}
 
@@ -32,24 +59,20 @@ The rough directory structure (try `bash tree` from a terminal) is:
 
 ```sh
 ├── assets
-│   ├── icons
-│   │   └──      #various icons and assets rendered by fohuw
-│   ├── js
-│   │   └──      # bundled JS - some is used by Docsy components
-│   ├── json
-│   │   └──      # generated offline-search-index.json
+│  │   └── releases.yaml   # release history for your site
+  ├── data
+│  │   └── releases.yaml   # release history for your site
+│   ├── fohuw
+│   │   └──      # all the published fohuw specific js, css, logos etc
+│   ├── inc
+│   │   └──      # markdown files that are included elsewhere (snippets & features)
 │   ├── scss
 │   │   └──      # @TODO - put the fomantic build environment here
-│   ├── snippets
-│   │   └──      # handy snippets
-│   └── stubs
 ├── config
 │   └── _default
 │       ├── hugo.yaml   # hugo build and site control
 │       ├── module.yaml # module control
 │       └── params.yaml # .Site.Params
-├── data
-│   └── releases.yaml   # release history for your site
 ├── i18n
 │   └──                 # @TODO internationalization (Docsy originated)
 ├── layouts

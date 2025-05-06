@@ -21,7 +21,7 @@
 {{$content}}
 {{- else -}}
 
-{{ $err := dict "p" "tool/include" "a" "from" "m" (printf "cannot include unknown file content%s" $f) }}
+{{ $err := dict "p" "tool/include" "a" "from" "m" (printf "cannot include unknown project file: %s" $f) }}
 {{ partial "tool/dbg-err.html" $err }}
 
 {{- end -}}{{/* end of if file exists */}}
