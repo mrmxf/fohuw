@@ -9,6 +9,7 @@
 </head>
 {{- $bodyClass := ""}}
 {{- if isset .Page.Params.ui "bodyClass" }}{{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}{{ end }}
+
 <body {{$bodyClass | safeHTMLAttr}}>
   <div class="ui wide container">
     <header>
@@ -22,7 +23,7 @@
         <div class="four wide column">
           {{- partial "tmpl/sidebar-tree.html" . -}}
         </div>
-        <div class="ten wide column">
+        <div class="twelve wide column">
           <main role="main" class="ui main">
             {{ with .CurrentSection.OutputFormats.Get "rss" -}}
             <a class="td-rss-button" title="RSS" href="{{ .Permalink | safeURL }}" target="_blank" rel="noopener">
@@ -31,13 +32,6 @@
             {{ end -}}
             {{ block "main" . }}{{ end }}
           </main>
-        </div>
-        <div class="two wide column">
-          <div class="ui segment">
-            {{ partial "tmpl/page-meta-links.html" . }}
-            {{ partial "tmpl/toc.html" . }}
-            {{ partial "tmpl/taxonomy_terms_clouds.html" . }}
-          </div>
         </div>
       </div>
     </div>

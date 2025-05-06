@@ -6,6 +6,10 @@
 <br>
 <div class="fluid column">
   <footer class="ui fluid equal width center aligned padded grid">
+    {{$topline := resources.Get "inc/footer/topline.md"}}
+    {{with  $topline}}
+    <div class="row fo-footer">{{$topline}}</div>
+      {{end}}}
     <div class="row fo-footer">
       {{template "footer-fohuw-title-column" .}}
       <div class="column">
