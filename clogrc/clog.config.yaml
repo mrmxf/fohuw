@@ -15,16 +15,10 @@
 # -----------------------------------------------------------------------------
 snippets:
   build: |
-    [ -d content ] && rm content
-    clog Check pre-build
-    clog Check build
-    [ ! -d content ] && ln -s documentation/content content
     eval "$(clog Source project config)"    # configure project - local config
     eval "$(clog Inc)"                      # shell embedded help (sh, zsh & bash)
     help="core/sh/help-golang.sh"           # build embedded help
-    eval "$(clog Cat $help)"              # golang build helpers
-
-    fShould () { [[ "${1#*"$2"}" != "$1" ]] } 
+    eval "$(clog Cat $help)"                # golang build helpers
 
     clog Log -I "Build$cC $PROJECT $cT using clog's$cF $help"
 
@@ -32,26 +26,28 @@ snippets:
     clog Check build     && [ $? -gt 0 ] && exit 1
     # ------------------------------------------------------------------------------
     app=podserver  # our pod server app command
-    MAKE="hugo $app ko"
+    export MAKE="hugo $app ko"
 
     # ensure tmp dir exists
     mkdir -p tmp
 
-    if fShould "$MAKE" "hugo"; then
+    if (clog Should MAKE "hugo"); then
+      [ ! -d content ] && ln -s documentation/content content
       clog Log -I "Purging kodata/ and building site"
       rm -rf kodata/*
       [ $? -gt 0 ] && fWarn "purging kodata/ - failed - continuing anyway"
       hugo build --gc --minify --forceSyncStatic --ignoreCache --logLevel warn
+      [ -d content ] && rm content
     fi
 
-    if fShould "$MAKE" "$app"; then
+    if (clog Should MAKE "$app"); then
       fGoBuild tmp/$app-amd-lnx     linux   amd64
       fGoBuild tmp/$app-arm-lnx     linux   arm64
       fGoBuild tmp/$app-arm-mac     darwin  arm64
       clog Log -I "stand-alone exe built to the$cF tmp/$cT folder\n"
     fi
 
-    if fShould "$MAKE" "ko"; then
+    if (clog Should MAKE "ko"); then
       tag="$(clog git tag ref)"
       # config is in .ko.yaml
       # use the default docker repo unless told otherwise

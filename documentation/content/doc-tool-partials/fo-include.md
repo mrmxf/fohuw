@@ -15,7 +15,7 @@ The builtin help can be printed by setting the help param to any string:
 {{</* fo t = "include" help = "yes" from = "folder/subFolder/file-to-include/md" /*/>}}
 ```
 
-{{< fo t = "include" help = "yes" />}}
+{{< fo t = "include" help = "yes" from = "folder/subFolder/file-to-include/md" />}}
 
 ### Sample {{< H 1 >}} - no includeSummary, pink message blockClass
 
