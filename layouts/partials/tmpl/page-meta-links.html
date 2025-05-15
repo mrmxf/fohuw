@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/page-meta-links.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tmpl/page-meta-links.html --- -->`|safeHTML}}
+{{end}}
 {{ if .File }}
 {{ $pathFormatted := replace .File.Path "\\" "/" -}}
 {{ $gh_repo := ($.Param "github_repo") -}}

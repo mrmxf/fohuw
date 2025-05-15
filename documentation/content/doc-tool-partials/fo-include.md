@@ -1,16 +1,17 @@
 ---
-title: fo t = "include"
-date:  2025-02-25
+title:       fo t = "include"
+date:        2025-02-25
+description: include a markdownified page.
 
 summary: |
-  tool/include will insert the includeSummary of a page or the markdownified page.
+  tool/include will insert the markdownified page.
 ---
 
 ## t = "include"
 
 The builtin help can be printed by setting the help param to any string:
 
-```markdown
+```markdown  {linenos=inline}
 {{</* fo t = "include" help = "yes" from = "folder/subFolder/file-to-include/md" /*/>}}
 ```
 
@@ -18,7 +19,7 @@ The builtin help can be printed by setting the help param to any string:
 
 ### Sample {{< H 1 >}} - no includeSummary, pink message blockClass
 
-```markdown
+```markdown  {linenos=inline}
 {{</* fo t = "include" from = "/headless/include-example.md"  blockClass = "ui pink message" /*/>}}
 ```
 
@@ -26,7 +27,7 @@ The builtin help can be printed by setting the help param to any string:
 
 ### Sample {{< H 1 >}} - no includeSummary, no blockClass
 
-```markdown
+```markdown  {linenos=inline}
 {{</* fo t = "include" from = "/headless/include-example.md" /*/>}}
 ```
 
@@ -34,7 +35,7 @@ The builtin help can be printed by setting the help param to any string:
 
 ### Sample {{< H 1 >}} - .params.includeSummary _in frontmatter_ + green segment blockClass
 
-```markdown
+```markdown  {linenos=inline}
 {{</* fo t = "include" from = "/headless/include-example-summary.md"  blockClass = "ui green segment" /*/>}}
 ```
 

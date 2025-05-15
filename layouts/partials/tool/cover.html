@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/cover.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/cover.html --- -->`|safeHTML}}
+{{end}}{{/*
    Include another page as a block File path is relative to project root */}}
 {{- $f := .from -}}
 {{- if $f -}}

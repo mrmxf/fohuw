@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/my.html -->` | safeHTML }}{{/* ## fohuw/partials/my
+{{if hugo.IsServer}}{{`<!-- --- fohuw/partials/my.html --- -->`|safeHTML}}
+{{end}}{{/* ## fohuw/partials/my
 
 The main dispatcher for the "my" blocks.
 

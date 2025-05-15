@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/video.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/video.html --- -->`|safeHTML}}
+{{end}}
 {{ $color := "purple"}}
 {{- $p := "f/image" -}}
 {{- if not .src -}}{{- partial "tool/dbg-err" (dict "p" $p "a" ".src" "m" "is nil" ) -}}{{- end -}}

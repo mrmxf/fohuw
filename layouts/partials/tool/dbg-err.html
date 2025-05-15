@@ -1,4 +1,7 @@
-{{ `<!-- fohuw/partials/tool/dbg-err.html -->` | safeHTML -}}
+{{ if not hugo.IsServer }}
+{{/* only do debug when running in the hugo server */}}
+{{if hugo.IsServer}}{{`<!-- --- template: theme: fohuw --- template: partials/tool/dbg-err.html --- -->`|safeHTML}}
+{{end}}
 {{/* partial 'tool/dbg-err' (dict "p" $partial-name "a" $arg "m" $message) */}}
 <div class="ui fluid red message">
 <span class="ui black text">partial</span>
@@ -11,3 +14,4 @@
 <span class="ui red text">{{ .m | safeHTML}}</span>
 </div>
 {{- warnidf "fohuw" "partial (%s) arg (%s) ⇒ %s" .p .a .m -}}
+{{end}}

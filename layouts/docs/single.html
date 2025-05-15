@@ -1,4 +1,4 @@
 {{ define "main" }}
-{{ "<!-- fohuw docs/single.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- fohuw docs/single.html --- -->`|safeHTML}}{{end}}
 {{ .Render "content" }}
 {{ end }}

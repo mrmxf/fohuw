@@ -1,5 +1,6 @@
 <!doctype html>
-{{ `<!-- mrx faq/baseof.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: faq/baseof.html --- -->`|safeHTML}}
+{{end}}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>

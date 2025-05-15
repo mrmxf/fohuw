@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{ `<!-- fohuw/layouts/swagger/list.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw/layouts/swagger/list.html --- -->`|safeHTML}}
+{{end}}
 <div class="td-content">
 	<h1>{{ .Title }}</h1>
 	{{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}

@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/community-links.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/community-links.html --- -->`|safeHTML}}
+{{end}}
 {{/*
 	--- Metarex community links
     1.changed doc href to "overview"

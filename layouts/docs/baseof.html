@@ -1,5 +1,6 @@
 <!doctype html>
-{{ `<!-- docs/baseof.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- docs/baseof.html --- -->`|safeHTML}}
+{{end}}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>

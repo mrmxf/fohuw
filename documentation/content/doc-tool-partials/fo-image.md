@@ -1,9 +1,10 @@
 ---
-title: fo t="image"
-date:  2025-02-25
+title:       fo t="image"
+date:        2025-02-25
+description: include a markdownified page.
 
-usage: |
-  left hand folding sidebar for navigation
+summary: |
+  include an image. use the media tool if you cannot be certain
 
 examples: |
   Some examples
@@ -11,7 +12,7 @@ examples: |
 Deprecated
 
 Usage:
-```hugo
+```hugo  {linenos=inline}
 {{&#x25; fo t = "image" src = "path/to/img" alt = "demo image" text = "optional caption" /%}}
 ```
 

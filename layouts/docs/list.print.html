@@ -1,4 +1,5 @@
 {{ define "main" }}
-{{ `<!-- docs/list.print.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- docs/list.print.html --- -->`|safeHTML}}
+{{end}}
 {{ partial "print/render"  . }}
 {{ end }}

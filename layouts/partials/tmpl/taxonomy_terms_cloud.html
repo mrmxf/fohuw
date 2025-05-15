@@ -1,4 +1,5 @@
-{{ "<!-- partial/taxonomy_terms_cloud.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- partial/taxonomy_terms_cloud.html --- -->`|safeHTML }}
+{{end}}
 {{ $context := .context }}
 {{ $taxo := .taxo }}
 {{ $title := .title }}

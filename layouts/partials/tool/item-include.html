@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/include.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/include.html --- -->`|safeHTML}}
+{{end}}{{/*
 Include another page as an item in a list
 
 from = filepath e.g. /assets/doc/banana.md
@@ -30,10 +31,19 @@ src = /path/to/image  ... if not specified use partial get-feature-resource to f
    {{ if $feature}}{{$feature = $feature}}{{end}}
    {{ if $p.Page.Params.src}}{{$feature = $p.Page.Params.src}}{{end}}
    {{ if $p.Page.Params.img}}{{$feature = $p.Page.Params.src}}{{end}}
+   {{ if .src}}{{$feature = .src }}{{end}}
    {{ $description := $p.Page.Plain | safeHTML | truncate 300 }}
+   {{with .text}}{{$description = .}}{{end}}
    {{ $minutes := add ( div ( countwords $p.Page.Plain ) 220 ) 1 }}
    {{ $meta := printf "~%v min read" $minutes }}
-   {{ $d := dict "header" $header "src" $feature "srcOn" "left" "meta" $meta "link" $link "srcLink" $link "headerLink" $link}}
+   {{ $d := dict "description" $description 
+   "header" $header
+    "src" $feature
+     "srcOn" "left" 
+     "meta" $meta 
+     "link" $link 
+     "srcLink" $link 
+     "headerLink" $link}}
    {{ partial "tool/item" $d}}
 {{- else -}}
 

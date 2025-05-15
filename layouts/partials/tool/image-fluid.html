@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/image-fluid.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/image-fluid.html --- -->`|safeHTML}}
+{{end}}{{/*
      simple override of .srcClass
 */}}
 {{/* - .srcClass = "ui fluid image" -*/}}

@@ -1,4 +1,5 @@
 {{ define "main" }}
-{{ `<!-- blog/section.print.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- blog/section.print.html --- -->`|safeHTML}}
+{{end}}
 {{ partial "print/render"  . }}
 {{ end }}

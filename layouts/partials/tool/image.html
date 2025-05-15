@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/image.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/image.html --- -->`|safeHTML}}
+{{end}}{{/*
   The .src property may be a string or a resource - do the right thing!
 */}}
 {{ $color := "purple"}}

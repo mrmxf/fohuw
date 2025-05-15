@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/pi-acc-tab.html -->` | safeHTML -}}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/pi-acc-tab.html --- -->`|safeHTML}}
+{{end}}
 {{- $n := (site.Store.Get "tab-index") | int -}}
 {{- site.Store.Add "tab-index" 1 -}}
 {{- $id := printf "tab-%d" $n -}}

@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/fo.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- theme: fohuw --- template: partials/fo.html --- -->`|safeHTML}}
+{{end}}{{/*
    print a full width banner
 header = "Figure 1" etc
 text = the caption content

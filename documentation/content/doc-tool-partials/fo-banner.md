@@ -1,7 +1,7 @@
 ---
-title: fo t = "banner"
-date:  2025-02-25
-
+title:       fo t = "banner"
+date:        2025-02-25
+description: A full width banner with header, image and text
 ---
 Deprecated
 
@@ -17,6 +17,6 @@ name
 
 ## Examples
 
-```hugo
+```hugo  {linenos=inline}
 {{ % fo t = "banner" header = "header" text = "This is a default banner" /%}}
 ```

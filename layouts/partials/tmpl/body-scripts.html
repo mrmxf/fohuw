@@ -49,13 +49,13 @@
 <!-- scripts for prism -->
 <script src='{{ "/js/prism.js" | relURL }}'></script>
 {{ end -}}
-<!-- --- initialise fomatnic now that all the other bits are done ---------- -->
+{{`<!-- --- initialise fomatnic now that all the other bits are done ---------- -->`|safeHTML}}
 <script>
     $('.ui.dropdown').dropdown();
     $('.ui.accordion').accordion();
     $('#standard_calendar').calendar();
 </script>
-<!-- --- finally load any page specific scripts ---------------------------- -->
+{{`<!-- --- finally load any page specific scripts ---------------------------- -->`|safeHTML}}
 {{/* --- Iterate thru page frontmatter ------------------------------------ */}}
 {{/* --- js: is an object array. Object has src: or asset: elements ------- */}}
 {{- $jsScript := slice }}

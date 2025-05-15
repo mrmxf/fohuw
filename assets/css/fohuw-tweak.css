@@ -25,6 +25,7 @@
   /* named elements - fohuw controls */
   --fohuw-dark-bg: var(--mm-purple);
   --fohuw-blue: var(--mm-blue);
+  --fohuw-code: var(--mm-purple);
 
   /* colors of the logo */
   --fomantic-theme-color: #35BDB2;
@@ -40,7 +41,10 @@
 
 /* specialty text styles & colors */
 code {
-  color: var(--fohuw-blue);
+  color: var(--fohuw-code);
+}
+.ui .ui.list .description {
+  color:darkgrey;
 }
 
 .fo-reading-time {

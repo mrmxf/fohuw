@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/fohuw/item.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/fohuw/item.html --- -->`|safeHTML}}
+{{end}}{{/*
 .srcOn "left"
 +--------+-------------------------+
 | ------ | --.header-------------- |

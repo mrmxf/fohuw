@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tmpl/breadcrumb.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tmpl/breadcrumb.html --- -->`|safeHTML}}
+{{end}}
 {{ $isSingle := true -}}
 {{ with .Parent -}}
   {{ $isSingle = .IsHome -}}

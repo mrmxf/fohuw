@@ -1,15 +1,15 @@
-{{ `<!-- fohuw partials/tmpl/footer -->` | safeHTML }}
-{{/* The footer is already a row in the overall page grid ----------------- */}}
+{{if hugo.IsServer}}<!-- fohuw partials/tmpl/footer -->
+{{end}}{{/*
+------------ The footer is already a row in the overall page grid ------------ */}}
 {{ $links := site.Params.ui.footer.links }}
 {{ $color := site.Params.ui.footer.backgroundColor }}
 {{ $textClass := "text-white" }}
 <br>
 <div class="fluid column">
   <footer class="ui fluid equal width center aligned padded grid">
-    {{$topline := resources.Get "inc/footer/topline.md"}}
-    {{with  $topline}}
-    <div class="row fo-footer">{{$topline}}</div>
-      {{end}}}
+    {{with resources.Get "assets/inc/footer/topline.md"}}
+    <div class="row fo-footer">{{. | readFile | markdownify}}</div>
+      {{end}}
     <div class="row fo-footer">
       {{template "footer-fohuw-title-column" .}}
       <div class="column">

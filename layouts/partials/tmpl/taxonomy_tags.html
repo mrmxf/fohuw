@@ -1,4 +1,5 @@
-{{ "<!-- partial/taxonomy_tags.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme:fohuw --- template: partials/taxonomy_tags.html -->`|safeHTML }}
+{{end}}
 {{- $ctx := .ctx }}
 {{- $taxo := .taxo }}
 {{- if (gt (len ($ctx.GetTerms $taxo)) 0)}}

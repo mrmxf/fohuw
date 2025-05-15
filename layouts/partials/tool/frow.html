@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/frow.html -->` | safeHTML }}<div class="row">
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/frow.html --- -->`|safeHTML}}
+{{end}}<div class="row">
     <pre>{{ printf "%v" .Content }}</pre>
     <pre>{{ printf "%v" .Inner }}</pre>
     <pre>{{ printf "%v" $.Inner }}</pre>

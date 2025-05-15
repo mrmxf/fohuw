@@ -1,3 +1,7 @@
+{{ if not hugo.IsServer }}
+{{/* only do debug when running in the hugo server */}}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/dbg-dump-dot.html --- -->`|safeHTML}}
+{{end}}
 <div class="ui red message">
   {{ if . }}
   <p>dot is of type {{ printf "%T" . }}</p>
@@ -10,3 +14,4 @@
   <p>dot is falsey</p>
   {{end}}
 </div>
+{{end}}

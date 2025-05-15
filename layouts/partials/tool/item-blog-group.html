@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/blog.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/blog.html --- -->`|safeHTML}}
+{{end}}{{/*
    partial to create a list of latest blogs. Wordcount assumes 220 w/min */}}
 {{ $header := "None" }}
 {{ $srcClass := .scrClass | default "" }}

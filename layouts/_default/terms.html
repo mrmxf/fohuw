@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{ `<!-- _default/terms.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- _default/terms.html --- -->`|safeHTML}}
+{{end}}
 <div class="td-content">
   <main class="taxonomy-terms-page">
     <h1>{{ .Title }}</h1>

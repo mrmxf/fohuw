@@ -1,4 +1,5 @@
-{{ `<!-- _default/_markup/render-codeblock-mermaid.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- _default/_markup/render-codeblock-mermaid.html --- -->`|safeHTML}}
+{{end}}
 <pre class="mermaid">
   {{ .Inner | htmlEscape | safeHTML }}
 </pre>

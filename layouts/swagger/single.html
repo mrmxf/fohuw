@@ -1,4 +1,5 @@
 {{ define "main" }}
-{{ `<!-- swagger/single.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- swagger/single.html --- -->`|safeHTML}}
+{{end}}
 {{ .Render "content" }}
 {{ end }}

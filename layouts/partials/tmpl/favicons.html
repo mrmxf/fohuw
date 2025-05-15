@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/favicons.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/favicons.html --- -->`|safeHTML}}
+{{end}}
 
 {{/*
 Favicons as generated from /assets/brand/logo.png

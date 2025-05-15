@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/tool/caption.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/caption.html --- -->`|safeHTML}}
+{{end}}{{/*
    tool/caption - print a caption styled on a line by itself
 header = "Figure 1" etc
 text = the caption content

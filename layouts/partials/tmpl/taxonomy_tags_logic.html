@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/layouts/partials/tmpl/taxonomy_tags_logic.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw/layouts/partials/tmpl/taxonomy_tags_logic.html --- -->`|safeHTML}}
+{{end}}
 {{ $ctx := . }}
 {{ if isset site.Params "taxonomy" }}
   {{ if isset site.Params.Taxonomy "showOnPage" }}

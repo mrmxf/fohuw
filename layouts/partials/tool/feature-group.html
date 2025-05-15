@@ -1,5 +1,5 @@
-{{ `<!-- fohuw/partials/tool/feature-group.html -->` | safeHTML -}}
-{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tool/feature-group.html --- -->`|safeHTML}}
+{{end}}{{/*
 ---* A feature-group block organises feature children
 ---* .blockClass Outer container = default "ui horizontal equal width segments"
 */}}

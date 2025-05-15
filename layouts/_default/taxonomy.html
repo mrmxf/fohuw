@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{ `<!-- fohuw/layouts/_default/taxonomy.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw/layouts/_default/taxonomy.html --- -->`|safeHTML}}
+{{end}}
 <div class="td-content">
   <main class="taxonomy-taxonomy-page">
     <h1>{{ with .Data.Singular }}{{ . | humanize }}: {{ end }}<span>{{ .Title }}</span></h1>

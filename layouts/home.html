@@ -1,4 +1,5 @@
 {{ define "main" }}
-{{ `<!-- fohuw/layouts/home.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw/layouts/home.html --- -->`|safeHTML}}
+{{end}}
 {{ with .Content }}{{ . }}{{ end }}
 {{ end }}

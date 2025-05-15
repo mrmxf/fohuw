@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/fohuw/item-group.html -->` | safeHTML }}{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/fohuw/item-group.html --- -->`|safeHTML}}
+{{end}}{{/*
   an item-group must surround items for them to work properly
   
    class = "ui items"     - turn off the dividers

@@ -1,5 +1,6 @@
 <!doctype html>
-{{ `<!-- fohuw/layouts/_default/baseof.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tmpl/page-meta-links.html --- -->`|safeHTML}}
+{{end}}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{site.Language.Lang}}" dir="{{ or site.Language.LanguageDirection `ltr` }}" >
 <head>
   {{ partial "tmpl/head.html" . }}

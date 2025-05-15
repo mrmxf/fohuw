@@ -1,4 +1,5 @@
-{{ "<!-- partial/taxonomy_display_class.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- partial/taxonomy_display_class.html --- -->`|safeHTML }}
+{{end}}
 {{/*
   map display classes to a taxonomy based on its position in the
   range of taxonomies.

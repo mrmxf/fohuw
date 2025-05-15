@@ -1,14 +1,11 @@
 ---
-title:     partials
-linkTitle: partials
-date:      2025-04-14
+title:       tool-partials
+linkTitle:   tool-partials
+date:        2025-04-14
+description: the fo t="tool" worker functions
+summary:     partials/tool/ produce HTML for shortcodes. These are the building blocks of a FOHUW site'
 
 menus: main
-
-summary: 'Partials produce HTML. These are the building blocks of FOHUW.'
-params:
-  bodyClass: purple elephant
-
 ---
 
 ## `layouts/partials/fo.html`

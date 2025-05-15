@@ -1,4 +1,5 @@
-{{ `<!-- pihuw/partials/pi-accordion.html -->` | safeHTML -}}
+{{if hugo.IsServer}}{{`<!-- --- pihuw/partials/pi-accordion.html --- -->`|safeHTML}}
+{{end}}
 <style>
   /* Core styles/functionality */
   .tab {

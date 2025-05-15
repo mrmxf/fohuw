@@ -1,4 +1,5 @@
-{{ "<!-- partial/taxonomy_terms_clouds.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- partial/taxonomy_terms_clouds.html --- -->`|safeHTML }}
+{{end}}
 {{ $context := . }}
 {{ if isset site.Params "taxonomy" }}
 	{{ if isset site.Params.Taxonomy "taxonomycloud" }}

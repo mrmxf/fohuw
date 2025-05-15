@@ -1,4 +1,5 @@
-{{ `<!-- fohuw/partials/fohuw-block.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/fohuw-block.html --- -->`|safeHTML}}
+{{end}}
 {{/*
 .srcWidth is ignored
 .src

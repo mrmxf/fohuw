@@ -1,5 +1,6 @@
-{{ `<!-- fohuw/partials/tmpl/navbar.html -->` | safeHTML }}
-{{ $isCovePage := and
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/tmpl/navbar.html --- -->`|safeHTML}}
+{{end}}
+{{ $isCoverPage := and
 (.HasShortcode "blocks/cover")
 (not .Site.Params.ui.navbar_translucent_over_cover_disable)
 -}}

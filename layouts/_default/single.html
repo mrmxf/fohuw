@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ "<!-- fohuw _default/single.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: /_default/single.html --- -->`|safeHTML}}{{end}}
 {{ with .Content }}
 {{ . }}
 {{ end }}

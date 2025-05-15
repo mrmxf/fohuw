@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{ `<!-- fohuw/layouts/docs/list.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw/layouts/docs/list.html --- -->`|safeHTML}}
+{{end}}
 <div class="ui segment">
 
 	<header>

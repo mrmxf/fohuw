@@ -33,7 +33,7 @@ This is some markdown with an image below.
 ```
 
 the `fo` shortcode handler will parse the params into a standard set of keys and values before
-running [`layouts/partials/fo.html`]({{% relref "/doc-partials" %}}).
+running [`layouts/partials/fo.html`]({{% relref "/doc-tool-partials" %}}).
 
 ### Params help
 

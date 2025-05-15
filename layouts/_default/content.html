@@ -1,4 +1,5 @@
-{{ `<!-- fohuw _default/content.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw _default/content.html --- -->`|safeHTML}}
+{{end}}
 <div class="ui fluid segment">
 	<h1  style="display:inline;">{{ .Title }}</h1>
 

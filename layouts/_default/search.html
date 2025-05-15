@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ "<!-- fohuw _default/search.html -->" | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- fohuw _default/search.html --- -->`|safeHTML}}{{end}}
 <section class="ui segment">
 	<h2 class="header">{{ .Title }}</h2>
 	{{ with .Site.Params.gcs_engine_id }}

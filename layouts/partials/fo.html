@@ -1,4 +1,5 @@
-{{/*
+{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/fo.html --- -->`|safeHTML}}
+{{end}}{{/*
 The main dispatcher for the fo blocks.
 
 Set .t="help" for dict definitions

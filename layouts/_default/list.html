@@ -1,5 +1,6 @@
 {{ define "main" }}
-{{ `<!-- fohuw/layouts/docs/list.html -->` | safeHTML }}
+{{if hugo.IsServer}}{{`<!-- --- fohuw/layouts/docs/list.html --- -->`|safeHTML}}
+{{end}}
 <div class="ui segment">
 	<h1>{{ .Title }}</h1>
 	{{ with .Params.description }}<div class="description">{{ . | markdownify }}</div>{{ end }}
