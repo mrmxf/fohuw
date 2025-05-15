@@ -7,7 +7,7 @@ imports:
 
 hugoVersion:
   extended: true
-  min: 0.145.0
+  min: 0.147.3
 
   mounts:
   - disableWatch: false

@@ -18,6 +18,51 @@ snippets:
     [ -d content ] && rm content
     clog Check pre-build
     clog Check build
+    [ ! -d content ] && ln -s documentation/content content
+    eval "$(clog Source project config)"    # configure project - local config
+    eval "$(clog Inc)"                      # shell embedded help (sh, zsh & bash)
+    help="core/sh/help-golang.sh"           # build embedded help
+    eval "$(clog Cat $help)"              # golang build helpers
+
+    fShould () { [[ "${1#*"$2"}" != "$1" ]] } 
+
+    clog Log -I "Build$cC $PROJECT $cT using clog's$cF $help"
+
+    clog Check pre-build #&& [ $? -gt 0 ] && exit 1
+    clog Check build     && [ $? -gt 0 ] && exit 1
+    # ------------------------------------------------------------------------------
+    app=podserver  # our pod server app command
+    MAKE="hugo $app ko"
+
+    # ensure tmp dir exists
+    mkdir -p tmp
+
+    if fShould "$MAKE" "hugo"; then
+      clog Log -I "Purging kodata/ and building site"
+      rm -rf kodata/*
+      [ $? -gt 0 ] && fWarn "purging kodata/ - failed - continuing anyway"
+      hugo build --gc --minify --forceSyncStatic --ignoreCache --logLevel warn
+    fi
+
+    if fShould "$MAKE" "$app"; then
+      fGoBuild tmp/$app-amd-lnx     linux   amd64
+      fGoBuild tmp/$app-arm-lnx     linux   arm64
+      fGoBuild tmp/$app-arm-mac     darwin  arm64
+      clog Log -I "stand-alone exe built to the$cF tmp/$cT folder\n"
+    fi
+
+    if fShould "$MAKE" "ko"; then
+      tag="$(clog git tag ref)"
+      # config is in .ko.yaml
+      # use the default docker repo unless told otherwise
+      [ -z "$DOCKER_NS" ] && DOCKER_NS="mrmxf"
+      [ -z "$KO_DOCKER_REPO" ] && KO_DOCKER_REPO="$DOCKER_NS"
+      KO_CONFIG_PATH=".ko.yaml"
+      ko build --base-import-paths --tags "$tag" --tags "latest" .
+      
+      clog Log -I "multi-arch docker build$cF $PROJECT$cT:$cW$tag$cT and ${cW}latest"
+    fi
+
   is-prod-release: |
     [ "prod" == "$(yq -r '.[0].build'  assets/data/releases.yaml)" ]
   git:
@@ -31,7 +76,7 @@ snippets:
       PROJECT=fohuw
       DOCKER_NS=mrmxf
     has:
-      fomantic: cat layouts/partials/tmpl/head-cdn|grep -oE '[0-9]+\.[0-9]+\.[0-9]+'|tail -1
+      fomantic: yq -r '.cdn[]|select(.name=="fomantic-ui css").version' config/_default/params.yaml
       hugo: hugo version|grep -oE '[0-9]\.[0-9]+\.[0-9]+'
       git-lfs: git-lfs version|grep -oE '[0-9]\.[0-9]+\.[0-9]+'|head -1
     needs:
@@ -66,6 +111,6 @@ check:
         catch: |
           clog Log -W "hugo: bad version. Need $(clog project needs hugo), got $(clog project has hugo)"
       - name: content folder
-        try: "[ ! -d content ]"
-        ok: clog Log -I "content folder not linked"
-        catch: eval "$(clog Inc)";clog Log -E "content folder exists -$cC ln$cW -d$cF content"
+        try: '[ -d "documentation/content/" ]'
+        ok: clog Log -I "documentation/content folder OK"
+        catch: eval "$(clog Inc)";clog Log -E "documentation/content folder missing"
