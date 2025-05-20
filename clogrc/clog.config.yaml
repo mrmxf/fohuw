@@ -36,7 +36,7 @@ snippets:
       clog Log -I "Purging kodata/ and building site"
       rm -rf kodata/*
       [ $? -gt 0 ] && fWarn "purging kodata/ - failed - continuing anyway"
-      hugo build --gc --minify --forceSyncStatic --ignoreCache --logLevel warn
+      hugo build --minify --forceSyncStatic --logLevel warn
       [ -d content ] && rm content
     fi
 
@@ -53,7 +53,9 @@ snippets:
       # use the default docker repo unless told otherwise
       [ -z "$DOCKER_NS" ] && DOCKER_NS="mrmxf"
       [ -z "$KO_DOCKER_REPO" ] && KO_DOCKER_REPO="$DOCKER_NS"
-      KO_CONFIG_PATH=".ko.yaml"
+      export KO_DOCKER_REPO
+      export KO_CONFIG_PATH=".ko.yaml"
+      export KO_DATA_DATE_EPOCH=$(git log -1 --format='%ct')
       ko build --base-import-paths --tags "$tag" --tags "latest" .
       
       clog Log -I "multi-arch docker build$cF $PROJECT$cT:$cW$tag$cT and ${cW}latest"
