@@ -1,0 +1,8 @@
+{{partial "tmpl/dbg-template-comment" .}}}{{/*
+------------ The child page listing at the bottom of an _index.md ------------
+  */}}
+<div class="section-index">
+  <hr class="panel-line">
+  <h4>Child Pages in this section</h4>
+  {{ partial "tool/children" (dict "page" .Page) }}
+</div>

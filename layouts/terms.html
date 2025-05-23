@@ -1,0 +1,8 @@
+{{ define "main" }}
+{{partial "tmpl/dbg-template-comment" .}}<div class="td-content">
+  <main class="taxonomy-terms-page">
+    <h1>{{ .Title }}</h1>
+    {{ partial "tmpl/taxonomy_terms_cloud.html" (dict "context" . "taxo" ( lower .Title ) ) }}
+  </main>
+</div>
+{{ end }}

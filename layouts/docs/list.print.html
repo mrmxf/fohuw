@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{if hugo.IsServer}}{{`<!-- --- docs/list.print.html --- -->`|safeHTML}}
-{{end}}
+{{partial "tmpl/dbg-template-comment" .}}
 {{ partial "print/render"  . }}
 {{ end }}

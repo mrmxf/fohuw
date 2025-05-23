@@ -1,0 +1,7 @@
+{{ if not hugo.IsServer }}
+{{/* only do debug when running in the hugo server */}}
+{{partial "tmpl/dbg-template-comment" .}}
+{{- if eq .mode "dump" }}{{ partial "tool/dbg-dump-dot" . }}{{ end -}}
+{{- if eq .mode "err"  }}{{ partial "tool/dbg-err" .  }}{{ end -}}
+{{- if eq .mode "log"  }}{{ partial "tool/dbg-log" .  }}{{ end -}}
+{{end}}

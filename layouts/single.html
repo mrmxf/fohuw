@@ -1,0 +1,6 @@
+{{ define "main" }}
+{{partial "tmpl/dbg-template-comment" .}}
+{{ with .Content }}
+{{ . }}
+{{ end }}
+{{ end }}

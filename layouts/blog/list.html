@@ -1,6 +1,5 @@
 {{ define "main" }}
-{{if hugo.IsServer}}{{`<!-- --- blog/list.html --- -->`|safeHTML}}
-{{end}}
+{{partial "tmpl/dbg-template-comment" .}}
 {{ if (and .Parent .Parent.IsHome) }}
 {{ $.Scratch.Set "blog-pages" (where .Site.RegularPages "Section" .Section) }}
 {{ else }}

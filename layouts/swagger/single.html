@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{if hugo.IsServer}}{{`<!-- --- swagger/single.html --- -->`|safeHTML}}
-{{end}}
+{{partial "tmpl/dbg-template-comment" .}}
 {{ .Render "content" }}
 {{ end }}

@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{partial "tmpl/dbg-template-comment" .}}
+<div class="td-content">
+  <main class="taxonomy-taxonomy-page">
+    <h1>{{ with .Data.Singular }}{{ . | humanize }}: {{ end }}<span>{{ .Title }}</span></h1>
+    <div>
+      {{ .Content }}
+    </div>
+    <div>
+      {{ range .Pages }}
+      {{ $manualLink := .RelPermalink }}
+      {{ if .Params.manualLink }}{{ $manualLink = .Params.manualLink }}
+      {{else}}
+      {{ if .Params.manualLinkRelref }}{{ $manualLink = relref . .Params.manualLinkRelref }}
+      {{else}}{{ $manualLink = .RelPermalink }}{{end}}
+      {{end}}
+      <article class="card article-teaser article-type-{{ with .Type }}{{ ( urlize . ) | safeHTMLAttr}}{{ end }}">
+        <h3><a href="{{ $manualLink }}" {{ with .Params.manualLinkTitle }} title="{{ . }}" {{ end }}{{ with
+            .Params.manualLinkTarget }} target="{{ . }}" {{ if eq . "_blank" }} rel="noopener" {{ end }}{{ end }}>{{-
+            .Title -}}</a></h3>
+        {{ if not .Site.Params.ui.taxonomy_breadcrumb_disable -}}
+        {{/* Use breadcrumb partial, but remove attributes that are invalid or inappropriate in this page-summary
+        context. */ -}}
+        {{ partial "tmpl/breadcrumb.html" .
+        | replaceRE ` aria-\w+=\".*?\"|(breadcrumb-item) active|(btn-link) disabled` "$1" | safeHTML
+        -}}
+        {{ end -}}
+        <p>{{ .Description | markdownify }}</p>
+        <header class="article-meta">
+          {{ partial "tmpl/taxonomy_tags_logic.html" . }}
+          {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
+          {{ partial "tmpl/reading-time.html" . }}
+          {{ end }}
+        </header>
+      </article>
+      {{ end }}
+    </div>
+    <a href="{{ with .Site.GetPage (printf " /%s" ( lower .Data.Plural )) }}{{ .Permalink }}{{ end }}"
+      class="all-taxonomy-terms">{{ humanize ( T "ui_all" ) }} {{ with .Data.Plural }}{{ . | humanize }}{{ end }}</a>
+  </main>
+</div>
+{{ end }}

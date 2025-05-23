@@ -1,0 +1,37 @@
+{{partial "tmpl/dbg-template-comment" .}}{{/*
+------------ The footer should position itself horizontally the page ------------ */}}
+{{ $links := site.Params.ui.footer.links }}
+{{ $color := site.Params.ui.footer.backgroundColor }}
+{{ $textClass := "text-white" }}
+<br>
+<div class="fluid column">
+  <footer class="ui fluid equal width center aligned padded grid">
+    {{with resources.Get "assets/inc/footer/topline.md"}}
+    <div class="row fo-footer">{{. | readFile | markdownify}}</div>
+    {{end}}
+    <div class="row fo-footer">
+      {{partial "tmpl/footer-left" .}}
+      <div class="column">
+        <div class="ui small labels">
+          {{range site.Params.ui.footer.links}}
+          {{template "footer-fohuw-label" .}}
+          {{end}}
+        </div>
+      </div>
+      {{ partial "tmpl/footer-right" . }}
+    </div>
+  </footer>
+</div>
+
+{{ define "footer-fohuw-label" -}}
+{{$target := ""}}
+{{if hasPrefix .link "http"}}{{$target = " target=\"_blank\""}}{{end}}
+<div class="ui label">
+  {{ with .label -}}{{.}}{{end}}
+  {{ if .title -}}
+  {{with .link}}<a href="{{relURL .}}" {{$target|safeHTMLAttr}}>{{end}}
+    {{.title}}
+    {{with .link}}</a>{{end}}
+  {{end}}
+</div>
+{{end}}

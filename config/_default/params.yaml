@@ -47,7 +47,7 @@ github:
 ui:
   # look for logo.svg for use in pages or logo.png or logo.jpg elsewhere
   # this URL is for a resource in the assets folder
-  # favicons are loaded in partials/tmpl/favicons.html
+  # favicons are loaded in _partials/tmpl/favicons.html
   logo: /brand/logo
   # some elements of the ui can be hidden
   hide:
@@ -57,6 +57,8 @@ ui:
   footer:
     showSiteTitle: true
     showSiteVersion: true
+    showLastMod: true
+    showBuildDate: true
     links:
       - label: Built with
         title: FoHuW
@@ -79,7 +81,7 @@ ui:
 #   __   __| |  _ _      _  _   _ _  | |  ___
 #  / _| / _` | | ' \    | || | | '_| | | (_-<
 #  \__| \__,_| |_||_|    \_,_| |_|   |_| /__/
-# certain resources will be pulled from cdn in partials/tmpl/head-cdn.html
+# certain resources will be pulled from cdn in_partials/tmpl/head-cdn.html
 # each url is {{prefix}}{{version}}{{suffix}} with no extra processing
 # .integrity is optional
 cdn:

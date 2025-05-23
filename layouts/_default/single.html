@@ -1,6 +1,0 @@
-{{ define "main" }}
-{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: /_default/single.html --- -->`|safeHTML}}{{end}}
-{{ with .Content }}
-{{ . }}
-{{ end }}
-{{ end }}

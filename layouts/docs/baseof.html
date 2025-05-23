@@ -1,11 +1,8 @@
 <!doctype html>
-{{if hugo.IsServer}}{{`<!-- --- docs/baseof.html --- -->`|safeHTML}}
-{{end}}
+{{partial "tmpl/dbg-template-comment" .}}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
 
 <head>
-  {{ partial "my/site-head-begin.html" . }}
-  {{ partial "my/site-head-end.html" . }}
   {{ partial "tmpl/head.html" . }}
 </head>
 {{- $bodyClass := ""}}

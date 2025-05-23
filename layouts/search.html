@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{partial "tmpl/dbg-template-comment" .}}
+<section class="ui segment">
+	<h2 class="header">{{ .Title }}</h2>
+	{{ with .Site.Params.gcs_engine_id }}
+	<script>
+		(function () {
+			var cx = '{{ .  | safeJSStr}}';
+			var gcse = document.createElement('script');
+			gcse.type = 'text/javascript';
+			gcse.async = true;
+			gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(gcse, s);
+		})();
+	</script>
+	<gcse:searchresults-only></gcse:searchresults-only>
+	{{ end }}
+</section>
+
+{{ end }}

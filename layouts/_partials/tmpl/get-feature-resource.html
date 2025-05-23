@@ -1,0 +1,11 @@
+{{partial "tmpl/dbg-template-comment" .}}
+{{/*
+	--- fohuw partial to get a feature image for a page.
+  1. changed image from Fill to Fit
+  2. removed forced width constraint
+*/}}
+{{/* By default we use the pages featured image */}}
+{{ $feature := (.Resources.ByType "image").GetMatch "*feature*" }}
+{{/* if there is no page resource then try a global feature resource */}}
+{{ if not $feature }}{{$feature = (.Resources.ByType "image").GetMatch "*feature*" }}{{end}}
+{{return $feature}}

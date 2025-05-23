@@ -1,0 +1,25 @@
+{{partial "tmpl/dbg-template-comment" .}}
+{{$h := slice "A feature is a block in a feature-group" }}
+{{$h = $h | append (dict "a" "class " "h" "inner class of the block" "d" "message" "eg" "green messsage")}}
+{{$h = $h | append (dict "a" "header" "h" "bold heading above media" "d" "nil" "eg" "Spring Sale")}}
+{{$h = $h | append (dict "a" "text" "h" "body text above media" "d" "nil" "eg" "green messsage")}}
+{{$h = $h | append (dict "a" "link" "h" "link when feature is clicked" "d" "nil" "eg" "green messsage")}}
+{{/*
+------------------------------------------------------------------------------------------------------------------------
+*/}}
+{{/* --- create a page object for the included page ---------------------- */}}
+{{- $headerClass := .headerClass | default "header" -}}
+{{- $featureClass := .class | default "message" -}}
+{{- $srcClass :=  .srcClass | default "ui fluid image" -}}
+{{- $mediaDot := merge . (dict "srcClass" $srcClass) }}
+<div class="{{.class}}">
+  {{- if .link -}}
+  <a href="{{ relref .page .link }}">
+    {{ end }}
+    {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
+    {{- with .text}}<p>{{.}}</p>{{- end -}}
+    {{ partial "tool/media" $mediaDot }}
+    {{- with .link -}}
+  </a>
+  {{- end -}}
+</div>

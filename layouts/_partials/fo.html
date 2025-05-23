@@ -1,0 +1,52 @@
+{{partial "tmpl/dbg-template-comment" .}}{{/*
+The main dispatcher for the fo blocks.
+
+Set .t="help" for dict definitions
+Set .help="anything" to render help for the partial instead of the partial
+*/}}
+{{if false}}{{partial "tool/dbg-dump-dot" .}}{{end}}
+{{- $blockTemplate := "my-help" -}}
+{{- with .t }}{{ $blockTemplate = printf "tool/%s" . }}{{ end -}}
+{{- $blockPath := printf "_partials/%s.html" $blockTemplate -}}
+{{printf "<!-- t = %s, look for partial %s -->" .t $blockPath|safeHTML}}
+{{ if templates.Exists $blockPath }}
+{{ if .help }}
+
+{{/* --------user requested help for a partial---------- */}}
+{{ $helpTemplate := printf "tool/%s.help" .t }}
+{{ $helpPath := printf "_partials/%s.html" $helpTemplate }}
+{{ if templates.Exists $helpPath }}
+{{ partial "tool/_help_common" . }}
+<div class="fohuw-help">
+{{ partial $helpTemplate . }}
+</div>
+{{else}}
+<div class="ui red message">
+  <div class="header"><h2>No help available for <code>t = "{{.t}}"</code></h2></div>
+  <div class="content">
+    <p>Default help location is <code>layouts/{{$helpPath}}</code> </p>
+  </div>
+</div>
+{{end}}
+
+{{/* --------------------------------------------------- */}}
+
+{{else}}
+
+{{/* --------------render a partial -------------------- */}}
+{{- with .blockClass }}<div class="{{.}}">{{end -}}
+  {{partial $blockTemplate .}}
+  {{- with .blockClass }}</div>{{end -}}
+{{/* --------------------------------------------------- */}}
+
+{{end}}
+{{ else }}
+
+{{/* --------------error partial does not exist-------------------- */}}
+{{$em := printf "style=\"%s\"" "color:blue;"}}
+{{$msg := printf "not found - check spelling of<code %s> t = \"%s\"</code>" $em .t}}
+{{ partial "tool/dbg-err.html" (dict "p" $blockTemplate "a" $blockPath "m" $msg) }}
+{{ partial "tool/help.html" . }}
+{{/* --------------------------------------------------- */}}
+
+{{ end }}

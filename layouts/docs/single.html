@@ -1,4 +1,4 @@
 {{ define "main" }}
-{{if hugo.IsServer}}{{`<!-- fohuw docs/single.html --- -->`|safeHTML}}{{end}}
+{{partial "tmpl/dbg-template-comment" .}}
 {{ .Render "content" }}
 {{ end }}

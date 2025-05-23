@@ -1,6 +1,5 @@
 <!doctype html>
-{{if hugo.IsServer}}{{`<!-- --- theme: fohuw --- template: partials/blog/baseof.print.html --- -->`|safeHTML}}
-{{end}}
+{{partial "tmpl/dbg-template-comment" .}}
 <html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
   <head>
     {{ partial "tmpl/head.html" . }}

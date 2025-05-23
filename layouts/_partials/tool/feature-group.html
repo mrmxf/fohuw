@@ -1,0 +1,9 @@
+{{partial "tmpl/dbg-template-comment" .}}{{/*
+---* A feature-group block organises feature children
+---* .blockClass Outer container = default "ui horizontal equal width segments"
+*/}}
+{{- $blockClass := .blockClass | default "ui horizontal equal width segments" -}}
+<div class="{{.blockClass}}">
+  <div class="ui horizontal equal width segments">
+  {{ .inner }}
+</div></div>

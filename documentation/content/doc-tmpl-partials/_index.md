@@ -3,7 +3,7 @@ title:       tmpl-partials
 linkTitle:   tmpl-partials
 date:        2025-04-14
 description: the page layout templates
-summary:     partials/tmpl/ structure the HTML for different page types
+summary:    _partials/tmpl/ structure the HTML for different page types
 
 menus: main
 ---

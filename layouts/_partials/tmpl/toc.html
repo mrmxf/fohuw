@@ -1,0 +1,10 @@
+{{partial "tmpl/dbg-template-comment" .}}
+{{ if not .Params.notoc -}}
+  {{ with .TableOfContents -}}
+    {{ if ne . `<nav id="TableOfContents"></nav>` -}}
+      <div class="td-toc">
+        {{ . }}
+      </div>
+    {{ end -}}
+  {{ end -}}
+{{ end -}}

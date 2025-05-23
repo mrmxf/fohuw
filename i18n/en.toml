@@ -28,11 +28,11 @@ other = "All Rights Reserved"
 other = "Privacy Policy"
 
 [view]
-other = "view"
+other = "🔎view"
 [edit]
-other = "edit"
+other = "✏️edit"
 [issue]
-other = "new issue"
+other = "❌issue"
 
 # Post (blog, articles etc.)
 [post_byline_by]
