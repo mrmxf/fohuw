@@ -54,6 +54,8 @@ ui:
     navbar:
       logo: false
       title: false
+      nav4mobile: false       # true == always use widescreen
+      nav4widescreen: false   # false == always use mobile
   footer:
     showSiteTitle: true
     showSiteVersion: true

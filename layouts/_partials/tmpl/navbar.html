@@ -1,22 +1,17 @@
 {{partial "tmpl/dbg-template-comment" .}}
-{{ $isCoverPage := and
-(.HasShortcode "blocks/cover")
-(not .Site.Params.ui.hide.background_cover)
--}}
+{{/*
 
-{{- $menu2 := site.Params.ui.navbar2partial -}}
+  render 2 navbars - optimised for wide & mobile
+  the breakpoint occurs at a screen width defined in site.Parm.ui
+  you can hide them from the site config
 
-<div style="display:flex;align-items:stretch;column-gap:0.5em;margin-bottom:0.5em;">
-
-    {{- partial "tmpl/navbar-brand" . -}}
-
-  <div style="flex-basis:90%;">
-    {{/* --- main navbar ------------------------------------------------- */}}
-    {{ partial "tmpl/navbar-main" .}}
-    {{- if $menu2 -}}
-    <div class="ui bottom attached fluid menu">
-      <br>{{ partial $menu2 .}}
-    </div>
-    {{- end -}}
-  </div>
+  */}}
+{{- if not site.Params.hide.nav4mobile -}}
+<div class="fohuw-mobile">
+{{partial "tmpl/navbar-4m-mobile" .}}
 </div>
+{{end}}
+{{- if not site.Params.hide.nav4widescreen -}}
+<div class="fohuw-wide">
+  {{partial "tmpl/navbar-4w-widescreen" .}}
+</div>{{end}}

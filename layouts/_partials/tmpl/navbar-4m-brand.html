@@ -1,0 +1,26 @@
+{{partial "tmpl/dbg-template-comment" .}}
+{{/* to support SVG files, all logos must be in static/brands */}}
+{{- if not (and site.Params.ui.hide.navbar.logo site.Params.ui.hide.navbar.title) }}
+
+{{- $logo := ""}}
+{{- $base := "/brand/logo"}}
+{{- if not $logo }}{{- $logo = resources.Get (printf "%s.svg" $base)}}{{end -}}
+{{- if not $logo }}{{- $logo = resources.Get (printf "%s.png" $base)}}{{end -}}
+{{- if not $logo }}{{- $logo = resources.Get (printf "%s.jpg" $base)}}{{end -}}
+
+<div class="ui compact menu">
+  <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
+    {{- if not site.Params.ui.hide.navbar.logo }}
+    {{with $logo}}<div class="ui mini image"><img src="{{.RelPermalink}}"></div>
+    {{end}}
+  </a>
+  <div class="ui dropdown item">
+    <i class="hamburger icon"></i>
+    <div class="menu">
+      <a class="item"><i class="edit icon"></i> Edit Profile</a>
+      <a class="item"><i class="globe icon"></i> Choose Language</a>
+      <a class="item"><i class="settings icon"></i> Account Settings</a>
+    </div>
+  </div>
+</div>
+{{- end -}}{{- end -}}
