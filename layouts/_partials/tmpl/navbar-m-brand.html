@@ -2,11 +2,7 @@
 {{/* to support SVG files, all logos must be in static/brands */}}
 {{- if not (and site.Params.ui.hide.navbar.logo site.Params.ui.hide.navbar.title) }}
 
-{{- $logo := ""}}
-{{- $base := "/brand/logo"}}
-{{- if not $logo }}{{- $logo = resources.Get (printf "%s.svg" $base)}}{{end -}}
-{{- if not $logo }}{{- $logo = resources.Get (printf "%s.png" $base)}}{{end -}}
-{{- if not $logo }}{{- $logo = resources.Get (printf "%s.jpg" $base)}}{{end -}}
+{{- $logo := partial "tmpl/logo-resource" .}}
 
 <div class="ui compact menu">
   <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">

@@ -1,0 +1,8 @@
+{{partial "tmpl/dbg-template-comment" .}}
+
+{{- $logo := ""}}
+{{- $base := "/brand/logo"}}
+{{- if not $logo }}{{- $logo = resources.Get (printf "%s.svg" $base)}}{{end -}}
+{{- if not $logo }}{{- $logo = resources.Get (printf "%s.png" $base)}}{{end -}}
+{{- if not $logo }}{{- $logo = resources.Get (printf "%s.jpg" $base)}}{{end -}}
+{{ return $logo}}

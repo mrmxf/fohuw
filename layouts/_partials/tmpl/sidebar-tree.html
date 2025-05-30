@@ -4,7 +4,7 @@
 {{ $sidebarCacheLimit := 2000 }}
 {{if .Site.Params.ui.sidebar_cache_limit}}{{ $sidebarCacheLimit = .Site.Params.ui.sidebar_cache_limit}}{{- end -}}
 {{ $shouldDelayActive := ge (len .Site.Pages) $sidebarCacheLimit -}}
-<div class="ui segment">
+<div class="ui segment fohuw-sidebar">
   <nav class="ui list" id="section-nav">
     {{/* --- setup -------------------------------------------------------- */}}
     {{ $navRoot := cond (and (ne .Params.toc_root true) (eq .Site.Home.Type "docs")) .Site.Home .FirstSection -}}

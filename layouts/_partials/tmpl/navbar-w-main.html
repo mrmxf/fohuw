@@ -1,10 +1,8 @@
 {{partial "tmpl/dbg-template-comment" .}}
-{{- $menu2 := .Site.Params.ui.navbar2 -}}
+{{- $menu2 := .Site.Params.ui.navbar2partial -}}
 {{ $mclassTop := "" }}
-{{ $mclassBot := "" }}
 {{- if $menu2 -}}
 {{ $mclassTop = "top attached" }}
-{{ $mclassBot = "bottom attached" }}
 {{- end -}}
 
 <nav class="ui {{$mclassTop}} centered fluid wrapping menu">

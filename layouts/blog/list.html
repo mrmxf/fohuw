@@ -40,7 +40,7 @@
 								{{ .Plain | safeHTML | truncate 250 }}
 							</p>
 						</div>
-						<div class="fo-flex-with-tags">
+						<div class="fohuw-blog-summary-buttons">
 							<div style="flex-grow:4;">
 								<a href="{{ .RelPermalink  | safeHTMLAttr}}"
 									aria-label='{{ T " ui_read_more" | safeHTMLAttr}} - {{ .LinkTitle  | safeHTMLAttr}}'>
@@ -50,7 +50,7 @@
 									</div>
 								</a>
 							</div>
-							<div class="extra" style="flex-grow:1;">
+							<div class="extra" style="flex-grow:4;">
 								{{ partial "tmpl/taxonomy_tags_logic.html" . }}
 							</div>
 						</div>

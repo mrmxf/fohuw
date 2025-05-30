@@ -7,9 +7,9 @@
 <div class="fluid column">
   <footer class="ui fluid equal width center aligned padded grid">
     {{with resources.Get "assets/inc/footer/topline.md"}}
-    <div class="row fo-footer">{{. | readFile | markdownify}}</div>
+    <div class="row">{{. | readFile | markdownify}}</div>
     {{end}}
-    <div class="row fo-footer">
+    <div class="row">
       {{partial "tmpl/footer-left" .}}
       <div class="column">
         <div class="ui small labels">

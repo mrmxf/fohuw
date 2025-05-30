@@ -1,0 +1,15 @@
+{{partial "tmpl/dbg-template-comment" .}}
+
+{{- $menu2 := site.Params.ui.navbar2partial -}}
+
+
+<div class="navbar">
+
+    {{- partial "tmpl/navbar-w-brand" . -}}
+
+  <div style="flex-basis:90%;">
+    {{/* --- main navbar ------------------------------------------------- */}}
+    {{ partial "tmpl/navbar-w-main" .}}
+    {{- if $menu2 -}}{{ partial $menu2 .}}{{- end -}}
+  </div>
+</div>
