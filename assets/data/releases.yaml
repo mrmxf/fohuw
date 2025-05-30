@@ -1,4 +1,5 @@
 # code names here: https://en.wikipedia.org/wiki/Lists_of_colors
+- { version: 0.4.8, date: 2025-04-30, codename: denim,   note: mobile menu final }
 - { version: 0.4.8, date: 2025-04-30, codename: denim,   note: navbar2 }
 - { version: 0.4.7, date: 2025-04-30, codename: denim,   note: mobile nav }
 - { version: 0.4.6, date: 2025-04-30, codename: denim,   note: build information }

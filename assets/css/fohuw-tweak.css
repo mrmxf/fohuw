@@ -116,10 +116,33 @@ header .fohuw-wide .navbar {
 .ui.menu.navbar2 {
   background-color: var(--fohuw-subtle-bg);
 }
+
 .ui.segment.fohuw-sidebar {
   background-color: var(--fohuw-subtle-bg);
 }
 
+/* html body div.ui.wide.container header div.fohuw-mobile div.ui.compact.menu.fohuw-mobile div.ui.item.title */
+header .fohuw-mobile .ui.item.title {
+  flex-grow: 20;
+  font-size: 1.5em;
+}
+
+/*        _      _         _                  */
+/*   ___ (_)  __| |  ___  | |__   __ _   _ _  */
+/*  (_-< | | / _` | / -_) | '_ \ / _` | | '_| */
+/*  /__/ |_| \__,_| \___| |_.__/ \__,_| |_|   */
+.fohuw-sidebar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+.fohuw-sidebar-column {
+  flex: flex-grow 1;
+}
+.fohuw-sidebar-main {
+  flex-grow: 3;
+}
 /*    __               _                */
 /*   / _|  ___   ___  | |_   ___   _ _  */
 /*  |  _| / _ \ / _ \ |  _| / -_) | '_| */

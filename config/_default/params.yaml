@@ -56,6 +56,9 @@ ui:
       title: false
       nav4mobile: false       # true == always use widescreen
       nav4widescreen: false   # false == always use mobile
+  navbar2:
+      partial: my/navbar-2.html
+      menu-name: menu2           # the child of menus to parse e.g. menus.menu2
   footer:
     showSiteTitle: true
     showSiteVersion: true

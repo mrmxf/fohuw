@@ -4,7 +4,7 @@
 
 {{- $logo := partial "tmpl/logo-resource" .}}
 
-<div class="ui compact menu">
+<div class="ui fluid centered menu">
   <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
     {{- if not site.Params.ui.hide.navbar.logo }}
     {{with $logo}}<div class="ui mini image"><img src="{{.RelPermalink}}"></div>
@@ -12,11 +12,10 @@
   </a>
   <div class="ui dropdown item">
     <i class="hamburger icon"></i>
-    <div class="menu">
-      <a class="item"><i class="edit icon"></i> Edit Profile</a>
-      <a class="item"><i class="globe icon"></i> Choose Language</a>
-      <a class="item"><i class="settings icon"></i> Account Settings</a>
-    </div>
+    {{partial "tmpl/navbar-iterator" (dict "page" . "nodePartial" "tmpl/navbar-m-node" "leafPartial"  "tmpl/navbar-m-leaf" )}}
+  </div>
+  <div class="ui item  title">
+    <p id="siteTitleMenu">{{site.Title}}</p>
   </div>
 </div>
 {{- end -}}{{- end -}}

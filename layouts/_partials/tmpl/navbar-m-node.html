@@ -1,0 +1,20 @@
+{{partial "tmpl/dbg-template-comment" .}}{{/*
+render a mobile menu node item
+*/}}
+{{ $page := .page}}
+{{ $nodePartial := .nodePartial -}}
+{{ $leafPartial := .leafPartial -}}
+{{$pre := ""}}{{ if .menu.Pre}}{{$pre = .menu.Pre}}{{end}}
+{{$post := ""}}{{ if .menu.Post}}{{$post = .menu.Post}}{{end}}
+<div class="ui dropdown item">
+  {{ .menu.Pre | safeHTML }}{{- .menu.Name | safeHTML -}}{{ $post | safeHTML }}
+  <i class="dropdown icon"></i>
+  <div class="ui menu">
+    {{$d := (dict "page" $page "menu" . "leafPartial" $leafPartial "nodePartial" $nodePartial)}}
+    {{if .menu.URL}}{{ partial $leafPartial $d }}{{end}}
+    {{range .menu.Children}}
+    {{$d := (dict "page" $page "menu" . "leafPartial" $leafPartial "nodePartial" $nodePartial)}}
+    {{if .HasChildren}}{{partial $nodePartial $d}}{{else}}{{partial $leafPartial $d}}{{end}}
+    {{end}}
+  </div>
+</div>

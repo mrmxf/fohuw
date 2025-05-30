@@ -7,6 +7,7 @@
 </head>
 {{- $bodyClass := ""}}
 {{- if isset .Page.Params.ui "bodyClass" }}{{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}{{ end }}
+
 <body {{$bodyClass | safeHTMLAttr}}>
   <!-- docs pages are set very wide as they often have big diagrams -->
   <div class="ui grid">
@@ -20,22 +21,25 @@
       <div class="two wide column"></div>
     </div>
 
-    <div class="row container">
-      <div class="one wide column"></div>
-      <div class="three wide column">
+    <div class="fohuw-sidebar-row">
+
+      <div class="fohuw-wide fohuw-sidebar-column">
         {{- partial "tmpl/sidebar-tree.html" . -}}
       </div>
-      <div class="eleven wide column">
+      <div class="fohuw-sidebar-main">
         <main role="main" class="ui main">
           {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "tmpl/breadcrumb.html" . }}{{ end }}
           {{ block "main" . }}{{ end }}
         </main>
         <!-- something weird on the docs/list page needs an extra div-->
-      </div></div>
+      </div>
     </div>
-    <div class="row">
-      {{ partial "tmpl/footer" . }}
-    </div>
+
+  </div>
+
+  <div class="row">
+    {{ partial "tmpl/footer" . }}
+  </div>
   </div>
   {{ partial "tmpl/body-scripts" . }}
 </body>
