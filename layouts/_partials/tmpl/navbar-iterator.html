@@ -14,7 +14,7 @@
 {{- $menu2 := index site.Menus $menu2name -}}
 {{- else -}}
 {{ $msg := printf "the value of site.params.ui.navbar2.menu (%s) must be a valid child key of sites.menus" $menu2name}}
-{{ partial "tool/dbg-err" (dict "m" $msg) }}
+{{ partial "tool/dbg-err" (dict "m" $msg "d" .) }}
 {{- $partial2 = "" -}}
 {{end}}
 

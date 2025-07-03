@@ -3,12 +3,11 @@
 */}}
 {{ $color := "purple"}}
 {{ $type := (printf "%T" .src) }}
-{{- $p := "tool/image" -}}
 {{- $err := printf "is nil for %s" .src -}}
 {{- $alt := .alt -}}
 {{- if not $alt -}}{{ $alt = .text }}{{end}}
-{{- if not .src -}}{{- partial "tool/dbg-err" (dict "p" $p "a" ".src" "m" $err ) -}}{{- end -}}
-{{- if not $alt -}}{{- partial "tool/dbg-err" (dict "p" $p "a" ".alt" "m" $err ) -}}{{- end -}}
+{{- if not .src -}}{{- partial "tool/dbg" (dict "_" "err" "a" ".src" "m" $err "d" .) -}}{{- end -}}
+{{- if not $alt -}}{{- partial "tool/dbg" (dict "_" "err" "a" ".alt" "m" $err "d" . ) -}}{{- end -}}
 {{- if .link -}}<a href="{{.link}}">{{- end -}}
 <div class="{{.srcClass}}">
 <img  src="{{.src}}" {{with $alt }}alt="{{.}}"{{end}} />

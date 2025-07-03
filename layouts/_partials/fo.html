@@ -45,7 +45,7 @@ Set .help="anything" to render help for the partial instead of the partial
 {{/* --------------error partial does not exist-------------------- */}}
 {{$em := printf "style=\"%s\"" "color:blue;"}}
 {{$msg := printf "not found - check spelling of<code %s> t = \"%s\"</code>" $em .t}}
-{{ partial "tool/dbg-err" (dict "p" $blockTemplate "a" $blockPath "m" $msg) }}
+{{ partial "tool/dbg-err" (dict "p" $blockTemplate "a" $blockPath "m" $msg "d" .) }}
 {{ partial "tool/help.html" . }}
 {{/* --------------------------------------------------- */}}
 

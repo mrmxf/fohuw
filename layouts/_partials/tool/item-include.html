@@ -46,7 +46,6 @@ src = /path/to/image  ... if not specified use partial get-feature-resource to f
    {{ partial "tool/item" $d}}
 {{- else -}}
 
-{{ $err := dict "p" "tool/include" "a" "from" "m" (printf "cannot include unknown project file: %s" $from) }}
-{{ partial "tool/dbg-err.html" $err }}
+{{ partial "tool/dbg-err.html" (dict "p" "tool/include" "a" "from" "m" (printf "cannot include unknown project file: %s" $from) "d" .) }}
 
 {{- end -}}{{/* end of if file exists */}}

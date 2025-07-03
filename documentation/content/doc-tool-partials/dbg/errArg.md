@@ -19,5 +19,5 @@ ignoreLogs:
 TODO - describe the dict
 
 ```html  {linenos=inline}
-{{/* partial 'tool/dbg-err' (dict "p" $partial-name "a" $arg "m" $message) */}}
+{{/* partial 'tool/dbg-err' (dict "a" $arg "m" $message "d" .) */}}
 ```

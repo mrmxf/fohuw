@@ -28,6 +28,8 @@ __debug_*
 
 # Mac cruft
 .DS_Store
+# windows security cruft
+*Zone.Identifier
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

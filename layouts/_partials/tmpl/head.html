@@ -37,17 +37,6 @@
 
 {{ partial "hooks/head-end.html" . -}}
 
-{{/* To comply with GDPR, cookie consent scripts placed in head-end must execute before Google Analytics is enabled */ -}}
-{{ if hugo.IsProduction -}}
-  {{ $enableGtagForUniversalAnalytics := not .Site.Params.disableGtagForUniversalAnalytics -}}
-  {{ if (or $enableGtagForUniversalAnalytics (hasPrefix .Site.GoogleAnalytics "G-")) -}}
-    {{ template "_internal/google_analytics.html" . -}}
-  {{ else -}}
-    {{ template "_internal/google_analytics.html" . -}}
-  {{ end -}}
-{{ end -}}
-
-{{/* After GDPR do some local stuff */ -}}
 {{/*
   
   Add     _partials/my/head-end    to your site ==> last head entry

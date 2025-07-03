@@ -1,8 +1,7 @@
 {{partial "tmpl/dbg-template-comment" .}}
 {{ $color := "purple"}}
-{{- $p := "f/image" -}}
-{{- if not .src -}}{{- partial "tool/dbg-err" (dict "p" $p "a" ".src" "m" "is nil" ) -}}{{- end -}}
-{{- if not .alt -}}{{- partial "tool/dbg-err" (dict "p" $p "a" ".alt" "m" "is nil" ) -}}{{- end -}}
+{{- if not .src -}}{{- partial "tool/dbg" (dict "_" "err" "a" ".src" "m" "is nil" "d" .) -}}{{- end -}}
+{{- if not .alt -}}{{- partial "tool/dbg-err" (dict "a" ".alt" "m" "is nil" "d" .) -}}{{- end -}}
 {{- if .link -}}<a href="{{.link}}">{{- end -}}
 <img class="{{.srcClass}}" src="{{.src}}" {{with .alt }}alt="{{.}}"{{end}} />
 {{- partial "tool/caption" . -}}
