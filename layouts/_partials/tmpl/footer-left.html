@@ -3,19 +3,32 @@
 {{- $doVersion := site.Params.ui.footer.showSiteVersion }}
 {{- $doLastMod := site.Params.ui.footer.showLastMod }}
 {{- $doBuild := site.Params.ui.footer.showBuildDate }}
-{{if or  $doTitle $doVersion $doLastMod $doBuild}}
+{{if or $doTitle $doVersion $doLastMod $doBuild}}
   {{$title := ""}}{{if $doTitle}}{{$title = site.Title}}{{end}}
   {{$version := ""}}{{if $doVersion}}{{$version = (partial "tmpl/get-version-data" .).version}}{{end}}
-  {{$lastmod := ""}}{{if $doLastMod}}
-  {{$lastmod = printf "<small>mod:</small>%s" ( .Site.Lastmod | time.Format "2006-01-02" )}}
+  {{$lastmod := ""}}
+  {{if $doLastMod}}
+    {{/* replicate the logic for the docker pod tag */}}
+    {{ with resources.Get "data/releases.yaml" }}
+      {{ with . | transform.Unmarshal }}
+        {{ $data := . }}
+        {{ $record := index $data 0 }}
+        {{ $version := index $record "version" }}
+        {{ $build := index $record "build" }}
+        {{ $flow := index $record "flow" }}
+        {{ if ne $build "prod"}}
+          {{$lastmod = printf "<small>latest-%s-%s</small>" $flow $build }}
+        {{end}}
+      {{end}}
+    {{end}}
   {{end}}
   {{$build := ""}}{{if $doBuild}}
   {{$build = printf "<small>build:</small>%s" (time.Now | time.Format "2006-01-02 15:04")}}
-  {{end}}
-  
-  {{if site.Params.ui.footer.showSiteVersion}}
-  {{end}}
-  <div class="column">
-  {{$title}} <small>v{{$version}}<br>{{$lastmod|safeHTML}} {{$build|safeHTML}}</small>
+{{end}}
+
+{{if site.Params.ui.footer.showSiteVersion}}
+<div class="column" style="line-height:0.85em;">
+  {{$title}} <small>v{{$version}} {{$lastmod|safeHTML}}<br>{{$build|safeHTML}}</small>
 </div>
+{{end}}
 {{end}}

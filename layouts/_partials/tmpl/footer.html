@@ -1,6 +1,8 @@
 {{partial "tmpl/dbg-template-comment" .}}{{/*
------------- The footer should position itself horizontally the page ------------ */}}
-{{ $links := site.Params.ui.footer.links }}
+------------ The footer should position itself horizontally the page ------------
+only the top level of menu is used on the footer, no hierarchy
+*/}}
+{{ $menu := site.Menus.footer }}
 {{ $color := site.Params.ui.footer.backgroundColor }}
 {{ $textClass := "text-white" }}
 <br>
@@ -13,8 +15,8 @@
       {{partial "tmpl/footer-left" .}}
       <div class="column">
         <div class="ui small labels">
-          {{range site.Params.ui.footer.links}}
-          {{template "footer-fohuw-label" .}}
+          {{range $menu}}
+          {{template "footer-fohuw-menu-item" .}}
           {{end}}
         </div>
       </div>
@@ -23,15 +25,16 @@
   </footer>
 </div>
 
-{{ define "footer-fohuw-label" -}}
+{{ define "footer-fohuw-menu-item" -}}
 {{$target := ""}}
-{{if hasPrefix .link "http"}}{{$target = " target=\"_blank\""}}{{end}}
+{{if hasPrefix .URL "http"}}{{$target = " target=\"_blank\""}}{{end}}
 <div class="ui label">
-  {{ with .label -}}{{.}}{{end}}
-  {{ if .title -}}
-  {{with .link}}<a href="{{relURL .}}" {{$target|safeHTMLAttr}}>{{end}}
-    {{.title}}
-    {{with .link}}</a>{{end}}
+  {{ with .Pre -}}{{.}}{{end}}
+  {{ if .Name -}}
+  {{with .URL}}<a href="{{relURL .}}" {{$target|safeHTMLAttr}}>{{end}}
+    {{.Name}}
+    {{with .URL}}</a>{{end}}
+  {{ with .Post -}}{{.}}{{end}}
   {{end}}
 </div>
 {{end}}

@@ -33,8 +33,23 @@ menus:
       weight: 100
 
   footer:
-    - name: Copyright
+    - name: FoHuW
+      identifier: fohuw
+      pre: ✏️
+      URL: https://github.com/mrmxf/fohuw
+    - name: Mr MXF
+      identifier: mrmxf
+      pre: © 2025
       URL: https://mrmxf.com
+    - name: Privacy
+      identifier: privacy
+      URL: https://mrmxf.com/privacy
+    - name: Contact
+      identifier: contact
+      URL: /contact
+    - name: About
+      identifier: about
+      URL: /about
 
 #   _ __    __ _   _ _  | |__  _  _   _ __
 #  | '  \  / _` | | '_| | / / | || | | '_ \

@@ -64,19 +64,6 @@ ui:
     showSiteVersion: true
     showLastMod: true
     showBuildDate: true
-    links:
-      - label: ✏️
-        title: FoHuW
-        url: https://github.com/mrmxf/fohuw
-      - label: © 2025
-        title: Mr MXF
-        link: https://mrmxf.com
-      - title: Privacy
-        link: https://termly.io/resources/templates/privacy-policy-template/
-      - title: Contact
-        link: /contact
-      - title: About
-        link: /about
   readingTime:
     enable: true
 #           _                         _
