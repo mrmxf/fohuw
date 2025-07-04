@@ -11,6 +11,7 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
      blockClass = class for the containing div - the outermost block (default = container)
           class = class for the main element (e.g. Message or Card or Accordion Group)
           count = number of things to show e.g. blogs
+            dbg = anything - dump the content passed to the partial
     description = hover text or similar
            from = path to source file (instead of a Page) when t=include
          header = is the markdown h1 text or "Figure 1" in a caption
@@ -107,4 +108,10 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
 {{- $d = merge $d (dict "text" $text) -}}
 {{- $d = merge $d (dict "txtGrid" $txtGrid) -}}
 
+{{- if .Get "dbg" -}}
+<details class="" open="">
+  <summary class="title"><span class="ui red text">FO dbg</span></summary>
+  <div><pre><code>{{ debug.Dump $d }}</code></pre></div>
+</details>
+{{- end -}}
 {{- partial $workerPartial $d -}}

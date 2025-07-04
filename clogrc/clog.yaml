@@ -71,8 +71,8 @@ snippets:
       ref:  yq -r '.[0].note'  assets/data/releases.yaml
   project:
     config: |
-      PROJECT=fohuw
-      DOCKER_NS=mrmxf
+      export PROJECT=fohuw
+      export DOCKER_NS=mrmxf
     has:
       fomantic: yq -r '.cdn[]|select(.name=="fomantic-ui css").version' config/_default/params.yaml
       hugo: hugo version|grep -oE '[0-9]\.[0-9]+\.[0-9]+'

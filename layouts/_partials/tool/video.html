@@ -3,6 +3,9 @@
 {{- if not .src -}}{{- partial "tool/dbg" (dict "_" "err" "a" ".src" "m" "is nil" "d" .) -}}{{- end -}}
 {{- if not .alt -}}{{- partial "tool/dbg-err" (dict "a" ".alt" "m" "is nil" "d" .) -}}{{- end -}}
 {{- if .link -}}<a href="{{.link}}">{{- end -}}
-<img class="{{.srcClass}}" src="{{.src}}" {{with .alt }}alt="{{.}}"{{end}} />
+<video class="{{ .srcClass }}" autoplay loop>
+  <source src="{{ .src }}" type="video/mp4"  {{with .alt }}alt="{{.}}"{{end}} />
+  Your browser does not support the video tag.
+</video>
 {{- partial "tool/caption" . -}}
 {{- if .link -}}</a>{{- end -}}
