@@ -7,11 +7,11 @@ you can hide them from the site config
 
 */}}
 {{- if not site.Params.hide.nav4mobile -}}
-<div class="fohuw-mobile">
+<div class="fo-thin-only">
   {{partial "tmpl/navbar-m-mobile" .}}
 </div>
 {{end}}
 {{- if not site.Params.hide.nav4widescreen -}}
-<div class="fohuw-wide">
+<div class="fo-wide-only">
   {{partial "tmpl/navbar-w-widescreen" .}}
 </div>{{end}}

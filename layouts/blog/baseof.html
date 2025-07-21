@@ -1,6 +1,7 @@
 <!doctype html>
 {{partial "tmpl/dbg-template-comment" .}}
-<html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
+<html itemscope itemtype="http://schema.org/WebPage" lang="{{site.Language.Lang}}"
+  dir="{{ or site.Language.LanguageDirection `ltr` }}">
 
 <head>
   {{ partial "tmpl/head.html" . }}
@@ -10,33 +11,33 @@
 
 <body {{$bodyClass | safeHTMLAttr}}>
   <div class="ui wide container">
-    <header>
-      {{ partial "tmpl/navbar" . }}
-    </header>
-  </div>
+    <div class="row">
+      <header>
+        {{ partial "tmpl/navbar" . }}
+      </header>
+    </div>
 
-  <div class="ui wide container">
-    <div class="ui grid">
-      <div class="row">
-        <div class="four wide column">
+    {{- if not .Site.Params.ui.breadcrumb_disable }}
+    <div class="row">{{ partial "tmpl/breadcrumb.html" . }}</div>
+    {{ end -}}
+
+      <div class="fo-sidebar-row">
+
+        <div class="fo-wide-only fo-sidebar-column">
           {{- partial "tmpl/sidebar-tree.html" . -}}
         </div>
-        <div class="twelve wide column">
+
+        <div class="fo-sidebar-main">
           <main role="main" class="ui main">
-            {{ with .CurrentSection.OutputFormats.Get "rss" -}}
-            <a class="td-rss-button" title="RSS" href="{{ .Permalink | safeURL }}" target="_blank" rel="noopener">
-              <i class="fa-solid fa-rss" aria-hidden="true"></i>
-            </a>
-            {{ end -}}
             {{ block "main" . }}{{ end }}
           </main>
-        </div>
       </div>
+	  
     </div>
+	
     <div class="row">
       {{ partial "tmpl/footer" . }}
     </div>
-  </div>
   </div>
   {{ partial "tmpl/body-scripts" . }}
 </body>
