@@ -17,23 +17,11 @@
       </header>
     </div>
 
-    {{- if not .Site.Params.ui.breadcrumb_disable }}
-    <div class="row">{{ partial "tmpl/breadcrumb.html" . }}</div>
-    {{ end -}}
-	
-    <div class="fo-sidebar-row">
-
-      <div class="fo-wide-only fo-sidebar-column">
-        {{- partial "tmpl/sidebar-tree.html" . -}}
-      </div>
-
-      <div class="fo-sidebar-main">
+    {{ partial "tmpl/breadcrumb.html" . }}
+	{{partial "tmpl/child-bar-horizontal.html" .}}
         <main role="main" class="ui main">
           {{ block "main" . }}{{ end }}
         </main>
-      </div>
-
-    </div>
 
     <div class="row">
       {{ partial "tmpl/footer" . }}

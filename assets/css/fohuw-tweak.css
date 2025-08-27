@@ -127,7 +127,10 @@ header .fo-thin-only .ui.item.title {
   flex-grow: 20;
   font-size: 1.5em;
 }
-
+.ui.breadcrumb {
+  text-align: center;
+  width: 100%;;
+}
 /*        _      _         _                  */
 /*   ___ (_)  __| |  ___  | |__   __ _   _ _  */
 /*  (_-< | | / _` | / -_) | '_ \ / _` | | '_| */
@@ -146,6 +149,15 @@ header .fo-thin-only .ui.item.title {
   display: flex;
   flex-basis: 100%;
   flex-grow: 10;
+}
+.child-bar-horizontal {
+  padding:0.3em 1em;
+  text-align:center;
+  width: 100%;
+}
+.child-bar-horizontal .divider {
+  color:var(--fo-hi-3);
+  font-weight:bold;
 }
 /*    __               _                */
 /*   / _|  ___   ___  | |_   ___   _ _  */
