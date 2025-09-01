@@ -7,6 +7,10 @@
 #  |  _|   | (_) | |  _  | | |_| |   \ V  V /
 #  |_|      \___/  |_| |_|  \__,_|    \_/\_/
 # =============================================================================
+kfg:
+  app-key: clog
+  # path to the yaml file defining release history - see semver package
+  releases-path: "assets/data/releases.yaml"
 #               _                       _
 #   ___  _ _   (_)  _ __   _ __   ___  | |_   ___
 #  (_-< | ' \  | | | '_ \ | '_ \ / -_) |  _| (_-<
