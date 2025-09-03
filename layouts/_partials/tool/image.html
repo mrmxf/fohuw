@@ -28,7 +28,8 @@
 {{- if and $link (not $u.IsAbs) -}}
   {{ $aFile := fileExists $u.Path}}
   {{ $aBlog := strings.HasPrefix .srcLink "/blog/"}}
-  {{if and (not $aFile) (not $aBlog)}}
+  {{ $aPage := site.GetPage .srcLink }}
+  {{if and (not $aFile) (not $aBlog) (not $aPage)}}
     {{$err := printf "bad srcLink(%s) for image" $link}}
     {{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "link" .srcLink "resolved-link" $link "page" .page) ) -}}
   {{end}}
