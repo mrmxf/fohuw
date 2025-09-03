@@ -55,7 +55,6 @@
 {{/* --------------------------------------------------------------------- */}}
 {{- $link := $s.RelPermalink -}}
 {{- if $s.Param "manuallink" -}}{{- $link = $s.Params.manualLink -}}{{- end -}}
-{{- if $s.Param "manuallinkrelref" -}}{{- $link = $s.Params.manuallinkrelref -}}{{- end -}}
 {{/* --------------------------------------------------------------------- */}}
 {{- $title := $s.Title -}}
 {{- if $s.Param "manuallinktitle" -}}{{- $title = $s.Params.manuallinktitle -}}{{- end -}}

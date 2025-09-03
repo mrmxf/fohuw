@@ -1,6 +1,6 @@
 {{partial "tmpl/dbg-template-comment" .}}
 {{- if not .Site.Params.ui.breadcrumb_disable }}
-{{ $homeUrl := .RelRef (dict "path" "/")}}
+{{ $homeUrl := "/"}}
 {{ $home :=  printf "<a href='%s'><i class='%s'></i></a>" $homeUrl "home icon"}}
 {{ $arrow := printf " <i class='%s'></i> "                         "right arrow icon divider"}}
 {{ $crumb := "ui breadcrumb" }}

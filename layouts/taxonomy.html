@@ -11,8 +11,7 @@
       {{ $manualLink := .RelPermalink }}
       {{ if .Params.manualLink }}{{ $manualLink = .Params.manualLink }}
       {{else}}
-      {{ if .Params.manualLinkRelref }}{{ $manualLink = relref . .Params.manualLinkRelref }}
-      {{else}}{{ $manualLink = .RelPermalink }}{{end}}
+      {{ $manualLink = .RelPermalink }}
       {{end}}
       <article class="card article-teaser article-type-{{ with .Type }}{{ ( urlize . ) | safeHTMLAttr}}{{ end }}">
         <h3><a href="{{ $manualLink }}" {{ with .Params.manualLinkTitle }} title="{{ . }}" {{ end }}{{ with

@@ -1,0 +1,29 @@
+
+  {{ $pageList := "❓"}}
+  {{ if hugo.IsServer }}{{/*
+
+    return the hierarchy of this page (If any)
+      $pList := partial "debug/pList" .
+
+  */}}
+  {{partial "tmpl/dbg-template-comment" . }}
+  {{$page := false}}
+  {{if .Page}}{{$page = .Page}}{{end}}
+  {{if .page}}{{$page = .page}}{{warnidf "fohuw" "YAaaaay %s" .page.Path}}{{end}}
+  {{with $page}}
+    {{$pageList = .Path }}
+    {{with .Parent}}
+      {{$pageList = printf "%s◀%s" $pageList .Path }}
+      {{with .Parent}}
+        {{$pageList = printf "%s◀%s" $pageList .Path }}
+        {{with .Parent}}
+          {{$pageList = printf "%s◀%s" $pageList .Path }}
+          {{with .Parent}}
+          {{$pageList = printf "%s◀%s" $pageList .Path }}
+          {{end}}
+        {{end}}
+      {{end}}
+    {{end}}
+  {{end}}
+{{end}}
+{{return $pageList}}

@@ -18,61 +18,6 @@ kfg:
 #                  |_|    |_|
 # -----------------------------------------------------------------------------
 snippets:
-  build: |
-    eval "$(clog Source project config)"    # configure project - local config
-    eval "$(clog Inc)"                      # shell embedded help (sh, zsh & bash)
-    help="core/sh/help-golang.sh"           # build embedded help
-    eval "$(clog Cat $help)"                # golang build helpers
-
-    clog Log -I "Build$cC $PROJECT $cT using clog's$cF $help"
-
-    clog Check pre-build #&& [ $? -gt 0 ] && exit 1
-    clog Check build     && [ $? -gt 0 ] && exit 1
-    # ------------------------------------------------------------------------------
-    app=podserver  # our pod server app command
-    export MAKE="hugo $app ko"
-
-    # ensure tmp dir exists
-    mkdir -p tmp
-
-    if (clog Should MAKE "hugo"); then
-      [ ! -d content ] && ln -s documentation/content content
-      clog Log -I "Purging kodata/ and building site"
-      rm -rf kodata/*
-      [ $? -gt 0 ] && fWarn "purging kodata/ - failed - continuing anyway"
-      hugo build --minify --forceSyncStatic --logLevel warn
-      [ -d content ] && rm content
-    fi
-
-    if (clog Should MAKE "$app"); then
-      fGoBuild tmp/$app-amd-lnx     linux   amd64
-      fGoBuild tmp/$app-arm-lnx     linux   arm64
-      fGoBuild tmp/$app-arm-mac     darwin  arm64
-      clog Log -I "stand-alone exe built to the$cF tmp/$cT folder\n"
-    fi
-
-    if (clog Should MAKE "ko"); then
-      tag="$(clog git tag ref)"
-      # config is in .ko.yaml
-      # use the default docker repo unless told otherwise
-      [ -z "$DOCKER_NS" ] && DOCKER_NS="mrmxf"
-      [ -z "$KO_DOCKER_REPO" ] && KO_DOCKER_REPO="$DOCKER_NS"
-      export KO_DOCKER_REPO
-      export KO_CONFIG_PATH=".ko.yaml"
-      export KO_DATA_DATE_EPOCH=$(git log -1 --format='%ct')
-      ko build --base-import-paths --tags "$tag" --tags "latest" .
-      
-      clog Log -I "multi-arch docker build$cF $PROJECT$cT:$cW$tag$cT and ${cW}latest"
-    fi
-
-  is-prod-release: |
-    [ "prod" == "$(yq -r '.[0].build'  assets/data/releases.yaml)" ]
-  git:
-    tag:
-      # fohuw, like Hugo & golang requires a "v"
-      ref: echo "v$(yq -r '.[0].version'  assets/data/releases.yaml)"
-    message:
-      ref:  yq -r '.[0].note'  assets/data/releases.yaml
   project:
     config: |
       export PROJECT=fohuw

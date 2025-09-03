@@ -10,16 +10,28 @@
 {{/* --- create a page object for the included page ---------------------- */}}
 {{- $headerClass := .headerClass | default "header" -}}
 {{- $featureClass := .class | default "message" -}}
-{{- $srcClass :=  .srcClass | default "ui fluid image" -}}
-{{- $mediaDot := merge . (dict "srcClass" $srcClass) }}
+{{- $srcClass := .srcClass | default "ui fluid image" -}}
+
+{{/* features don't have captions, so remove .text and .header */}}
+{{- $mediaDot := merge . (dict "srcClass" $srcClass "process" "fit 200x200" "header" false "text" false "page" .page) }}
+
+{{ $link := .link}}
+{{$u := urls.Parse $link}}
+{{- if and $link (not $u.IsAbs) -}}
+  {{if not (fileExists $u.Path)}}
+    {{$err := printf "bad link(%s) for image" $link}}
+    {{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "link" .link "resolved-link" $link "page" .page) ) -}}
+  {{end}}
+{{end}}
 <div class="{{.class}}">
-  {{- if .link -}}
-  <a href="{{ relref .page .link }}">
-    {{ end }}
-    {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
-    {{- with .text}}<p>{{.}}</p>{{- end -}}
+  {{- if $link -}}<a href="{{ $link }}">{{ end }}
+    <div class="fo-thin-only">
+      {{- with .header}}<p>{{.}}</p>{{- end -}}
+    </div>
+    <div class="fo-wide-only">
+      {{- with .header}}<h2 class="{{$headerClass}}">{{.}}</h2>{{- end -}}
+      {{- with .text}}<p>{{.}}</p>{{- end -}}
+    </div>
     {{ partial "tool/media" $mediaDot }}
-    {{- with .link -}}
-  </a>
-  {{- end -}}
+    {{- with $link -}}</a>{{- end -}}
 </div>

@@ -23,7 +23,6 @@ kodata
 licenselink
 ltrimstr
 manuallink
-manuallinkrelref
 markdownify
 mclass
 metarex
@@ -35,7 +34,6 @@ outputformat
 permalinkable
 querify
 readingtime
-relref
 rexy
 shellsnippets
 shortcode

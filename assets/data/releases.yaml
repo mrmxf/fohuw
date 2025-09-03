@@ -1,3 +1,4 @@
+- {version: "v0.5.6", date: 2025-09-03, flow: stage, build: dev, note: better debug}
 - {version: "v0.5.5", date: 2025-08-27, flow: stage, build: dev, note: docs sidebar removal}
 - {version: "v0.5.4", date: 2025-07-29, flow: stage, build: dev, note: dead shortcodes, fo-env}
 - {version: "v0.5.3", date: 2025-07-21, flow: release, build: prod, note: dead shortcodes, fo-env}

@@ -33,7 +33,7 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
 
           Inner   contains markdown and is after the rendered description
 */}}
-{{- $workerPartial := "fo" -}}
+{{- $workerPartial := "hw" -}}
 
 {{- $args:=""}}{{if .IsNamedParams}}{{$args =.Get "args"}}{{else}}{{$args =.Get 0}}{{end -}}
 {{- $id := .Get "id" | default (printf "block-%d" .Ordinal) -}}

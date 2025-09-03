@@ -6,11 +6,36 @@
 {{- $err := printf "is nil for %s" .src -}}
 {{- $alt := .alt -}}
 {{- if not $alt -}}{{ $alt = .text }}{{end}}
-{{- if not .src -}}{{- partial "tool/dbg" (dict "_" "err" "a" ".src" "m" $err "d" .) -}}{{- end -}}
-{{- if not $alt -}}{{- partial "tool/dbg" (dict "_" "err" "a" ".alt" "m" $err "d" . ) -}}{{- end -}}
-{{- if .link -}}<a href="{{.link}}">{{- end -}}
+{{- if not .src -}}{{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "src" .src)) -}}{{- end -}}
+{{- if not $alt -}}{{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "alt" .alt)) -}}{{- end -}}
+{{/*  try a page resource first */}}
+{{ $src := .src }}
+{{ $img := .page.Resources.Get .src }}
+{{/*  try a global resource second */}}
+{{if not $img}}
+  {{ $img = resources.Get .src }}
+{{end}}
+{{if $img}}
+  {{/* $img is not nil if we get a valid image resource i.e. .png or .jpg - NOT .svg */}}
+  {{if .process }}
+    {{/* apply image process if requested */}}
+    {{$img = $img.Process .process}}
+  {{end}}
+  {{$src = $img.RelPermalink}}
+{{end}}
+{{ $link := .srcLink}}
+{{$u := urls.Parse $link}}
+{{- if and $link (not $u.IsAbs) -}}
+  {{ $aFile := fileExists $u.Path}}
+  {{ $aBlog := strings.HasPrefix .srcLink "/blog/"}}
+  {{if and (not $aFile) (not $aBlog)}}
+    {{$err := printf "bad srcLink(%s) for image" $link}}
+    {{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "link" .srcLink "resolved-link" $link "page" .page) ) -}}
+  {{end}}
+{{end}}
+{{- if $link -}}<a href="{{$link}}">{{- end -}}
 <div class="{{.srcClass}}">
-<img  src="{{.src}}" {{with $alt }}alt="{{.}}"{{end}} />
+<img  src="{{$src}}" {{with $alt }}alt="{{.}}"{{end}} />
 </div>
 {{- partial "tool/caption" . -}}
-{{- if .link -}}</a>{{- end -}}
+{{- if $link -}}</a>{{- end -}}

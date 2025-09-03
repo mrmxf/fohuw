@@ -1,4 +1,4 @@
-{{ if not hugo.IsServer }}
+{{ if hugo.IsServer }}
 {{/* only do debug when running in the hugo server */}}
 {{partial "tmpl/dbg-template-comment" .}}
 <!-- Pretty Print for Debug -->
