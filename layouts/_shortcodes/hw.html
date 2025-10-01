@@ -4,7 +4,7 @@ Changing themes is a pain, so hw is a hugo wrapper theme - it provides
 tools and templates wrapped in a single shortcode. Implement once with
 the style engine of your choice
 
-Props(see tool/help partial or insert `fo t="help"` in your code):
+Props(see tool/help partial or insert `hw t="help"` in your code):
              t  = "partial tool/$t ."
            help = "any string and the help for that partial will be rendered"
             alt = alt text for image/ video/resource
@@ -42,6 +42,7 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
 {{- $blockClass := .Get "blockClass" -}}
 {{- $class := .Get "class" -}}
 {{- $count := .Get "count" | default 1 -}}
+{{- $dbg := .Get "dbg" -}}
 {{- $description := .Get "description" -}}
 {{- $from := .Get "from" -}}
 {{- $header := .Get "header" -}}
@@ -53,14 +54,16 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
 {{- $skip := .Get "skip" | default 0 -}}
 {{- $src := .Get "src" -}}
 {{- $srcClass := .Get "srcClass" -}}
+{{- $srcGrid := .Get "srcGrid" -}}
 {{- $srcId := .Get "srcId" -}}
 {{- $srcLink := .Get "srcLink" | default $headerLink -}}
 {{- $srcOn := .Get "srcOn" | default "left" -}}
 {{- $srcPoster := .Get "srcPoster" -}}
 {{- $srcWidth := .Get "srcWidth" | default 0.25 -}}
 {{- $text := .Get "text" -}}
+{{- $txtGrid := .Get "txtGrid" -}}
 {{/* --- src logic ------------------------------------------------------*/}}
-  {{- if not $src -}}{{ $srcWidth = 0.0 }}{{- end -}}
+{{- if not $src -}}{{ $srcWidth = 0.0 }}{{- end -}}
 {{- $srcIsVideo := false -}}
 {{- $srcIsImage := false -}}
 {{- with $src -}}
@@ -87,6 +90,7 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
 {{- $d = merge $d (dict "blockClass" $blockClass) -}}
 {{- $d = merge $d (dict "class" $class) -}}
 {{- $d = merge $d (dict "count" $count) -}}
+{{- $d = merge $d (dict "dbg" $dbg) -}}
 {{- $d = merge $d (dict "description" $description) -}}
 {{- $d = merge $d (dict "inner" .Inner) -}}
 {{- $d = merge $d (dict "help" $help) -}}
@@ -108,9 +112,9 @@ Props(see tool/help partial or insert `fo t="help"` in your code):
 {{- $d = merge $d (dict "text" $text) -}}
 {{- $d = merge $d (dict "txtGrid" $txtGrid) -}}
 
-{{- if .Get "dbg" -}}
+{{- if $dbg -}}
 <details class="" open="">
-  <summary class="title"><span class="ui red text">FO dbg</span></summary>
+  <summary class="title"><span style="color:red;">HW dbg</span></summary>
   <div><pre><code>{{ debug.Dump $d }}</code></pre></div>
 </details>
 {{- end -}}

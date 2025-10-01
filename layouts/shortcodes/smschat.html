@@ -1,0 +1,40 @@
+{{- $header := .Get "header" | default (.Page.Title | default "Messages") -}}
+{{- $from := .Get "from" | default "Me" -}}
+{{- $alt := .Get "alt" | default "Friend" -}}
+
+{{- $hasChat := isset .Page.Params "smschat" -}}
+{{- $hasDelay := false -}}
+{{- $chatArray := slice -}}
+{{- $delayArray := slice -}}
+
+{{- if $hasChat -}}
+  {{- if isset .Page.Params.smschat "chat" -}}
+    {{- $chatArray = .Page.Params.smschat.chat -}}
+  {{- end -}}
+  {{- if isset .Page.Params.smschat "delay" -}}
+    {{- $hasDelay = true -}}
+    {{- $delayArray = .Page.Params.smschat.delay -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if or (not $hasChat) (not .Page.Params.smschat.chat) -}}
+  {{- $errorMessages := slice "you forgot" "what" "to populate params.smschat.chat" -}}
+  {{- $errorDelays := slice 2 3 2 -}}
+  {{- if not $hasDelay -}}
+    {{- $errorMessages = $errorMessages | append "that all?" "and params.smschat.delay" -}}
+    {{- $errorDelays = $errorDelays | append 2 2 -}}
+  {{- end -}}
+
+  {{- $errorPage := dict "Params" (dict "smschat" (dict "chat" $errorMessages "delay" $errorDelays)) -}}
+  {{- partial "SmsChat.html" (dict "page" $errorPage "header" "Error" "from" $from "alt" "System") -}}
+{{- else -}}
+  {{- if not $hasDelay -}}
+    {{- $delayArray = slice -}}
+    {{- range $chatArray -}}
+      {{- $delayArray = $delayArray | append 2 -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $pageData := dict "Params" (dict "smschat" (dict "chat" $chatArray "delay" $delayArray)) -}}
+  {{- partial "SmsChat.html" (dict "page" $pageData "header" $header "from" $from "alt" $alt) -}}
+{{- end -}}

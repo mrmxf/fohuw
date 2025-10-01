@@ -1,0 +1,551 @@
+{{- $divId := printf "venn-%s" (.Ordinal | default "1") -}}
+{{- $left := .left -}}
+{{- $middle := .middle -}}
+{{- $right := .right -}}
+{{- $radiusNum := .radiusNum -}}
+{{- $overlapNum := .overlapNum -}}
+
+{{- $leftFill := "lightblue" -}}
+{{- $leftStroke := "darkblue" -}}
+{{- $rightFill := "#ffcccc" -}}
+{{- $rightStroke := "darkred" -}}
+{{- $intersectionFill := "lightgreen" -}}
+{{- $intersectionStroke := "darkgreen" -}}
+
+{{- $x1 := $radiusNum -}}
+{{- $y1 := $radiusNum -}}
+{{- $x2 := add $x1 (mul 2 $overlapNum $radiusNum) | int -}}
+{{- $y2 := $y1 -}}
+
+{{- $svgWidth := add (mul 2 $radiusNum) (mul 2 $overlapNum $radiusNum) | int -}}
+{{- $svgHeight := mul 2 $radiusNum -}}
+
+{{- $vennParams := dict -}}
+{{- if .Page -}}
+  {{- with .Page.Params.venn -}}
+    {{- range $key, $value := . -}}
+      {{- $vennParams = merge $vennParams (dict $key $value) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<div id="{{ $divId }}" class="venn-container" style="width: 100%; display: flex; justify-content: center; position: relative;">
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+(function(diagramId) {
+  'use strict';
+  
+  // Instance-specific variables
+  let currentArgs = null;
+  let currentParams = null;
+
+  /**
+   * Renders a Venn diagram with animation
+   * @param {Object} usrArgs - User arguments containing diagram properties
+   * @param {string} usrArgs.left - Text content for left circle
+   * @param {string} usrArgs.middle - Text content for intersection area
+   * @param {string} usrArgs.right - Text content for right circle
+   * @param {number} [usrArgs.radius=100] - Radius of circles in pixels
+   * @param {number} [usrArgs.overlap=0.4] - Overlap percentage (0-1)
+   * @param {Object} usrParams - Animation and display parameters
+   * @param {number} [usrParams.duration] - Animation duration in seconds
+   * @param {number} [usrParams.delay] - Animation delay in seconds
+   * @param {Object} [usrParams.hide] - Options to hide UI elements
+   * @param {boolean} [usrParams.hide.restart] - Hide restart button if true
+   */
+  function renderVenn(usrArgs, usrParams) {
+    // Find the container using the diagram ID
+    const container = document.getElementById(diagramId);
+    if (!container) {
+      console.error('Venn container not found for diagram', diagramId);
+      return;
+    }
+
+    // Store parameters for restart functionality
+    currentArgs = usrArgs;
+    currentParams = usrParams;
+
+    // Calculate SVG dimensions and positions using actual radius
+    const radiusNum = usrArgs.radius || 100;
+    const overlapNum = usrArgs.overlap || 0.4;
+    const strokeWidth = 2;
+    const actualRadius = radiusNum - strokeWidth - 1;
+    
+    const x1 = radiusNum; // Still use original radius for SVG positioning
+    const y1 = radiusNum;
+    const x2 = x1 + (2 * overlapNum * actualRadius); // Use actual radius for overlap
+    const y2 = y1;
+    const svgWidth = (2 * radiusNum) + (2 * overlapNum * actualRadius);
+    const svgHeight = 2 * radiusNum;
+
+    // Create SVG element with unique ID
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const svgId = diagramId + '-svg';
+    svg.id = svgId;
+    svg.setAttribute('width', svgWidth);
+    svg.setAttribute('height', svgHeight);
+    svg.setAttribute('viewBox', `0 0 ${svgWidth} ${svgHeight}`);
+
+    // Create defs for clipping if needed
+    if (overlapNum > 0) {
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      
+      const clipPath1 = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+      clipPath1.id = diagramId + '-circle1-clip';
+      const clipCircle1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      clipCircle1.setAttribute('cx', x1);
+      clipCircle1.setAttribute('cy', y1);
+      clipCircle1.setAttribute('r', 0);
+      clipPath1.appendChild(clipCircle1);
+      
+      const clipPath2 = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+      clipPath2.id = diagramId + '-circle2-clip';
+      const clipCircle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      clipCircle2.id = diagramId + '-clip-circle2';
+      clipCircle2.setAttribute('cx', x2);
+      clipCircle2.setAttribute('cy', y2);
+      clipCircle2.setAttribute('r', 0);
+      clipPath2.appendChild(clipCircle2);
+      
+      defs.appendChild(clipPath1);
+      defs.appendChild(clipPath2);
+      svg.appendChild(defs);
+    }
+
+    container.appendChild(svg);
+
+    // Create extended args object with calculated values
+    const extendedArgs = {
+      ...usrArgs,
+      diagramId: diagramId,
+      container: container,
+      radiusNum: radiusNum,
+      overlapNum: overlapNum,
+      x1: x1,
+      y1: y1,
+      x2: x2,
+      y2: y2,
+      svgWidth: svgWidth,
+      svgHeight: svgHeight,
+      leftFill: 'lightblue',
+      leftStroke: 'darkblue',
+      rightFill: '#ffcccc',
+      rightStroke: 'darkred',
+      intersectionFill: 'lightgreen',
+      intersectionStroke: 'darkgreen'
+    };
+
+    // Create restart button
+    restartButton(usrParams);
+    
+    // Start animation
+    startVennAnimation(svg, extendedArgs, usrParams);
+  }
+
+  /**
+   * Creates a restart button for the Venn diagram animation
+   * @param {Object} params - Parameters object
+   * @param {Object} [params.hide] - Options to hide UI elements
+   * @param {boolean} [params.hide.restart] - If true, the restart button is not created
+   */
+  function restartButton(params) {
+    if (params && params.hide && params.hide.restart) { 
+      return;
+    }
+
+    // Find the container using the diagram ID
+    const container = document.getElementById(diagramId);
+    if (!container) {
+      return;
+    }
+
+    // Remove existing button if it exists
+    const existingBtn = container.querySelector('#' + diagramId + '-restart-btn');
+    if (existingBtn) {
+      container.removeChild(existingBtn);
+    }
+
+    // Create button element
+    const button = document.createElement('button');
+    button.id = diagramId + '-restart-btn';
+    button.style.position = 'absolute';
+    button.style.top = '10px';
+    button.style.left = '10px';
+    
+    // Create icon element
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-redo-alt';
+    icon.setAttribute('aria-hidden', 'true');
+    
+    button.appendChild(icon);
+    container.appendChild(button);
+
+    // Add click handler
+    button.onclick = function() {
+      restartAnimation();
+    };
+  }
+
+  /**
+   * Restarts the Venn diagram animation by clearing the current diagram and re-rendering
+   * Uses the stored currentArgs and currentParams from the last renderVenn call
+   */
+  function restartAnimation() {
+    if (!currentArgs || !currentParams) {
+      console.warn('No animation parameters stored for restart');
+      return;
+    }
+
+    // Find the container using the diagram ID
+    const container = document.getElementById(diagramId);
+    if (!container) {
+      return;
+    }
+
+    // Clear the SVG (keep the button)
+    const svg = container.querySelector('#' + diagramId + '-svg');
+    if (svg) {
+      container.removeChild(svg);
+    }
+    
+    // Re-render the diagram
+    renderVenn(currentArgs, currentParams);
+  }
+
+  /**
+   * Starts the Venn diagram animation using anime.js
+   * @param {SVGElement} svg - The SVG element to animate
+   * @param {Object} args - Extended arguments with calculated values
+   * @param {number} args.actualRadius - Actual radius after clipping adjustment
+   * @param {number} args.x1 - X coordinate of left circle center
+   * @param {number} args.y1 - Y coordinate of left circle center
+   * @param {number} args.x2 - X coordinate of right circle center
+   * @param {number} args.y2 - Y coordinate of right circle center
+   * @param {string} args.left - Left circle text content
+   * @param {string} args.right - Right circle text content
+   * @param {string} args.middle - Intersection text content
+   * @param {Object} params - Animation parameters
+   * @param {number} [params.duration] - Animation duration in seconds
+   * @param {number} [params.delay] - Animation delay in seconds
+   */
+  function startVennAnimation(svg, args, params) {
+    // Check if anime.js is available
+    if (typeof anime === 'undefined') {
+      console.error('anime.js is not available. Make sure it is loaded before this script.');
+      return;
+    }
+
+    /**
+     * Cleans and validates arguments for the Venn diagram
+     * @param {Object} args - Raw arguments object
+     * @param {number} args.radiusNum - Radius value to validate
+     * @param {number} args.overlapNum - Overlap value to validate
+     * @returns {Object} Cleaned arguments with additional calculated properties
+     */
+    function cleanArgs(args) {
+    const cleaned = { ...args };
+
+    // Validate radius
+    if (cleaned.radiusNum < 10) cleaned.radiusNum = 100;
+
+    // Validate overlap
+    if (cleaned.overlapNum < 0) cleaned.overlapNum = 0;
+    if (cleaned.overlapNum > 0.8) cleaned.overlapNum = 0.8;
+
+    // Adjust radius to prevent clipping (radius - stroke_width - 1)
+    const strokeWidth = 2;
+    cleaned.actualRadius = cleaned.radiusNum - strokeWidth - 1;
+
+    // Calculate text positions using actual radius for overlap calculations
+    cleaned.leftTextX = cleaned.x1 - (cleaned.actualRadius / 2) - (cleaned.overlapNum * cleaned.actualRadius);
+    cleaned.rightTextX = cleaned.x2 - (cleaned.actualRadius / 2) + (0.25 * cleaned.overlapNum * cleaned.actualRadius);
+    cleaned.intersectionX = (cleaned.x1 + cleaned.x2) / 2;
+    cleaned.intersectionWidth = cleaned.overlapNum * cleaned.actualRadius;
+
+    return cleaned;
+  }
+
+  /**
+   * Creates SVG circle elements using DOM methods
+   * @param {SVGElement} svg - The SVG container element
+   * @param {Object} args - Arguments containing circle properties
+   * @param {number} args.x1 - X coordinate for left circle
+   * @param {number} args.y1 - Y coordinate for left circle
+   * @param {number} args.x2 - X coordinate for right circle
+   * @param {number} args.y2 - Y coordinate for right circle
+   * @param {number} args.radiusNum - Circle radius
+   * @param {string} args.leftFill - Fill color for left circle
+   * @param {string} args.leftStroke - Stroke color for left circle
+   * @param {string} args.rightFill - Fill color for right circle
+   * @param {string} args.rightStroke - Stroke color for right circle
+   * @returns {Object} Object containing references to created circle elements
+   */
+  function createDrawableCircles(svg, args) {
+    // Create left circle
+    const leftCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    leftCircle.id = args.diagramId + '-left-circle';
+    leftCircle.setAttribute('cx', args.x1 + args.radiusNum); // Start position (separated)
+    leftCircle.setAttribute('cy', args.y1);
+    leftCircle.setAttribute('r', 0);
+    leftCircle.setAttribute('fill', args.leftFill);
+    leftCircle.setAttribute('stroke', args.leftStroke);
+    leftCircle.setAttribute('stroke-width', 2);
+    svg.appendChild(leftCircle);
+
+    // Create right circle  
+    const rightCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    rightCircle.id = args.diagramId + '-right-circle';
+    rightCircle.setAttribute('cx', args.x2 - args.radiusNum); // Start position (separated)
+    rightCircle.setAttribute('cy', args.y2);
+    rightCircle.setAttribute('r', 0);
+    rightCircle.setAttribute('fill', args.rightFill);
+    rightCircle.setAttribute('stroke', args.rightStroke);
+    rightCircle.setAttribute('stroke-width', 2);
+    svg.appendChild(rightCircle);
+
+    // Create intersection circle if needed
+    let intersectionCircle = null;
+    if (args.overlapNum > 0 && args.middle) {
+      intersectionCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      intersectionCircle.id = args.diagramId + '-intersection-circle';
+      intersectionCircle.setAttribute('cx', args.intersectionX);
+      intersectionCircle.setAttribute('cy', args.y1);
+      intersectionCircle.setAttribute('r', 0);
+      intersectionCircle.setAttribute('fill', args.intersectionFill);
+      intersectionCircle.setAttribute('stroke', args.intersectionStroke);
+      intersectionCircle.setAttribute('stroke-width', 2);
+      intersectionCircle.setAttribute('clip-path', 'url(#' + args.diagramId + '-circle2-clip)');
+      intersectionCircle.style.opacity = '0';
+      svg.appendChild(intersectionCircle);
+    }
+
+    return { leftCircle, rightCircle, intersectionCircle };
+  }
+
+  /**
+   * Calculates target positions for circle movement animation
+   * @param {Object} args - Arguments containing position data
+   * @param {number} args.x1 - Target X coordinate for left circle
+   * @param {number} args.x2 - Target X coordinate for right circle
+   * @returns {Object} Object containing target positions for animation
+   */
+  function getTargetPositions(args) {
+    return {
+      leftTarget: { cx: args.x1 },
+      rightTarget: { cx: args.x2 }
+    };
+  }
+
+  /**
+   * Creates text elements for the Venn diagram using foreignObject elements
+   * @param {SVGElement} svg - The SVG container element
+   * @param {Object} args - Arguments containing text content and positioning
+   * @param {string} args.left - Text content for left circle
+   * @param {string} args.right - Text content for right circle
+   * @param {string} args.middle - Text content for intersection
+   * @param {number} args.leftTextX - X position for left text
+   * @param {number} args.rightTextX - X position for right text
+   * @param {number} args.intersectionX - X position for intersection text
+   * @param {number} args.intersectionWidth - Width of intersection text area
+   * @param {number} args.radiusNum - Circle radius for text positioning
+   * @param {number} args.y1 - Y coordinate for text positioning
+   * @param {string} args.leftStroke - Color for left text
+   * @param {string} args.rightStroke - Color for right text
+   * @param {string} args.intersectionStroke - Color for intersection text
+   */
+  function createTextElements(svg, args) {
+    const textY = args.y1 - (args.radiusNum / 2);
+
+    // Create left text
+    if (args.left) {
+      const leftText = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+      leftText.id = args.diagramId + '-left-text';
+      leftText.setAttribute('x', args.leftTextX + args.radiusNum);
+      leftText.setAttribute('y', textY);
+      leftText.setAttribute('width', args.radiusNum);
+      leftText.setAttribute('height', args.radiusNum);
+      leftText.style.opacity = '0';
+
+      const leftDiv = document.createElement('div');
+      leftDiv.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+      leftDiv.style.cssText = `display: flex; align-items: center; justify-content: center; height: 100%; color: ${args.leftStroke}; font-size: 12px; text-align: center; padding: 5px;`;
+      leftDiv.innerHTML = args.left;
+
+      leftText.appendChild(leftDiv);
+      svg.appendChild(leftText);
+    }
+
+    // Create right text
+    if (args.right) {
+      const rightText = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+      rightText.id = args.diagramId + '-right-text';
+      rightText.setAttribute('x', args.rightTextX - args.radiusNum);
+      rightText.setAttribute('y', textY);
+      rightText.setAttribute('width', args.radiusNum);
+      rightText.setAttribute('height', args.radiusNum);
+      rightText.style.opacity = '0';
+
+      const rightDiv = document.createElement('div');
+      rightDiv.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+      rightDiv.style.cssText = `display: flex; align-items: center; justify-content: center; height: 100%; color: ${args.rightStroke}; font-size: 12px; text-align: center; padding: 5px;`;
+      rightDiv.innerHTML = args.right;
+
+      rightText.appendChild(rightDiv);
+      svg.appendChild(rightText);
+    }
+
+    // Create intersection text
+    if (args.middle && args.overlapNum > 0) {
+      const intersectionText = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+      intersectionText.id = args.diagramId + '-intersection-text';
+      intersectionText.setAttribute('x', args.intersectionX - (args.intersectionWidth / 2));
+      intersectionText.setAttribute('y', textY);
+      intersectionText.setAttribute('width', args.intersectionWidth);
+      intersectionText.setAttribute('height', args.radiusNum);
+      intersectionText.style.opacity = '0';
+
+      const intersectionDiv = document.createElement('div');
+      intersectionDiv.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+      intersectionDiv.style.cssText = `display: flex; align-items: center; justify-content: center; height: 100%; color: ${args.intersectionStroke}; font-size: 12px; text-align: center; padding: 5px;`;
+      intersectionDiv.innerHTML = args.middle;
+
+      intersectionText.appendChild(intersectionDiv);
+      svg.appendChild(intersectionText);
+    }
+  }
+
+    /**
+     * Cleans and validates parameter object
+     * @param {Object} inputParams - Raw parameters object
+     * @returns {Object} Cleaned parameters object (shallow copy)
+     */
+    function cleanParams(inputParams) {
+      return { ...inputParams };
+    }
+
+    // Get cleaned versions
+    const cleanedArgs = cleanArgs(args);
+    const cleanedParams = cleanParams(params);
+
+    // Animation configuration
+    const duration = (cleanedParams.duration) ? cleanedParams.duration * 1000 : 1000; // Default 1 second
+    const delay = (cleanedParams.delay) ? cleanedParams.delay * 1000 : 0; // Default 0 delay
+
+    console.log('Starting animation with duration:', duration, 'delay:', delay);
+
+    // Create drawable circles and get target positions
+    const circles = createDrawableCircles(svg, cleanedArgs);
+    const targets = getTargetPositions(cleanedArgs);
+
+    // Create text elements dynamically
+    createTextElements(svg, cleanedArgs);
+
+    setTimeout(function () {
+      // Animate left circle moving and growing
+      anime({
+        targets: circles.leftCircle,
+        cx: targets.leftTarget.cx,
+        r: cleanedArgs.actualRadius,
+        duration: duration,
+        easing: 'easeOutQuart'
+      });
+
+      // Animate right circle moving and growing  
+      anime({
+        targets: circles.rightCircle,
+        cx: targets.rightTarget.cx,
+        r: cleanedArgs.actualRadius,
+        duration: duration,
+        easing: 'easeOutQuart'
+      });
+
+      // Update clip path circle position and size
+      if (cleanedArgs.overlapNum > 0) {
+        anime({
+          targets: '#' + cleanedArgs.diagramId + '-clip-circle2',
+          cx: cleanedArgs.x2,
+          r: cleanedArgs.actualRadius,
+          duration: duration,
+          easing: 'easeOutQuart'
+        });
+
+        // Animate intersection circle growing
+        anime({
+          targets: '#' + cleanedArgs.diagramId + '-intersection-circle',
+          r: cleanedArgs.actualRadius,
+          opacity: 1,
+          duration: duration,
+          easing: 'easeOutQuart'
+        });
+      }
+
+      // Animate text positions and opacity
+      if (cleanedArgs.left) {
+        anime({
+          targets: '#' + cleanedArgs.diagramId + '-left-text',
+          x: cleanedArgs.leftTextX,
+          opacity: 1,
+          duration: duration,
+          easing: 'easeOutQuart',
+          delay: duration * 0.5
+        });
+      }
+
+      if (cleanedArgs.right) {
+        anime({
+          targets: '#' + cleanedArgs.diagramId + '-right-text',
+          x: cleanedArgs.rightTextX,
+          opacity: 1,
+          duration: duration,
+          easing: 'easeOutQuart',
+          delay: duration * 0.5
+        });
+      }
+
+      if (cleanedArgs.middle && cleanedArgs.overlapNum > 0) {
+        // Show intersection area and text
+        anime({
+          targets: '#' + cleanedArgs.diagramId + '-intersection-circle',
+          opacity: 1,
+          duration: duration * 0.5,
+          easing: 'easeOutQuart',
+          delay: duration * 0.8
+        });
+
+        anime({
+          targets: '#' + cleanedArgs.diagramId + '-intersection-text',
+          opacity: 1,
+          duration: duration * 0.5,
+          easing: 'easeOutQuart',
+          delay: duration * 0.8
+        });
+      }
+    }, delay);
+  }
+
+  // Wait for page load, then render Venn diagram
+  document.addEventListener('DOMContentLoaded', function () {
+    // Create args map from shortcode parameters
+    const args = {
+      left: {{ $left | jsonify }},
+      middle: {{ $middle | jsonify }},
+      right: {{ $right | jsonify }},
+      radius: {{ $radiusNum }},
+      overlap: {{ $overlapNum }}
+    };
+
+    // Create params map from Page venn parameters
+    const params = {{ $vennParams | jsonify }};
+
+    console.log('DOM loaded, rendering Venn diagram', diagramId);
+    console.log('args:', args);
+    console.log('params:', params);
+
+    // Render the Venn diagram
+    renderVenn(args, params);
+  });
+
+})('{{ $divId }}'); // End IIFE - pass diagram ID
+</script>

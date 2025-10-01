@@ -1,0 +1,5 @@
+{{- $from := .Get 0 | default (.Get "from") -}}
+{{- $size := .Get "size" | default "large" -}}
+
+
+{{- partial "Gallery.html" (dict "page" .Page "from" $from "size" $size) -}}

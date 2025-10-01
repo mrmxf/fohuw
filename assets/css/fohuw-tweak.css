@@ -38,10 +38,13 @@
   --cardboard-wrapper: #D8B588;
 
   /* fohuw named colors & highlights */
-  --fo-text: var(--mm-dark);
-  --fo-hi-1: var(--mrx-green);
-  --fo-hi-2: var(--mrx-purple);
-  --fo-hi-3: var(--mrx-amber);
+  --hw-text: var(--mm-dark);
+  --hw-hi1: var(--mrx-purple);
+  --hw-hi2: var(--mrx-amber);
+  --hw-hi3: var(--mrx-green);
+  --hw-bg1: hsl(from var(--hw-hi1) h s 95%);
+  --hw-bg2: hsl(from var(--hw-hi2) h s 95%);
+  --hw-bg3: hsl(from var(--hw-hi3) h s 95%);
 }
 body {
   padding-left: 1em;
@@ -62,7 +65,7 @@ code {
 
 .fo-reading-time {
   size: 80%;
-  color: var(--fo-hi-1)
+  color: var(--hw-hi1)
 }
 
 .logo-fo {
@@ -84,7 +87,7 @@ code {
 /* custom styling for the site title text in the menu*/
 #siteTitleMenu {
   font-weight: bold;
-  color: var(--fo-hi-1)
+  color: var(--hw-hi1)
 }
 
 /* On wide screens display full menu, hide narrow menu */
@@ -156,7 +159,7 @@ header .fo-thin-only .ui.item.title {
   width: 100%;
 }
 .child-bar-horizontal .divider {
-  color:var(--fo-hi-3);
+  color:var(--hw-hi2);
   font-weight:bold;
 }
 /*    __               _                */
@@ -211,22 +214,22 @@ footer .row .labels .label>a:hover {
 
 /* fohuw taxonomy label classes */
 .ui.fohuw-taxonomy1.label {
-  background: hsl(from var(--fo-hi-1) h s 95%);
+  background: hsl(from var(--hw-hi1) h s 95%);
   backdrop-filter: 200%;
-  border-color: var(--fo-hi-1);
-  color: var(--fo-hi-1);
+  border-color: var(--hw-hi1);
+  color: var(--hw-hi1);
 }
 
 .ui.fohuw-taxonomy2.label {
-  background: hsl(from var(--fo-hi-2) h s 95%);
-  border-color: var(--fo-hi-2);
-  color: var(--fo-hi-2);
+  background: hsl(from var(--hw-hi2) h s 95%);
+  border-color: var(--hw-hi2);
+  color: var(--hw-hi2);
 }
 
 .ui.fohuw-taxonomy3.label {
-  background: hsl(from var(--fo-hi-3) h s 95%);
-  border-color: var(--fo-hi-3);
-  color: var(--fo-hi-3);
+  background: hsl(from var(--hw-hi2) h s 95%);
+  border-color: var(--hw-hi2);
+  color: var(--hw-hi2);
 }
 
 .ui.fohuw-taxonomy4.label {

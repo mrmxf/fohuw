@@ -1,6 +1,6 @@
 {{ if hugo.IsServer }}
 {{/* only do debug when running in the hugo server */}}
-{{partial "tmpl/dbg-template-comment" .}}
+{{partial "tmpl/dbg-template-comment" .}}{{/* Hugo partial that provides comprehensive debug printing functionality for development mode */}}
 <!-- Pretty Print for Debug -->
 <!-- https://github.com/kaushalmodi/hugo-debugprint/blob/master/layouts/partials/debugprint.html --- -->
 <!-- Usage examples (remove /* and */ when using):

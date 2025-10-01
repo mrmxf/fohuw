@@ -66,6 +66,45 @@ ui:
     showBuildDate: true
   readingTime:
     enable: true
+  gallery:
+    default:
+      colors:
+        - media: "jpg"
+          border: "var(--gallery-jpg, hsl(0, 80%, 30%))"
+          fill: "var(--gallery-jpg, hsl(0, 10%, 91%))"
+        - media: "png"
+          border: "var(--gallery-png, hsl(30, 80%, 30%))"
+          fill: "var(--gallery-png, hsl(30, 10%, 91%))"
+        - media: "gif"
+          border: "var(--gallery-gif, hsl(60, 80%, 30%))"
+          fill: "var(--gallery-gif, hsl(60, 10%, 91%))"
+        - media: "webp"
+          border: "var(--gallery-webp, hsl(90, 80%, 30%))"
+          fill: "var(--gallery-webp, hsl(90, 10%, 91%))"
+        - media: "svg"
+          border: "var(--gallery-svg, hsl(120, 80%, 30%))"
+          fill: "var(--gallery-svg, hsl(120, 10%, 91%))"
+        - media: "bmp"
+          border: "var(--gallery-bmp, hsl(150, 80%, 30%))"
+          fill: "var(--gallery-bmp, hsl(150, 10%, 91%))"
+        - media: "tiff"
+          border: "var(--gallery-tiff, hsl(180, 80%, 30%))"
+          fill: "var(--gallery-tiff, hsl(180, 10%, 91%))"
+        - media: "ico"
+          border: "var(--gallery-ico, hsl(210, 80%, 30%))"
+          fill: "var(--gallery-ico, hsl(210, 10%, 91%))"
+        - media: "mp4"
+          border: "var(--gallery-mp4, hsl(240, 80%, 30%))"
+          fill: "var(--gallery-mp4, hsl(240, 10%, 91%))"
+        - media: "avi"
+          border: "var(--gallery-avi, hsl(270, 80%, 30%))"
+          fill: "var(--gallery-avi, hsl(270, 10%, 91%))"
+        - media: "mov"
+          border: "var(--gallery-mov, hsl(300, 80%, 30%))"
+          fill: "var(--gallery-mov, hsl(300, 10%, 91%))"
+        - media: "webm"
+          border: "var(--gallery-webm, hsl(330, 80%, 30%))"
+          fill: "var(--gallery-webm, hsl(330, 10%, 91%))"
 #           _                         _
 #   __   __| |  _ _      _  _   _ _  | |  ___
 #  / _| / _` | | ' \    | || | | '_| | | (_-<

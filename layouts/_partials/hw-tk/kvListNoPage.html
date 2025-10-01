@@ -1,8 +1,11 @@
+{{partial "tmpl/dbg-template-comment" .}}{{/*
+Debug utility to return key-value collection without page elements - used for development debugging
+*/}}
 {{ $kvList := dict }}
 {{ if hugo.IsServer }}{{/*
 
     return a collection of kv items without any page element
-      $kvList := partial "debug/kvListNoPage" .
+      $kvList := partial "hw-tk/kvListNoPage" .
 
   */}}
   {{partial "tmpl/dbg-template-comment" . }}

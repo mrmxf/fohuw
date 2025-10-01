@@ -7,7 +7,9 @@
   {{ partial "tmpl/head.html" . }}
 </head>
 {{- $bodyClass := ""}}
-{{- if isset .Page.Params.ui "bodyClass" }}{{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}{{ end }}
+{{- if and .Page.Params.ui (isset .Page.Params.ui "bodyClass")}}
+  {{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}
+{{ end }}
 
 <body {{$bodyClass | safeHTMLAttr}}>
   <div class="ui wide container">

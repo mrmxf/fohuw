@@ -1,4 +1,4 @@
-{{partial "tmpl/dbg-template-comment" .}}{{if hugo.IsServer}}<div class="ui red message">
+{{partial "tmpl/dbg-template-comment" .}}{{/* Hugo partial for debugging that displays variable contents in development mode */}}{{if hugo.IsServer}}<div class="ui red message">
   {{ if . }}
   <p>dot is of type {{ printf "%T" . }}</p>
   <ul>

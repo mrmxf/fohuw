@@ -1,23 +1,28 @@
 {{partial "tmpl/dbg-template-comment" .}}
 {{/* to support SVG files, all logos must be in assets/brands */}}
-{{- $doLogo := true -}}{{if isset site.Params.ui.hide.navbar "logo"}}{{$doLogo = not
-site.Params.ui.hide.navbar.logo}}{{end}}
-{{- $doTitle := true -}}{{if isset site.Params.ui.hide.navbar "title"}}{{$doTitle = not
-site.Params.ui.hide.navbar.title}}{{end}}
+{{- $doLogo := true -}}
+{{if and site.Params.ui.hide.navbar (isset site.Params.ui.hide.navbar "logo")}}
+  {{$doLogo = not site.Params.ui.hide.navbar.logo}}
+{{end}}
+
+{{- $doTitle := true -}}
+{{if and site.Params.ui.hide.navbar (isset site.Params.ui.hide.navbar "title")}}
+  {{$doTitle = not site.Params.ui.hide.navbar.title}}
+{{end}}
+
 {{- if (or $doLogo $doTitle)}}
+  {{- $logo := partial "tmpl/logo-resource" .}}
 
-{{- $logo := partial "tmpl/logo-resource" .}}
-
-<div class="ui labelled divided  menu">
-  {{if $doLogo}}
-  <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
-    {{with $logo}}<div class="ui mini image"><img src="{{.RelPermalink}}"></div>{{end}}
-  </a>
-  {{end}}
-  {{if $doTitle}}
-  <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
-    <p id="siteTitleMenu" style="display:block" ;>{{site.Title}}</p>
-  </a>
-  {{- end -}}
-</div>
+  <div class="ui labelled divided  menu">
+    {{if $doLogo}}
+    <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
+      {{with $logo}}<div class="ui mini image"><img src="{{.RelPermalink}}"></div>{{end}}
+    </a>
+    {{end}}
+    {{if $doTitle}}
+    <a class="item" href="{{ site.Home.RelPermalink }}" style="height:100%">
+      <p id="siteTitleMenu" style="display:block" ;>{{site.Title}}</p>
+    </a>
+    {{- end -}}
+  </div>
 {{- end -}}

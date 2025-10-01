@@ -2,32 +2,33 @@
     Only do debug when running in the hugo server
     Usage: 
     
-    Display and log an error message
-      partial dbg (dict "err" "some error" "ctx" .)
+    Display and log an error message with key-value pairs
+      partial dbg (dict "err" "message" "kv" .)
 
     Display and log a warning message
-      partial dbg (dict "wrn" "some error" "ctx" .)
+      partial dbg (dict "wrn" "some error" "kv" .)
 
     Display and log an info message
-      partial dbg (dict "wrn" "some error" "ctx" .)
+      partial dbg (dict "wrn" "some error" "kv" .)
     
     like slogger, all key:value pairs in the ctx will be shown
   */}}
   {{partial "tmpl/dbg-template-comment" . }}
   {{$theme := "fohuw"}}
-  {{$pList := partial "debug/pageList" .ctx}}
-  {{$tList := partial "debug/templateList.html" .ctx}}
-  {{$kvList := partial "debug/kvListNoPage.html" .ctx}}
-  {{$d := dict "pList" $pList "tList" $tList "kvList" $kvList}}
+  {{$pList := partial "hw-tk/pageList" .kv}}
+  {{$tList := partial "hw-tk/templateList.html" .kv}}
+  {{$kvList := partial "hw-tk/kvListNoPage.html" .kv}}
+  {{$help := partial "hw-tk/help" .kv}}
+  {{$d := dict "pList" $pList "tList" $tList "kvList" $kvList "help" $help}}
 
   {{- if .err  }}
     {{- erroridf $theme "err: %s @page(%s), partials[%s]" .err $pList $tList -}}
-    {{partial "debug/render" (merge $d (dict "color" "red" "msg" .err))}}
+    {{partial "hw-tk/render" (merge $d (dict "color" "red" "msg" .err))}}
   {{ end -}}
 
   {{- if .wrn  }}
     {{- warnidf $theme "err: %s @page(%s), partials[%s]" .wrn $pList $tList -}}
-    {{partial "debug/render" (merge $d (dict "color" "orange" "msg" .wrn))}}
+    {{partial "hw-tk/render" (merge $d (dict "color" "orange" "msg" .wrn))}}
   {{ end -}}
 
 {{end}}{{/* end of if server running */}}

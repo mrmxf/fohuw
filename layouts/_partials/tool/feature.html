@@ -1,4 +1,4 @@
-{{partial "tmpl/dbg-template-comment" .}}
+{{partial "tmpl/dbg-template-comment" .}}{{/* Hugo partial that renders individual feature blocks with header, text, and media within feature groups */}}
 {{$h := slice "A feature is a block in a feature-group" }}
 {{$h = $h | append (dict "a" "class " "h" "inner class of the block" "d" "message" "eg" "green messsage")}}
 {{$h = $h | append (dict "a" "header" "h" "bold heading above media" "d" "nil" "eg" "Spring Sale")}}
@@ -20,7 +20,7 @@
 {{- if and $link (not $u.IsAbs) -}}
   {{if not (fileExists $u.Path)}}
     {{$err := printf "bad link(%s) for image" $link}}
-    {{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "link" .link "resolved-link" $link "page" .page) ) -}}
+    {{- partial "tool/dbg" (dict "wrn" $err "kv" (dict "link" .link "resolved-link" $link "page" .page) ) -}}
   {{end}}
 {{end}}
 <div class="{{.class}}">

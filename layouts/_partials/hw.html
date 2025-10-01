@@ -4,49 +4,51 @@ The main dispatcher for the hw blocks.
 Set .t = "help" for dict definitions
 Set .help = "anything" to render help for the partial instead of the partial
 */}}
-{{if false}}{{partial "tool/dbg-dump-dot" .}}{{end}}
+{{$id := .id}}
 {{- $blockTemplate := "my-help" -}}
 {{- with .t }}{{ $blockTemplate = printf "tool/%s" . }}{{ end -}}
 {{- $blockPath := printf "_partials/%s.html" $blockTemplate -}}
-{{printf "<!-- t = %s, look for partial %s -->" .t $blockPath|safeHTML}}
 {{ if templates.Exists $blockPath }}
- {{ if .help }}
-
-  {{/* --------user requested help for a partial---------- */}}
-  {{ $helpTemplate := printf "tool/%s.help" .t }}
+ {{printf "<!-- t = \"%s\" found at %s-->" .t $blockPath|safeHTML}}
+ {{ if .help }}{{/* help requested ================================ */}}
+  {{ $helpTemplate := printf "tool/%s-help" .t }}
   {{ $helpPath := printf "_partials/%s.html" $helpTemplate }}
-  {{ if templates.Exists $helpPath }}
-   {{ partial "tool/_help_common" . }}
-   <div class="fohuw-help">
-    {{ partial $helpTemplate . }}
-    </div>
-   {{else}}{{/* else help does not exist for t */}}
+
+  {{ if templates.Exists $helpPath }}{{/* helpPath for t ≡≡≡≡≡≡≡≡≡≡*/}}
+    {{printf "<!-- t = \"%s\", help found at %s -->" .t $helpPath|safeHTML}}
+    {{partial $helpTemplate  .}}
+  {{else}}{{/* else helpPath does not exist for t */}}
+   {{printf "<!-- t = \"%s\", help missing from %s -->" .t $helpPath|safeHTML}}
    <div class="ui red message">
      <div class="header"><h2>No help available for <code>t = "{{.t}}"</code></h2></div>
      <div class="content">
        <p>Default help location is <code>layouts/{{$helpPath}}</code> </p>
      </div>
    </div>
-  {{end}}{{/* end help for t */}}
+  {{end}}{{/* end helpPath for t ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡ */}}
 
- {{/* --------------------------------------------------- */}}
+ {{else}}{{/* else no help, just template t ====================== */}}
 
- {{else}}{{/* do template t */}}
-
-  {{/* --------------render a partial -------------------- */}}
-  {{- with .blockClass }}<div class="{{.}}">{{end -}}
-    {{partial $blockTemplate .}}
-    {{- with .blockClass }}</div>{{end -}}
+  {{/* --------------render a partial --------------------
+  in lists like item-lists don't emit extra divs unless instructed
+  - it might break frameworks like fomantic
+   */}}
+  {{printf "<!-- t = \"%s\" found at %s-->" .t $blockPath|safeHTML}}
+  {{if .blockClass }}<div class="{{.blockClass}}" {{if .id}}id="{{.id}}"{{end}}>{{end}}
+  {{partial $blockTemplate .}}
+  {{- if .blockClass }}</div>{{end -}}
   {{/* --------------------------------------------------- */}}
   
- {{end}}
-{{ else }}{{/* missing template t  - bad juju */}}
+ {{end}}{{/* end render template t that exists ================== */}}
 
- {{/* --------------error partial does not exist-------------------- */}}
- {{$em := printf "style=\"%s\"" "color:blue;"}}
- {{$msg := printf "not found - check spelling of<code %s> t = \"%s\"</code>" $em .t}}
- {{ partial "tool/dbg-err" (dict "p" $blockTemplate "a" $blockPath "m" $msg "d" .) }}
- {{ partial "tool/help.html" . }}
- {{/* --------------------------------------------------- */}}
+{{else}}{{/* missing template t  ------------------------------ */}}
 
-{{ end }}
+  {{printf "<!-- t = \"%s\" missing from  %s-->" .t $blockPath|safeHTML}}
+  {{$em := printf "style=\"%s\"" "color:blue;"}}
+  {{$msg := printf "check spelling of<code %s> t = \"%s\"</code>" $em .t}}
+  {{partial "tool/dbg" (dict
+   "wrn" "hw partial not found"
+   "kv" (dict "msg" $msg "path" $blockPath "page" .page)
+   )}}
+
+{{ end }}{{/* missing template t  ------------------------------- */}}

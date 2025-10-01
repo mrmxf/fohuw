@@ -8,7 +8,9 @@
   <link rel="stylesheet" type="text/css" href="{{ " css/swagger-ui.css" | relURL }}">
 </head>
 {{- $bodyClass := ""}}
-{{- if isset .Page.Params.ui "bodyClass" }}{{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}{{ end }}
+{{- if and .Page.Params.ui (isset .Page.Params.ui "bodyClass") }}
+  {{ $bodyClass = printf "class=\"%s\"" .Page.Params.ui.bodyClass }}
+{{ end }}
 
 <body {{$bodyClass | safeHTMLAttr}}>
   <header>

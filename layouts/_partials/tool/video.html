@@ -1,20 +1,28 @@
-{{partial "tmpl/dbg-template-comment" .}}
-{{ $color := "purple"}}
-{{ $type := (printf "%T" .src) }}
-{{- $err := printf "is nil for %s" .src -}}
-{{- $alt := .alt -}}
-{{- if not .src -}}{{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "src" .src)) -}}{{- end -}}
-{{- if not $alt -}}{{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "alt" .alt)) -}}{{- end -}}
+{{partial "tmpl/dbg-template-comment" .}}{{/* Hugo partial that renders HTML5 video elements with optional links and captions */}}
+{{$color := "purple"}}
+{{$type := (printf "%T" .src)}}
+{{$err := printf "is nil for %s" .src}}
+{{$alt := .alt}}
+{{$srcClass := .srcClass | default "ui fluid image"}}
+{{- if not .src -}}
+  {{- partial "tool/dbg" (dict "wrn" $err "kv" (dict "src" .src)) -}}
+{{- end -}}
+
+{{- if not $alt -}}
+  {{- partial "tool/dbg" (dict "wrn" $err "kv" (dict "alt" .alt)) -}}
+{{- end -}}
+
 {{ $link := .srcLink}}
 {{$u := urls.Parse $link}}
+
 {{- if and $link (not $u.IsAbs) -}}
-{{if not (fileExists $u.Path)}}
-{{$err := printf "bad link(%s) for video" $link}}
-{{- partial "tool/dbg" (dict "wrn" $err "ctx" . ) -}}
-{{end}}
+  {{if not (fileExists $u.Path)}}
+    {{$err := printf "bad link(%s) for video" $link}}
+    {{- partial "tool/dbg" (dict "wrn" $err "kv" . ) -}}
+  {{end}}
 {{end}}
 {{- if $link -}}<a href="{{$link}}">{{- end -}}
-<video class="{{ .srcClass }}" autoplay loop>
+<video class="{{ $srcClass }}" autoplay loop>
   <source src="{{ .src }}" type="video/mp4"  {{with .alt }}alt="{{.}}"{{end}} />
   Your browser does not support the video tag.
 </video>

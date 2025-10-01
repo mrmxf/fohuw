@@ -1,13 +1,14 @@
 {{partial "tmpl/dbg-template-comment" .}}{{/*
   The .src property may be a string or a resource - do the right thing!
 */}}
-{{ $color := "purple"}}
-{{ $type := (printf "%T" .src) }}
-{{- $err := printf "is nil for %s" .src -}}
-{{- $alt := .alt -}}
-{{- if not $alt -}}{{ $alt = .text }}{{end}}
-{{- if not .src -}}{{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "src" .src)) -}}{{- end -}}
-{{- if not $alt -}}{{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "alt" .alt)) -}}{{- end -}}
+{{$color := "purple"}}
+{{$type := (printf "%T" .src) }}
+{{$err := printf "is nil for %s" .src}}
+{{$alt := .alt}}
+{{$srcClass := .srcClass | default "ui fluid image"}}
+{{if not $alt}}{{ $alt = .text }}{{end}}
+{{if not .src}}{{partial "tool/dbg" (dict "wrn" $err "kv" (dict "src" .src))}}{{end}}
+{{if not $alt}}{{partial "tool/dbg" (dict "wrn" $err "kv" (dict "alt" .alt))}}{{end}}
 {{/*  try a page resource first */}}
 {{ $src := .src }}
 {{ $img := .page.Resources.Get .src }}
@@ -31,11 +32,11 @@
   {{ $aPage := site.GetPage .srcLink }}
   {{if and (not $aFile) (not $aBlog) (not $aPage)}}
     {{$err := printf "bad srcLink(%s) for image" $link}}
-    {{- partial "tool/dbg" (dict "wrn" $err "ctx" (dict "link" .srcLink "resolved-link" $link "page" .page) ) -}}
+    {{- partial "tool/dbg" (dict "wrn" $err "kv" (dict "link" .srcLink "resolved-link" $link "page" .page) ) -}}
   {{end}}
 {{end}}
 {{- if $link -}}<a href="{{$link}}">{{- end -}}
-<div class="{{.srcClass}}">
+<div class="{{$srcClass}}">
 <img  src="{{$src}}" {{with $alt }}alt="{{.}}"{{end}} />
 </div>
 {{- partial "tool/caption" . -}}

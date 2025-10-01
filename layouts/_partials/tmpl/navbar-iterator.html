@@ -10,8 +10,8 @@
 {{- $partial2 := site.Params.ui.navbar2.partial -}}
 {{- $menu2name := site.Params.ui.navbar2.menu -}}
 {{- $menu2 := slice -}}
-{{- if isset site.Menus $menu2name -}}
-{{- $menu2 := index site.Menus $menu2name -}}
+{{- if and $menu2name (isset site.Menus $menu2name) -}}
+  {{- $menu2 := index site.Menus $menu2name -}}
 {{- else -}}
 {{ $msg := printf "the value of site.params.ui.navbar2.menu (%s) must be a valid child key of sites.menus" $menu2name}}
 {{ partial "tool/dbg-err" (dict "m" $msg "d" .) }}

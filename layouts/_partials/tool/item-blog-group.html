@@ -44,6 +44,14 @@
 {{- $d = merge $d (dict "description" $description) -}}
 {{- $min := add ( div ( countwords $description ) 220 ) 1 -}}
 {{- $d = merge $d (dict "meta" (printf "~%v min read" $min)) -}}
-
+{{/* force text & content to be centre aligned*/}}
+<style>
+  .ui.items>.item {
+    align-items:center;
+  }
+  .ui.items>.item>.image+.content {
+    align-self: center;
+  }
+</style>
 {{ partial "tool/item" $d }}
 {{ end }}{{/* end of range*/}}
