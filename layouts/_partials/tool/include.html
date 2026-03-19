@@ -22,9 +22,9 @@
  {{$content}}
 
 {{- else -}}
-{{/* else if file doesn't exist */}}
-
-{{ partial "tool/dbg-err.html" (dict  "a" "include from" "m" (printf "file not found: %s" $f) "d" .) }}
+{{/* else if file doesn't exist* /}}
+{{ $err := dict "p" "tool/include" "a" "from" "m" (printf "from field does not point to a valid file:%s" $f) }}
+{{ partial "tool/dbg-err.html" $err }}
 
 {{- end -}}{{/* end of if file exists */}}
 {{else}}

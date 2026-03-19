@@ -6,7 +6,6 @@ text = the caption content
 {{if or .header .text .src}}
 {{$imgClass := .srcClass | default "ui mini image"}}
 {{$class := .class | default "ui message"}}
-{{$text := .text}}
 <div style="text-align:center;">
   <div class={{$class}} style="display:flex;justify-content: space-around;align-items:center;">
     {{if .src}}

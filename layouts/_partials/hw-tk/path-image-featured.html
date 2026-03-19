@@ -1,0 +1,19 @@
+{{- /*
+  hw-tk/path-image-featured - returns the RelPermalink of the fitted featured image, or "".
+
+  Expects a dict with:
+    .page  - Hugo page object
+  Reads page frontmatter:
+    FeaturedGlob  - glob for page resources (default "featured*.*")
+    FeaturedWxH   - fit size string         (default "200x200")
+*/ -}}
+{{- $glob := .page.Params.FeaturedGlob | default "featured*.*" -}}
+{{- $wxh  := .page.Params.FeaturedWxH  | default "200x200" -}}
+{{- $path := "" -}}
+{{- $imgs := .page.Resources.Match $glob -}}
+{{- if $imgs -}}
+  {{- $img  := index $imgs 0 -}}
+  {{- $img   = $img.Fit $wxh -}}
+  {{- $path  = $img.RelPermalink -}}
+{{- end -}}
+{{- return $path -}}
